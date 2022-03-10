@@ -1,2 +1,2 @@
-# Algorytmy_numeryczne_Projekt_1
-Projekt 1 z przedmiotu Algorytmy numeryczne
+# Algorytmy numeryczne
+Repozytorium z zadaniami z przedmiotu Algorytmy numeryczne.
