@@ -1,6 +1,8 @@
 package com.company;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -70,7 +72,7 @@ public class Main {
         return lista;
     }
 
-    static void obliczanie_taylora(double a) {
+    static List<Double> obliczanie_taylora(double a) {
         List<Double> lista_cos = getCos(a);
         List<Double> lista_arctg = getArctan(a);
         List<Double> lista_cos_prev = getCos_prev(a);
@@ -95,21 +97,36 @@ public class Main {
             cos_p_prev += lista_cos_prev.get(i);
             arctg_p_prev += lista_arctg_prev.get(i);
         }
-        System.out.print("Taylor sumowany od lewej: ");
-        System.out.println(cos_l * arctg_l);
-        System.out.print("Taylor sumowany od prawej: ");
-        System.out.println(cos_p * arctg_p);
-        System.out.print("Taylor sumowany od lewej wyliczając elementy z poprzedniego elementu: ");
-        System.out.println(cos_l_prev * arctg_l_prev);
-        System.out.print("Taylor sumowany od prawej wyliczając elementy z poprzedniego elementu: ");
-        System.out.println(cos_p_prev * arctg_p_prev);
-        System.out.print("Taylor liczony za pomocą funkcji wbudowanych: ");
-        System.out.println(Math.cos(a) * Math.atan(a));
+        //        System.out.print("Taylor sumowany od lewej: ");
+//        System.out.println(cos_l * arctg_l);
+//        System.out.print("Taylor sumowany od prawej: ");
+//        System.out.println(cos_p * arctg_p);
+//        System.out.print("Taylor sumowany od lewej wyliczając elementy z poprzedniego elementu: ");
+//        System.out.println(cos_l_prev * arctg_l_prev);
+//        System.out.print("Taylor sumowany od prawej wyliczając elementy z poprzedniego elementu: ");
+//        System.out.println(cos_p_prev * arctg_p_prev);
+//        System.out.print("Taylor liczony za pomocą funkcji wbudowanych: ");
+//        System.out.println(Math.cos(a) * Math.atan(a));
+        return Arrays.asList(cos_l * arctg_l, cos_p * arctg_p, cos_l_prev * arctg_l_prev, cos_p_prev * arctg_p_prev, Math.cos(a) * Math.atan(a));
     }
 
 
     public static void main(String[] args) {
-        obliczanie_taylora(1);
+//        try {
+//            FileWriter myWriter = new FileWriter("test.csv");
+//            myWriter.write("ABC");
+//            myWriter.close();
+//        } catch (IOException err) {
+//            err.printStackTrace();
+//        }
+
+
+//        String pathToCSV="../test.csv";
+//        FileOutputStream fos = new FileOutputStream(pathToCSV);
+//        DataOutputStream dos = new DataOutputStream(fos);
+//        double d = 165;
+//        dos.writeDouble(d);
+//        dos.close();
     }
 }
 
