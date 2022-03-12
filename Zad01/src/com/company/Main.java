@@ -39,9 +39,9 @@ public class Main {
 
     static List<Double> getCos_prev(double a) {
         List<Double> lista = new ArrayList<>();
-        lista.add((potegowanie(a, 0) / silnia(0)));
-        for (int k = 1; k < 10000; k++) {
-            lista.add(lista.get(lista.size()-1)*-1*((potegowanie(a,2)/4*potegowanie(k,2)+6*k+2)));
+        lista.add((potegowanie(a, 1) / silnia(1)));
+        for (int k = 1; k < 10000; k+=2) {
+            lista.add(-1*(lista.get(lista.size()-1)*((potegowanie(a,2))/k))*((potegowanie(a,2))/(k+1)));
         }
         return lista;
     }
@@ -63,9 +63,9 @@ public class Main {
 
     static List<Double> getArctan_prev(double a) {
         List<Double> lista = new ArrayList<>();
-        lista.add((potegowanie(a, 1)));
-        for (int k = 2; k < 10000; k++) {
-            lista.add((lista.get(lista.size()-1)*a)/k);
+        lista.add(a);
+        for (int k = 1; k < 10000; k++) {
+            lista.add(-1*(lista.get(lista.size()-1))*(potegowanie(a,2)));
         }
         return lista;
     }
@@ -100,7 +100,7 @@ public class Main {
         System.out.print("Taylor sumowany od lewej wyliczając elementy z poprzedniego elementu: ");
         System.out.println(cos_l_prev*arctg_l_prev);
 
-        System.out.println(lista_cos);
+//        System.out.println(lista_cos);
 //        System.out.println(lista_cos_prev);
 
 //        System.out.println(lista_arctg);
