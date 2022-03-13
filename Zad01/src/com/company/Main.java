@@ -51,7 +51,7 @@ public class Main {
     static List<Double> getArctan(double a) {
         boolean znak_arctg = true;
         List<Double> lista = new ArrayList<>();
-        for (int k = 1; k < 10000; k += 2) {
+        for (int k = 1; k < 10001; k += 2) {
             if (znak_arctg) {
                 lista.add((potegowanie(a, k) / k));
                 znak_arctg = false;
@@ -66,7 +66,7 @@ public class Main {
     static List<Double> getArctan_prev(double a) {
         List<Double> lista = new ArrayList<>();
         lista.add(a);
-        for (int k = 1; k < 10000; k += 2) {
+        for (int k = 1; k < 10001; k += 2) {
             lista.add(-1 * ((lista.get(lista.size() - 1)) * ((k * potegowanie(a, 2)) / (k + 2))));
         }
         return lista;
@@ -108,17 +108,25 @@ public class Main {
 //        System.out.print("Taylor liczony za pomocą funkcji wbudowanych: ");
 //        System.out.println(Math.cos(a) * Math.atan(a));
         return Arrays.asList(cos_l * arctg_l, cos_p * arctg_p, cos_l_prev * arctg_l_prev, cos_p_prev * arctg_p_prev, Math.cos(a) * Math.atan(a));
+//        return Arrays.asList(cos_l, cos_p, cos_l_prev, cos_p_prev, Math.cos(a));
+//        return Arrays.asList(arctg_l, arctg_p, arctg_l_prev, arctg_p_prev, Math.atan(a));
+
+
     }
 
 
     public static void main(String[] args) {
-//        try {
-//            FileWriter myWriter = new FileWriter("test.csv");
-//            myWriter.write("ABC");
-//            myWriter.close();
-//        } catch (IOException err) {
-//            err.printStackTrace();
-//        }
+        try {
+            FileWriter myWriter = new FileWriter("test.csv");
+            myWriter.write("Kat,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
+            for (float i=0;i<4;i+=0.01){
+                myWriter.write(Double.toString(i)+","+Double.toString(obliczanie_taylora(i).get(0)) + "," + Double.toString(obliczanie_taylora(i).get(1)) + "," + Double.toString(obliczanie_taylora(i).get(2)) + "," + Double.toString(obliczanie_taylora(i).get(3)) + "," + Double.toString(obliczanie_taylora(i).get(4))+"\n");
+                System.out.println(i);
+            }
+            myWriter.close();
+        } catch (IOException err) {
+            err.printStackTrace();
+        }
 
 
 //        String pathToCSV="../test.csv";
