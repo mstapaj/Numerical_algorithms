@@ -132,7 +132,7 @@ public class Main {
         try {
             FileWriter myWriter = new FileWriter("test.csv");
             myWriter.write("Kat,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
-            for (float i = 0; i < 0.8; i += 0.0000008) {
+            for (float i = 0; i < 0.85; i += 0.0000008) {
                 myWriter.write(i + "," + obliczanie_taylora(i, prec, 1).get(0) + "," + obliczanie_taylora(i, prec, 1).get(1) + "," + obliczanie_taylora(i, prec, 1).get(2) + "," + obliczanie_taylora(i, prec, 1).get(3) + "," + obliczanie_taylora(i, prec, 1).get(4) + "\n");
                 System.out.println(i);
             }
