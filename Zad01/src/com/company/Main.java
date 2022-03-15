@@ -96,7 +96,8 @@ public class Main {
             cos_p_prev += lista_cos_prev.get(i);
             arctg_p_prev += lista_arctg_prev.get(i);
         }
-        //        System.out.print("Taylor sumowany od lewej: ");
+//        System.out.println(lista_cos);
+//        System.out.print("Taylor sumowany od lewej: ");
 //        System.out.println(cos_l * arctg_l);
 //        System.out.print("Taylor sumowany od prawej: ");
 //        System.out.println(cos_p * arctg_p);
@@ -120,10 +121,11 @@ public class Main {
 
 
     public static void main(String[] args) {
+//        obliczanie_taylora(0.5F);
         try {
             FileWriter myWriter = new FileWriter("test.csv");
             myWriter.write("Kat,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
-            for (float i = 0; i < 0.8; i += 0.000001) {
+            for (float i = -0.8F; i < 0.8; i += 0.000001) {
                 myWriter.write(i + "," + obliczanie_taylora(i).get(0) + "," + obliczanie_taylora(i).get(1) + "," + obliczanie_taylora(i).get(2) + "," + obliczanie_taylora(i).get(3) + "," + obliczanie_taylora(i).get(4) + "\n");
                 System.out.println(i);
             }
