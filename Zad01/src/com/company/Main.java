@@ -23,10 +23,10 @@ public class Main {
         return result;
     }
 
-    static List<Float> getCos(Float a) {
+    static List<Float> getCos(Float a, int prec) {
         boolean znak_cos = true;
         List<Float> lista = new ArrayList<>();
-        for (int k = 0; k < 100; k += 2) {
+        for (int k = 0; k < prec; k += 2) {
             if (znak_cos) {
                 lista.add((potegowanie(a, (float) k) / silnia((float) k)));
                 znak_cos = false;
@@ -38,19 +38,19 @@ public class Main {
         return lista;
     }
 
-    static List<Float> getCos_prev(Float a) {
+    static List<Float> getCos_prev(Float a, int prec) {
         List<Float> lista = new ArrayList<>();
         lista.add((potegowanie(a, (float) 0) / silnia((float) 0)));
-        for (int k = 0; k < 100; k += 2) {
+        for (int k = 0; k < prec; k += 2) {
             lista.add(-1 * (lista.get(lista.size() - 1)) * (potegowanie(a, 2F) / (potegowanie((float) k, 2F) + (3 * k) + 2)));
         }
         return lista;
     }
 
-    static List<Float> getArctan(Float a) {
+    static List<Float> getArctan(Float a, int prec) {
         boolean znak_arctg = true;
         List<Float> lista = new ArrayList<>();
-        for (int k = 1; k < 101; k += 2) {
+        for (int k = 1; k < prec+1; k += 2) {
             if (znak_arctg) {
                 lista.add((potegowanie(a, (float) k) / k));
                 znak_arctg = false;
@@ -62,20 +62,20 @@ public class Main {
         return lista;
     }
 
-    static List<Float> getArctan_prev(Float a) {
+    static List<Float> getArctan_prev(Float a,int prec) {
         List<Float> lista = new ArrayList<>();
         lista.add(a);
-        for (int k = 1; k < 101; k += 2) {
+        for (int k = 1; k < prec+1; k += 2) {
             lista.add(-1 * ((lista.get(lista.size() - 1)) * ((k * potegowanie(a, 2F)) / (k + 2))));
         }
         return lista;
     }
 
-    static List<Float> obliczanie_taylora(Float a) {
-        List<Float> lista_cos = getCos(a);
-        List<Float> lista_arctg = getArctan(a);
-        List<Float> lista_cos_prev = getCos_prev(a);
-        List<Float> lista_arctg_prev = getArctan_prev(a);
+    static List<Float> obliczanie_taylora(Float a, int prec) {
+        List<Float> lista_cos = getCos(a,prec);
+        List<Float> lista_arctg = getArctan(a,prec);
+        List<Float> lista_cos_prev = getCos_prev(a,prec);
+        List<Float> lista_arctg_prev = getArctan_prev(a,prec);
         float cos_l = 0;
         float arctg_l = 0;
         float cos_p = 0;
@@ -125,8 +125,8 @@ public class Main {
         try {
             FileWriter myWriter = new FileWriter("test.csv");
             myWriter.write("Kat,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
-            for (float i = -0.8F; i < 0.8; i += 0.000001) {
-                myWriter.write(i + "," + obliczanie_taylora(i).get(0) + "," + obliczanie_taylora(i).get(1) + "," + obliczanie_taylora(i).get(2) + "," + obliczanie_taylora(i).get(3) + "," + obliczanie_taylora(i).get(4) + "\n");
+            for (float i = 0; i < 0.8; i += 0.0000008) {
+                myWriter.write(i + "," + obliczanie_taylora(i,100).get(0) + "," + obliczanie_taylora(i,100).get(1) + "," + obliczanie_taylora(i,100).get(2) + "," + obliczanie_taylora(i,100).get(3) + "," + obliczanie_taylora(i,100).get(4) + "\n");
                 System.out.println(i);
             }
             myWriter.close();
