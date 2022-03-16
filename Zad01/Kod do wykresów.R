@@ -10,7 +10,7 @@ class(data)
 # funkcja dzieląca dane na zbiory po 10000 elementów i wyliczajaca z nich srednia
 prepareAvg<-function(x){
   res<-c()
-  for (i in 2:102){
+  for (i in 1:101){
     a<-10000*(i-1)+1
     b<-10000*i
     res<-append(res,mean(x[a:b]))
@@ -57,22 +57,27 @@ legend(x="topleft", legend=c("Sumowanie od początku", "Sumowanie od końca"),
 par(mfrow=c(1,2))
 plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej_prev)/data$Taylor_z_func_wbudowanych)),xlab = "Wartości argumentów", ylab="Wartości błedu względnego",type="l",col="RED",main = "Sumowanie elementów od początku")
 abline(h=0)
-aboveZero(prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej_prev)/data$Taylor_z_func_wbudowanych)))
+mtext("Wyliczanie z wzoru",side=3)
+mtext("Wyliczanie na podstawie poprzedniego", side=1)
 plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych)),xlab = "Wartości argumentów", ylab="Wartości błedu względnego",col="RED",type = "l",main = "Sumowanie elementów od końca")
 abline(h=0)
-aboveZero(prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych)))
+mtext("Wyliczanie z wzoru",side=3)
+mtext("Wyliczanie na podstawie poprzedniego", side=1)
 
-prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych))
+aboveZero(prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej_prev)/data$Taylor_z_func_wbudowanych)))
+aboveZero(prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych)))
 
 aboveZero<-function(x){
   pos<-0
   neg<-0
   for (i in x){
-    if (i > 0){
-      pos<-pos+1
-    } else {
-      neg<-neg+1
-    }
+    if (!is.nan(i)){
+      if (i > 0){
+        pos<-pos+1
+      } else {
+        neg<-neg+1
+      }
+    } 
   }
   return(c(neg,pos))
 }
