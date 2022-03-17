@@ -18,19 +18,12 @@ prepareAvg<-function(x){
   return(res)
 }
 
-plot(prepareAvg(test_data), type = "l")
-plot(prepareAvg(data$Kat))
-plot(prepareAvg(data$Taylor_od_lewej), type='l')
-plot(data$Taylor_od_lewej)
-
-
 # Oddzielne wykresy 
 par(mfrow=c(1,1))
 plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej)/data$Taylor_z_func_wbudowanych)),xlab = "Warto?ci argument?w", ylab="Warto?ci b?edu wzgl?dnego",type="l",col="RED",main = "R??nica mi?dzy sumowaniem element?w szeregu Taylora od pocz?tku, a wbudowan? funkcj? biblioteczn? ")
 plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)),xlab = "Warto?ci argument?w", ylab="Warto?ci b?edu wzgl?dnego",col="RED",type = "l",main = "R??nica mi?dzy sumowaniem element?w szeregu Taylora od ko?ca, a wbudowan? funkcj? biblioteczn? ")
 plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej_prev)/data$Taylor_z_func_wbudowanych)),xlab = "Warto?ci argument?w", ylab="Warto?ci b?edu wzgl?dnego",col="RED",type = "l",main = "R??nica mi?dzy sumowaniem element?w szeregu Taylora od pocz?tku, wyliczaj?c na podstawie poprzedniego wyrazu, a wbudowan? funkcj? biblioteczn? ")
 plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych)),xlab = "Warto?ci argument?w", ylab="Warto?ci b?edu wzgl?dnego",col="RED",type = "l",main = "R??nica mi?dzy sumowaniem element?w szeregu Taylora od ko?ca, wyliczaj?c na podstawie poprzedniego wyrazu, a wbudowan? funkcj? biblioteczn? ")
-
 
 # Jeden duzy wykres, polaczany, taka sama os Y
 par(mfrow=c(2,2))
@@ -55,17 +48,14 @@ legend(x="topleft", legend=c("Sumowanie od początku", "Sumowanie od końca"),
 
 # H3
 par(mfrow=c(1,2))
-plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej_prev)/data$Taylor_z_func_wbudowanych)),xlab = "Wartości argumentów", ylab="Wartości błedu względnego",type="l",col="RED",main = "Sumowanie elementów od początku")
+plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej_prev)/data$Taylor_z_func_wbudowanych)),xlab = "Wartości argumentów", ylab="Wartości róznicy błędów",type="l",col="RED",main = "Sumowanie elementów od początku")
 abline(h=0)
 mtext("Wyliczanie z wzoru",side=3)
 mtext("Wyliczanie na podstawie poprzedniego", side=1)
-plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych)),xlab = "Wartości argumentów", ylab="Wartości błedu względnego",col="RED",type = "l",main = "Sumowanie elementów od końca")
+plot(prepareAvg(data$Kat),prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych)),xlab = "Wartości argumentów", ylab="Wartości róznicy błędów",col="RED",type = "l",main = "Sumowanie elementów od końca")
 abline(h=0)
 mtext("Wyliczanie z wzoru",side=3)
 mtext("Wyliczanie na podstawie poprzedniego", side=1)
-
-aboveZero(prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej_prev)/data$Taylor_z_func_wbudowanych)))
-aboveZero(prepareAvg(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych)))
 
 aboveZero<-function(x){
   pos<-0
@@ -74,12 +64,16 @@ aboveZero<-function(x){
     if (!is.nan(i)){
       if (i > 0){
         pos<-pos+1
-      } else {
+      } else if ( i < 0 ){
         neg<-neg+1
       }
     } 
   }
   return(c(neg,pos))
 }
+
+aboveZero(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej_prev)/data$Taylor_z_func_wbudowanych))
+aboveZero(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych))
+
 
 
