@@ -98,6 +98,7 @@ public class Main {
             cos_p_prev += lista_cos_prev.get(i);
             arctg_p_prev += lista_arctg_prev.get(i);
         }
+        double built_in_func = Math.cos(a) * Math.atan(a);
         if (mode == 0) {
             // Wyświetlanie list
             System.out.println(lista_cos);
@@ -114,15 +115,16 @@ public class Main {
             System.out.print("Taylor sumowany od prawej wyliczając elementy z poprzedniego elementu: ");
             System.out.println(cos_p_prev * arctg_p_prev);
             System.out.print("Taylor liczony za pomocą funkcji wbudowanych: ");
-            System.out.println(Math.cos(a) * Math.atan(a));
+            System.out.println(built_in_func);
+        } else if (mode == 1) {
+            result.add(cos_l * arctg_l);
+            result.add(cos_p * arctg_p);
+            result.add(cos_l_prev * arctg_l_prev);
+            result.add(cos_p_prev * arctg_p_prev);
+            result.add((float) built_in_func);
         } else {
             System.out.println("Zły tryb!\n Prawidlowe tryby to 0 do wyświetlania i 1 do zapisu do pliku");
         }
-        result.add(cos_l * arctg_l);
-        result.add(cos_p * arctg_p);
-        result.add(cos_l_prev * arctg_l_prev);
-        result.add(cos_p_prev * arctg_p_prev);
-        result.add((float) (Math.cos(a) * Math.atan(a)));
         return result;
     }
 
@@ -156,8 +158,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-        obliczanie_taylora(0.1F, 2, 0);
-//        zapis_plik_kat(50);
+//        obliczanie_taylora(0.8F, 3, 0);
+        zapis_plik_kat(50);
 //        zapis_plik_precyzja(0.8F);
     }
 }
