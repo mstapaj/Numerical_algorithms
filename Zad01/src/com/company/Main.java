@@ -115,20 +115,18 @@ public class Main {
             System.out.println(cos_p_prev * arctg_p_prev);
             System.out.print("Taylor liczony za pomocą funkcji wbudowanych: ");
             System.out.println(Math.cos(a) * Math.atan(a));
-        } else if (mode == 1) {
-            result.add(cos_l * arctg_l);
-            result.add(cos_p * arctg_p);
-            result.add(cos_l_prev * arctg_l_prev);
-            result.add(cos_p_prev * arctg_p_prev);
-            result.add((float) (Math.cos(a) * Math.atan(a)));
-
         } else {
             System.out.println("Zły tryb!\n Prawidlowe tryby to 0 do wyświetlania i 1 do zapisu do pliku");
         }
+        result.add(cos_l * arctg_l);
+        result.add(cos_p * arctg_p);
+        result.add(cos_l_prev * arctg_l_prev);
+        result.add(cos_p_prev * arctg_p_prev);
+        result.add((float) (Math.cos(a) * Math.atan(a)));
         return result;
     }
 
-    static void zapis_plik(int prec) {
+    static void zapis_plik_kat(int prec) {
         try {
             FileWriter myWriter = new FileWriter("test.csv");
             myWriter.write("Kat,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
@@ -142,9 +140,24 @@ public class Main {
         }
     }
 
+    static void zapis_plik_precyzja(float kat) {
+        try {
+            FileWriter myWriter = new FileWriter("test2.csv");
+            myWriter.write("Precyzja,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
+            for (int i = 0; i < 20; i += 1) {
+                myWriter.write(i + "," + obliczanie_taylora(kat, i, 1).get(0) + "," + obliczanie_taylora(kat, i, 1).get(1) + "," + obliczanie_taylora(kat, i, 1).get(2) + "," + obliczanie_taylora(kat, i, 1).get(3) + "," + obliczanie_taylora(kat, i, 1).get(4) + "\n");
+                System.out.println(i);
+            }
+            myWriter.close();
+        } catch (IOException err) {
+            err.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) {
-//        obliczanie_taylora(0.8F, 50, 0);
-        zapis_plik(50);
+        obliczanie_taylora(0.1F, 2, 0);
+//        zapis_plik_kat(50);
+//        zapis_plik_precyzja(0.8F);
     }
 }

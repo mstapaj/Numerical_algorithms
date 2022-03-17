@@ -2,10 +2,13 @@
 data <- read.csv("D:/Projekty/Projekty Java/Algorytmy numeryczne/Algorytmy_numeryczne/Zad01/test.csv")
 # dla linuxa
 data <- read.csv("/home/mtx22/Pulpit/Algorytmy numeryczne/Algorytmy_numeryczne/Zad01/test.csv")
+data2 <- read.csv("/home/mtx22/Pulpit/Algorytmy numeryczne/Algorytmy_numeryczne/Zad01/test2.csv")
 
 View(data)
 class(data)
 
+View(data2)
+class(data2)
 
 # funkcja dzieląca dane na zbiory po 10000 elementów i wyliczajaca z nich srednia
 prepareAvg<-function(x){
@@ -76,4 +79,10 @@ aboveZero(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_lewej)/data$Taylor_
 aboveZero(abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej)/data$Taylor_z_func_wbudowanych)-abs((data$Taylor_z_func_wbudowanych-data$Taylor_od_prawej_prev)/data$Taylor_z_func_wbudowanych))
 
 
+# Q1
+par(mfrow=c(2,2))
+plot(data2$Precyzja,abs((data2$Taylor_z_func_wbudowanych-data2$Taylor_od_lewej)/data2$Taylor_z_func_wbudowanych),xlab = "Ilość sumowanych składników", ylab="Wartości błedu względnego",type="l",col="RED",main = "Sumowanie elementów od początku")
+plot(data2$Precyzja,abs((data2$Taylor_z_func_wbudowanych-data2$Taylor_od_prawej)/data2$Taylor_z_func_wbudowanych),xlab = "Ilość sumowanych składników", ylab="Wartości błedu względnego",col="RED",type = "l",main = "Sumowanie elementów od końca")
+plot(data2$Precyzja,abs((data2$Taylor_z_func_wbudowanych-data2$Taylor_od_lewej_prev)/data2$Taylor_z_func_wbudowanych),xlab = "Ilość sumowanych składników", ylab="Wartości błedu względnego",col="RED",type = "l",main = "Sumowanie elementów od początku, wyliczając na podstawie poprzedniego wyrazu")
+plot(data2$Precyzja,abs((data2$Taylor_z_func_wbudowanych-data2$Taylor_od_prawej_prev)/data2$Taylor_z_func_wbudowanych),xlab = "Ilość sumowanych składników", ylab="Wartości błedu względnego",col="RED",type = "l",main = "Sumowanie elementów od końca, wyliczając na podstawie poprzedniego wyrazu")
 
