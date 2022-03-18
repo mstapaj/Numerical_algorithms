@@ -32,10 +32,7 @@ public class Main {
         }
     }
 
-    static boolean check_precision(float a) {
-        return !(abs(a) <= 1.0E-6);
-    }
-
+    // Funkcja częściowo zapożyczona z internetu - http://www.java2s.com/example/java-utility-method/epsilon-index-0.html
     static boolean check_precision_of(float a, float b) {
         return (a - b) < 1.0E-6F && (a - b) > 0 - 1.0E-6F;
     }
@@ -149,7 +146,8 @@ public class Main {
             FileWriter myWriter = new FileWriter("test.csv");
             myWriter.write("Kat,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
             for (float i = 0; i < 0.85; i += 0.0000008) {
-                myWriter.write(i + "," + obliczanie_taylora(i, prec, 1).get(0) + "," + obliczanie_taylora(i, prec, 1).get(1) + "," + obliczanie_taylora(i, prec, 1).get(2) + "," + obliczanie_taylora(i, prec, 1).get(3) + "," + obliczanie_taylora(i, prec, 1).get(4) + "\n");
+                List<Float> lista = obliczanie_taylora(i, prec, 1);
+                myWriter.write(i + "," + lista.get(0) + "," + lista.get(1) + "," + lista.get(2) + "," + lista.get(3) + "," + lista.get(4) + "\n");
                 System.out.println(i);
             }
             myWriter.close();
@@ -163,7 +161,8 @@ public class Main {
             FileWriter myWriter = new FileWriter("test2.csv");
             myWriter.write("Precyzja,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
             for (int i = 0; i < 20; i += 1) {
-                myWriter.write(i + "," + obliczanie_taylora(kat, i, 1).get(0) + "," + obliczanie_taylora(kat, i, 1).get(1) + "," + obliczanie_taylora(kat, i, 1).get(2) + "," + obliczanie_taylora(kat, i, 1).get(3) + "," + obliczanie_taylora(kat, i, 1).get(4) + "\n");
+                List<Float> lista = obliczanie_taylora(kat, i, 1);
+                myWriter.write(i + "," + lista.get(0) + "," + lista.get(1) + "," + lista.get(2) + "," + lista.get(3) + "," + lista.get(4) + "\n");
                 System.out.println(i);
             }
             myWriter.close();
@@ -184,35 +183,34 @@ public class Main {
                 lista[3] = 0;
                 for (int j = 1; true; j += 1) {
                     List<Float> results = obliczanie_taylora(i, j, 1);
-                    if (lista[0] == 0 && check_precision_of(results.get(0),results.get(4))) {
+                    if (lista[0] == 0 && check_precision_of(results.get(0), results.get(4))) {
                         lista[0] = j;
                     }
-                    if (lista[1] == 0 && check_precision_of(results.get(1),results.get(4))) {
+                    if (lista[1] == 0 && check_precision_of(results.get(1), results.get(4))) {
                         lista[1] = j;
                     }
-                    if (lista[2] == 0 && check_precision_of(results.get(2),results.get(4))) {
+                    if (lista[2] == 0 && check_precision_of(results.get(2), results.get(4))) {
                         lista[2] = j;
                     }
-                    if (lista[3] == 0 && check_precision_of(results.get(3),results.get(4))) {
+                    if (lista[3] == 0 && check_precision_of(results.get(3), results.get(4))) {
                         lista[3] = j;
                     }
-                    System.out.println(lista[3]);
                     if (lista[0] != 0 && lista[1] != 0 && lista[2] != 0 && lista[3] != 0) {
                         myWriter.write(i + "," + lista[0] + "," + lista[1] + "," + lista[2] + "," + lista[3] + "\n");
                         System.out.println(i);
                         break;
                     }
-                    if (j==1000){
+                    if (j == 1000) {
                         if (lista[0] == 0) {
                             lista[0] = j;
                         }
-                        if (lista[1] == 0 ) {
+                        if (lista[1] == 0) {
                             lista[1] = j;
                         }
                         if (lista[2] == 0) {
                             lista[2] = j;
                         }
-                        if (lista[3] == 0 ) {
+                        if (lista[3] == 0) {
                             lista[3] = j;
                         }
                         myWriter.write(i + "," + lista[0] + "," + lista[1] + "," + lista[2] + "," + lista[3] + "\n");
@@ -226,7 +224,6 @@ public class Main {
             err.printStackTrace();
         }
     }
-
 
 
     public static void main(String[] args) {

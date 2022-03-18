@@ -3,12 +3,11 @@ data <- read.csv("D:/Projekty/Projekty Java/Algorytmy numeryczne/Algorytmy_numer
 # dla linuxa
 data <- read.csv("/home/mtx22/Pulpit/Algorytmy numeryczne/Algorytmy_numeryczne/Zad01/test.csv")
 data2 <- read.csv("/home/mtx22/Pulpit/Algorytmy numeryczne/Algorytmy_numeryczne/Zad01/test2.csv")
+data3 <- read.csv("/home/mtx22/Pulpit/Algorytmy numeryczne/Algorytmy_numeryczne/Zad01/test3.csv")
 
 View(data)
-class(data)
-
 View(data2)
-class(data2)
+View(data3)
 
 # funkcja dzieląca dane na zbiory po 10000 elementów i wyliczajaca z nich srednia
 prepareAvg<-function(x){
@@ -86,3 +85,9 @@ plot(data2$Precyzja,abs((data2$Taylor_z_func_wbudowanych-data2$Taylor_od_prawej)
 plot(data2$Precyzja,abs((data2$Taylor_z_func_wbudowanych-data2$Taylor_od_lewej_prev)/data2$Taylor_z_func_wbudowanych),xlab = "Ilość sumowanych składników", ylab="Wartości błedu względnego",col="RED",type = "l",main = "Sumowanie elementów od początku, wyliczając na podstawie poprzedniego wyrazu")
 plot(data2$Precyzja,abs((data2$Taylor_z_func_wbudowanych-data2$Taylor_od_prawej_prev)/data2$Taylor_z_func_wbudowanych),xlab = "Ilość sumowanych składników", ylab="Wartości błedu względnego",col="RED",type = "l",main = "Sumowanie elementów od końca, wyliczając na podstawie poprzedniego wyrazu")
 
+# Q2
+par(mfrow=c(2,2))
+plot(prepareAvg(data3$Kat),prepareAvg(data3$Taylor_od_lewej),xlab = "Wartości argumentów", ylab="Ilość zsumowanych elementów",type="l",col="RED",main = "Sumowanie elementów od początku")
+plot(prepareAvg(data3$Kat),prepareAvg(data3$Taylor_od_prawej),xlab = "Wartości argumentów", ylab="Ilość zsumowanych elementów",col="RED",type = "l",main = "Sumowanie elementów od końca")
+plot(prepareAvg(data3$Kat),prepareAvg(data3$Taylor_od_lewej_prev),xlab = "Wartości argumentów", ylab="Ilość zsumowanych elementów",col="RED",type = "l",main = "Sumowanie elementów od początku, wyliczając na podstawie poprzedniego wyrazu")
+plot(prepareAvg(data3$Kat),prepareAvg(data3$Taylor_od_prawej_prev),xlab = "Wartości argumentów", ylab="Ilość zsumowanych elementów",col="RED",type = "l",main = "Sumowanie elementów od końca, wyliczając na podstawie poprzedniego wyrazu")
