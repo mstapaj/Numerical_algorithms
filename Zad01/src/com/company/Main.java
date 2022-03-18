@@ -24,6 +24,22 @@ public class Main {
         return result;
     }
 
+    static Float abs(Float a) {
+        if (a >= 0) {
+            return a;
+        } else {
+            return -a;
+        }
+    }
+
+    static boolean check_precision(float a) {
+        return !(abs(a) <= 1.0E-6);
+    }
+
+    static boolean check_precision_of(float a, float b) {
+        return (a - b) < 1.0E-6F && (a - b) > 0 - 1.0E-6F;
+    }
+
     static List<Float> getCos(Float a, int prec) {
         boolean znak_cos = true;
         List<Float> lista = new ArrayList<>();
@@ -156,10 +172,67 @@ public class Main {
         }
     }
 
+    static void zapis_plik_dokladnosc() {
+        try {
+            FileWriter myWriter = new FileWriter("test3.csv");
+            myWriter.write("Kat,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev\n");
+            int[] lista = new int[4];
+            for (float i = 0; i < 0.85; i += 0.0000008) {
+                lista[0] = 0;
+                lista[1] = 0;
+                lista[2] = 0;
+                lista[3] = 0;
+                for (int j = 1; true; j += 1) {
+                    List<Float> results = obliczanie_taylora(i, j, 1);
+                    if (lista[0] == 0 && check_precision_of(results.get(0),results.get(4))) {
+                        lista[0] = j;
+                    }
+                    if (lista[1] == 0 && check_precision_of(results.get(1),results.get(4))) {
+                        lista[1] = j;
+                    }
+                    if (lista[2] == 0 && check_precision_of(results.get(2),results.get(4))) {
+                        lista[2] = j;
+                    }
+                    if (lista[3] == 0 && check_precision_of(results.get(3),results.get(4))) {
+                        lista[3] = j;
+                    }
+                    System.out.println(lista[3]);
+                    if (lista[0] != 0 && lista[1] != 0 && lista[2] != 0 && lista[3] != 0) {
+                        myWriter.write(i + "," + lista[0] + "," + lista[1] + "," + lista[2] + "," + lista[3] + "\n");
+                        System.out.println(i);
+                        break;
+                    }
+                    if (j==1000){
+                        if (lista[0] == 0) {
+                            lista[0] = j;
+                        }
+                        if (lista[1] == 0 ) {
+                            lista[1] = j;
+                        }
+                        if (lista[2] == 0) {
+                            lista[2] = j;
+                        }
+                        if (lista[3] == 0 ) {
+                            lista[3] = j;
+                        }
+                        myWriter.write(i + "," + lista[0] + "," + lista[1] + "," + lista[2] + "," + lista[3] + "\n");
+                        System.out.println(i);
+                        break;
+                    }
+                }
+            }
+            myWriter.close();
+        } catch (IOException err) {
+            err.printStackTrace();
+        }
+    }
+
+
 
     public static void main(String[] args) {
-//        obliczanie_taylora(0.8F, 3, 0);
+        obliczanie_taylora(0.2F, 3, 0);
         zapis_plik_kat(50);
-//        zapis_plik_precyzja(0.8F);
+        zapis_plik_precyzja(0.8F);
+        zapis_plik_dokladnosc();
     }
 }
