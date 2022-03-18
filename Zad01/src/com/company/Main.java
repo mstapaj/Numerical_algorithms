@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Main {
 
-    static Float potegowanie(Float a, Float b) {
+    static Float power(Float a, Float b) {
         Float result = a;
         if (b == 0) return 1F;
         for (int i = 1; i < b; i++) {
@@ -16,20 +16,12 @@ public class Main {
         return result;
     }
 
-    static Float silnia(Float a) {
+    static Float factorial(Float a) {
         float result = 1F;
         for (int i = 1; i <= a; i++) {
             result = result * i;
         }
         return result;
-    }
-
-    static Float abs(Float a) {
-        if (a >= 0) {
-            return a;
-        } else {
-            return -a;
-        }
     }
 
     // Funkcja częściowo zapożyczona z internetu - http://www.java2s.com/example/java-utility-method/epsilon-index-0.html
@@ -38,58 +30,58 @@ public class Main {
     }
 
     static List<Float> getCos(Float a, int prec) {
-        boolean znak_cos = true;
-        List<Float> lista = new ArrayList<>();
+        boolean sign_cos = true;
+        List<Float> list = new ArrayList<>();
         for (int k = 0; k < prec * 2; k += 2) {
-            if (znak_cos) {
-                lista.add((potegowanie(a, (float) k) / silnia((float) k)));
-                znak_cos = false;
+            if (sign_cos) {
+                list.add((power(a, (float) k) / factorial((float) k)));
+                sign_cos = false;
             } else {
-                lista.add(-(potegowanie(a, (float) k) / silnia((float) k)));
-                znak_cos = true;
+                list.add(-(power(a, (float) k) / factorial((float) k)));
+                sign_cos = true;
             }
         }
-        return lista;
+        return list;
     }
 
     static List<Float> getCos_prev(Float a, int prec) {
-        List<Float> lista = new ArrayList<>();
-        lista.add(1F);
+        List<Float> list = new ArrayList<>();
+        list.add(1F);
         for (int k = 0; k < prec * 2; k += 2) {
-            lista.add(-1 * (lista.get(lista.size() - 1)) * (potegowanie(a, 2F) / (potegowanie((float) k, 2F) + (3 * k) + 2)));
+            list.add(-1 * (list.get(list.size() - 1)) * (power(a, 2F) / (power((float) k, 2F) + (3 * k) + 2)));
         }
-        return lista;
+        return list;
     }
 
     static List<Float> getArctan(Float a, int prec) {
-        boolean znak_arctg = true;
-        List<Float> lista = new ArrayList<>();
+        boolean sign_arctg = true;
+        List<Float> list = new ArrayList<>();
         for (int k = 1; k < (prec + 1) * 2; k += 2) {
-            if (znak_arctg) {
-                lista.add((potegowanie(a, (float) k) / k));
-                znak_arctg = false;
+            if (sign_arctg) {
+                list.add((power(a, (float) k) / k));
+                sign_arctg = false;
             } else {
-                lista.add(-(potegowanie(a, (float) k) / k));
-                znak_arctg = true;
+                list.add(-(power(a, (float) k) / k));
+                sign_arctg = true;
             }
         }
-        return lista;
+        return list;
     }
 
     static List<Float> getArctan_prev(Float a, int prec) {
-        List<Float> lista = new ArrayList<>();
-        lista.add(a);
+        List<Float> list = new ArrayList<>();
+        list.add(a);
         for (int k = 1; k < (prec + 1) * 2; k += 2) {
-            lista.add(-1 * ((lista.get(lista.size() - 1)) * ((k * potegowanie(a, 2F)) / (k + 2))));
+            list.add(-1 * ((list.get(list.size() - 1)) * ((k * power(a, 2F)) / (k + 2))));
         }
-        return lista;
+        return list;
     }
 
-    static List<Float> obliczanie_taylora(Float a, int prec, int mode) {
-        List<Float> lista_cos = getCos(a, prec);
-        List<Float> lista_arctg = getArctan(a, prec);
-        List<Float> lista_cos_prev = getCos_prev(a, prec);
-        List<Float> lista_arctg_prev = getArctan_prev(a, prec);
+    static List<Float> taylor_series(Float a, int prec, int mode) {
+        List<Float> list_cos = getCos(a, prec);
+        List<Float> list_arctg = getArctan(a, prec);
+        List<Float> list_cos_prev = getCos_prev(a, prec);
+        List<Float> list_arctg_prev = getArctan_prev(a, prec);
         float cos_l = 0;
         float arctg_l = 0;
         float cos_p = 0;
@@ -99,25 +91,25 @@ public class Main {
         float cos_p_prev = 0;
         float arctg_p_prev = 0;
         List<Float> result = new ArrayList<>();
-        for (int i = 0; i < lista_cos.size() - 1; i++) {
-            cos_l += lista_cos.get(i);
-            arctg_l += lista_arctg.get(i);
-            cos_l_prev += lista_cos_prev.get(i);
-            arctg_l_prev += lista_arctg_prev.get(i);
+        for (int i = 0; i < list_cos.size() - 1; i++) {
+            cos_l += list_cos.get(i);
+            arctg_l += list_arctg.get(i);
+            cos_l_prev += list_cos_prev.get(i);
+            arctg_l_prev += list_arctg_prev.get(i);
         }
-        for (int i = lista_cos.size() - 1; i >= 0; i--) {
-            cos_p += lista_cos.get(i);
-            arctg_p += lista_arctg.get(i);
-            cos_p_prev += lista_cos_prev.get(i);
-            arctg_p_prev += lista_arctg_prev.get(i);
+        for (int i = list_cos.size() - 1; i >= 0; i--) {
+            cos_p += list_cos.get(i);
+            arctg_p += list_arctg.get(i);
+            cos_p_prev += list_cos_prev.get(i);
+            arctg_p_prev += list_arctg_prev.get(i);
         }
         double built_in_func = Math.cos(a) * Math.atan(a);
         if (mode == 0) {
             // Wyświetlanie list
-            System.out.println(lista_cos);
-            System.out.println(lista_cos_prev);
-            System.out.println(lista_arctg);
-            System.out.println(lista_arctg_prev);
+            System.out.println(list_cos);
+            System.out.println(list_cos_prev);
+            System.out.println(list_arctg);
+            System.out.println(list_arctg_prev);
             // Wyświetlanie dla pojedynczych liczb
             System.out.print("Taylor sumowany od lewej: ");
             System.out.println(cos_l * arctg_l);
@@ -141,13 +133,13 @@ public class Main {
         return result;
     }
 
-    static void zapis_plik_kat(int prec) {
+    static void save_to_file_by_angle(int prec) {
         try {
             FileWriter myWriter = new FileWriter("test.csv");
             myWriter.write("Kat,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
             for (float i = 0; i < 0.85; i += 0.0000008) {
-                List<Float> lista = obliczanie_taylora(i, prec, 1);
-                myWriter.write(i + "," + lista.get(0) + "," + lista.get(1) + "," + lista.get(2) + "," + lista.get(3) + "," + lista.get(4) + "\n");
+                List<Float> list = taylor_series(i, prec, 1);
+                myWriter.write(i + "," + list.get(0) + "," + list.get(1) + "," + list.get(2) + "," + list.get(3) + "," + list.get(4) + "\n");
                 System.out.println(i);
             }
             myWriter.close();
@@ -156,13 +148,13 @@ public class Main {
         }
     }
 
-    static void zapis_plik_precyzja(float kat) {
+    static void save_to_file_by_precision(float angle) {
         try {
             FileWriter myWriter = new FileWriter("test2.csv");
             myWriter.write("Precyzja,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev,Taylor_z_func_wbudowanych\n");
             for (int i = 0; i < 20; i += 1) {
-                List<Float> lista = obliczanie_taylora(kat, i, 1);
-                myWriter.write(i + "," + lista.get(0) + "," + lista.get(1) + "," + lista.get(2) + "," + lista.get(3) + "," + lista.get(4) + "\n");
+                List<Float> list = taylor_series(angle, i, 1);
+                myWriter.write(i + "," + list.get(0) + "," + list.get(1) + "," + list.get(2) + "," + list.get(3) + "," + list.get(4) + "\n");
                 System.out.println(i);
             }
             myWriter.close();
@@ -171,49 +163,32 @@ public class Main {
         }
     }
 
-    static void zapis_plik_dokladnosc() {
+    static void save_to_file_how_many_elem() {
         try {
             FileWriter myWriter = new FileWriter("test3.csv");
             myWriter.write("Kat,Taylor_od_lewej,Taylor_od_prawej,Taylor_od_lewej_prev,Taylor_od_prawej_prev\n");
-            int[] lista = new int[4];
+            int[] list = new int[4];
             for (float i = 0; i < 0.85; i += 0.0000008) {
-                lista[0] = 0;
-                lista[1] = 0;
-                lista[2] = 0;
-                lista[3] = 0;
+                list[0] = 0;
+                list[1] = 0;
+                list[2] = 0;
+                list[3] = 0;
                 for (int j = 1; true; j += 1) {
-                    List<Float> results = obliczanie_taylora(i, j, 1);
-                    if (lista[0] == 0 && check_precision_of(results.get(0), results.get(4))) {
-                        lista[0] = j;
+                    List<Float> results = taylor_series(i, j, 1);
+                    if (list[0] == 0 && check_precision_of(results.get(0), results.get(4))) {
+                        list[0] = j;
                     }
-                    if (lista[1] == 0 && check_precision_of(results.get(1), results.get(4))) {
-                        lista[1] = j;
+                    if (list[1] == 0 && check_precision_of(results.get(1), results.get(4))) {
+                        list[1] = j;
                     }
-                    if (lista[2] == 0 && check_precision_of(results.get(2), results.get(4))) {
-                        lista[2] = j;
+                    if (list[2] == 0 && check_precision_of(results.get(2), results.get(4))) {
+                        list[2] = j;
                     }
-                    if (lista[3] == 0 && check_precision_of(results.get(3), results.get(4))) {
-                        lista[3] = j;
+                    if (list[3] == 0 && check_precision_of(results.get(3), results.get(4))) {
+                        list[3] = j;
                     }
-                    if (lista[0] != 0 && lista[1] != 0 && lista[2] != 0 && lista[3] != 0) {
-                        myWriter.write(i + "," + lista[0] + "," + lista[1] + "," + lista[2] + "," + lista[3] + "\n");
-                        System.out.println(i);
-                        break;
-                    }
-                    if (j == 1000) {
-                        if (lista[0] == 0) {
-                            lista[0] = j;
-                        }
-                        if (lista[1] == 0) {
-                            lista[1] = j;
-                        }
-                        if (lista[2] == 0) {
-                            lista[2] = j;
-                        }
-                        if (lista[3] == 0) {
-                            lista[3] = j;
-                        }
-                        myWriter.write(i + "," + lista[0] + "," + lista[1] + "," + lista[2] + "," + lista[3] + "\n");
+                    if (list[0] != 0 && list[1] != 0 && list[2] != 0 && list[3] != 0) {
+                        myWriter.write(i + "," + list[0] + "," + list[1] + "," + list[2] + "," + list[3] + "\n");
                         System.out.println(i);
                         break;
                     }
@@ -227,9 +202,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-        obliczanie_taylora(0.2F, 3, 0);
-        zapis_plik_kat(50);
-        zapis_plik_precyzja(0.8F);
-        zapis_plik_dokladnosc();
+        taylor_series(0.2F, 3, 0);
+        save_to_file_by_angle(50);
+        save_to_file_by_precision(0.8F);
+        save_to_file_how_many_elem();
     }
 }
