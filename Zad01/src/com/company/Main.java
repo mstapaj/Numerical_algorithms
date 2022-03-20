@@ -16,7 +16,7 @@ public class Main {
         return result;
     }
 
-    static Float factorial(Float a) {
+    static Float factorial(Integer a) {
         float result = 1F;
         for (int i = 1; i <= a; i++) {
             result = result * i;
@@ -34,10 +34,10 @@ public class Main {
         List<Float> list = new ArrayList<>();
         for (int k = 0; k < prec * 2; k += 2) {
             if (sign_cos) {
-                list.add((power(a, (float) k) / factorial((float) k)));
+                list.add((power(a, (float) k) / factorial(k)));
                 sign_cos = false;
             } else {
-                list.add(-(power(a, (float) k) / factorial((float) k)));
+                list.add(-(power(a, (float) k) / factorial(k)));
                 sign_cos = true;
             }
         }
@@ -103,7 +103,7 @@ public class Main {
             cos_p_prev += list_cos_prev.get(i);
             arctg_p_prev += list_arctg_prev.get(i);
         }
-        double built_in_func = Math.cos(a) * Math.atan(a);
+        float built_in_func = (float) (Math.cos(a) * Math.atan(a));
         if (mode == 0) {
             // Wyświetlanie list
             System.out.println(list_cos);
@@ -126,7 +126,7 @@ public class Main {
             result.add(cos_p * arctg_p);
             result.add(cos_l_prev * arctg_l_prev);
             result.add(cos_p_prev * arctg_p_prev);
-            result.add((float) built_in_func);
+            result.add(built_in_func);
         } else {
             System.out.println("Zły tryb!\n Prawidlowe tryby to 0 do wyświetlania i 1 do zapisu do pliku");
         }
