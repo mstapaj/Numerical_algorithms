@@ -1,52 +1,21 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class Main {
 
 
-    static class MojaMacierz {
-        private List<List<Float>> matrix = new ArrayList<>();
+    static class MojaMacierz<T> {
+        private List<List<T>> matrix = new ArrayList<>();
 
-        public void setMatrix(List<List<Float>> matrix) {
+        public void setMatrix(List<List<T>> matrix) {
             this.matrix = matrix;
         }
 
-        public List<List<Float>> getMatrix() {
+        public List<List<T>> getMatrix() {
             return matrix;
-        }
-
-        public List<List<Float>> adding(MojaMacierz another_matrix) {
-            List<List<Float>> new_matrix = new ArrayList<>();
-            if (this.matrix.size() == another_matrix.getMatrix().size()) {
-                for (int i = 0; i < this.matrix.size(); i++) {
-                    List<Float> row = new ArrayList<>();
-                    for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-                        row.add(this.matrix.get(i).get(j) + another_matrix.getMatrix().get(i).get(j));
-                    }
-                    new_matrix.add(row);
-                }
-            }
-            return new_matrix;
-        }
-
-        public List<List<Float>> multiply(MojaMacierz another_matrix) {
-            List<List<Float>> new_matrix = new ArrayList<>();
-            for (int i = 0; i < this.matrix.size(); i++) {
-                List<Float> row = new ArrayList<>();
-                for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-                    float summary = 0F;
-                    for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
-                        summary += this.matrix.get(i).get(k) * another_matrix.getMatrix().get(k).get(j);
-                    }
-                    row.add(summary);
-                }
-                new_matrix.add(row);
-            }
-            return new_matrix;
         }
 
 //        public List<List<Float>> gauss() {
@@ -80,12 +49,71 @@ public class Main {
 //        }
     }
 
+    static List<List<Float>> adding_f(MojaMacierz<Float> m1, MojaMacierz<Float> m2) {
+        List<List<Float>> new_matrix = new ArrayList<>();
+        if (m1.getMatrix().size() == m2.getMatrix().size()) {
+            for (int i = 0; i < m1.getMatrix().size(); i++) {
+                List<Float> row = new ArrayList<>();
+                for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
+                    row.add(m1.getMatrix().get(i).get(j) + m2.getMatrix().get(i).get(j));
+                }
+                new_matrix.add(row);
+            }
+        }
+        return new_matrix;
+    }
+
+    static List<List<Float>> multiply_f(MojaMacierz<Float> m1, MojaMacierz<Float> m2) {
+        List<List<Float>> new_matrix = new ArrayList<>();
+        for (int i = 0; i < m1.getMatrix().size(); i++) {
+            List<Float> row = new ArrayList<>();
+            for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
+                float summary = 0F;
+                for (int k = 0; k < m2.getMatrix().size(); k++) {
+                    summary += m1.getMatrix().get(i).get(k) * m2.getMatrix().get(k).get(j);
+                }
+                row.add(summary);
+            }
+            new_matrix.add(row);
+        }
+        return new_matrix;
+    }
+    static List<List<Double>> adding_d(MojaMacierz<Double> m1, MojaMacierz<Double> m2) {
+        List<List<Double>> new_matrix = new ArrayList<>();
+        if (m1.getMatrix().size() == m2.getMatrix().size()) {
+            for (int i = 0; i < m1.getMatrix().size(); i++) {
+                List<Double> row = new ArrayList<>();
+                for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
+                    row.add(m1.getMatrix().get(i).get(j) + m2.getMatrix().get(i).get(j));
+                }
+                new_matrix.add(row);
+            }
+        }
+        return new_matrix;
+    }
+
+    static List<List<Double>> multiply_d(MojaMacierz<Double> m1, MojaMacierz<Double> m2) {
+        List<List<Double>> new_matrix = new ArrayList<>();
+        for (int i = 0; i < m1.getMatrix().size(); i++) {
+            List<Double> row = new ArrayList<>();
+            for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
+                double summary = 0F;
+                for (int k = 0; k < m2.getMatrix().size(); k++) {
+                    summary += m1.getMatrix().get(i).get(k) * m2.getMatrix().get(k).get(j);
+                }
+                row.add(summary);
+            }
+            new_matrix.add(row);
+        }
+        return new_matrix;
+    }
+
     public static void main(String[] args) {
-        MojaMacierz temp = new MojaMacierz();
-        MojaMacierz temp2 = new MojaMacierz();
-        MojaMacierz temp3 = new MojaMacierz();
-        MojaMacierz temp4 = new MojaMacierz();
-        List<Float> row1 = new ArrayList<>();
+        MojaMacierz<Float> temp = new MojaMacierz<>();
+        MojaMacierz<Float> temp2 = new MojaMacierz<>();
+        MojaMacierz<Float> temp3 = new MojaMacierz<>();
+        MojaMacierz<Float> temp4 = new MojaMacierz<>();
+        List<Float> row1= new ArrayList<>();
         List<Float> row2 = new ArrayList<>();
         List<Float> row3 = new ArrayList<>();
         List<Float> row4 = new ArrayList<>();
@@ -121,9 +149,12 @@ public class Main {
         temp3.setMatrix(rows3);
         Collections.addAll(rows4, row10, row11, row12);
         temp4.setMatrix(rows4);
-        System.out.println(temp.adding(temp2));
-        System.out.println(temp.multiply(temp2));
-        System.out.println(temp.multiply(temp3));
+        System.out.println(adding_f(temp,temp2));
+        System.out.println(multiply_f(temp,temp2));
+        System.out.println(multiply_f(temp,temp3));
+//        System.out.println(temp.adding(temp2));
+//        System.out.println(temp.multiply(temp2));
+//        System.out.println(temp.multiply(temp3));
 //        System.out.println(temp4.gauss());
     }
 }
