@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Main {
 
-    static List<List<Float>> adding_f(MojaMacierz<Float> m1, MojaMacierz<Float> m2) {
+    static List<List<Float>> adding_matrix_f(MojaMacierz<Float> m1, MojaMacierz<Float> m2) {
         List<List<Float>> new_matrix = new ArrayList<>();
         if (m1.getMatrix().size() == m2.getMatrix().size()) {
             for (int i = 0; i < m1.getMatrix().size(); i++) {
@@ -21,7 +21,7 @@ public class Main {
         return new_matrix;
     }
 
-    static List<List<Float>> multiply_f(MojaMacierz<Float> m1, MojaMacierz<Float> m2) {
+    static List<List<Float>> multiply_matrix_f(MojaMacierz<Float> m1, MojaMacierz<Float> m2) {
         List<List<Float>> new_matrix = new ArrayList<>();
         for (int i = 0; i < m1.getMatrix().size(); i++) {
             List<Float> row = new ArrayList<>();
@@ -37,7 +37,7 @@ public class Main {
         return new_matrix;
     }
 
-    static List<List<Double>> adding_d(MojaMacierz<Double> m1, MojaMacierz<Double> m2) {
+    static List<List<Double>> adding_matrix_d(MojaMacierz<Double> m1, MojaMacierz<Double> m2) {
         List<List<Double>> new_matrix = new ArrayList<>();
         if (m1.getMatrix().size() == m2.getMatrix().size()) {
             for (int i = 0; i < m1.getMatrix().size(); i++) {
@@ -51,7 +51,7 @@ public class Main {
         return new_matrix;
     }
 
-    static List<List<Double>> multiply_d(MojaMacierz<Double> m1, MojaMacierz<Double> m2) {
+    static List<List<Double>> multiply_matrix_d(MojaMacierz<Double> m1, MojaMacierz<Double> m2) {
         List<List<Double>> new_matrix = new ArrayList<>();
         for (int i = 0; i < m1.getMatrix().size(); i++) {
             List<Double> row = new ArrayList<>();
@@ -59,6 +59,36 @@ public class Main {
                 double summary = 0F;
                 for (int k = 0; k < m2.getMatrix().size(); k++) {
                     summary += m1.getMatrix().get(i).get(k) * m2.getMatrix().get(k).get(j);
+                }
+                row.add(summary);
+            }
+            new_matrix.add(row);
+        }
+        return new_matrix;
+    }
+
+    static List<List<Fraction>> adding_matrix_frac(MojaMacierz<Fraction> m1, MojaMacierz<Fraction> m2) {
+        List<List<Fraction>> new_matrix = new ArrayList<>();
+        if (m1.getMatrix().size() == m2.getMatrix().size()) {
+            for (int i = 0; i < m1.getMatrix().size(); i++) {
+                List<Fraction> row = new ArrayList<>();
+                for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
+                    row.add(adding_frac(m1.getMatrix().get(i).get(j), m2.getMatrix().get(i).get(j)));
+                }
+                new_matrix.add(row);
+            }
+        }
+        return new_matrix;
+    }
+
+    static List<List<Fraction>> multiply_matrix_frac(MojaMacierz<Fraction> m1, MojaMacierz<Fraction> m2) {
+        List<List<Fraction>> new_matrix = new ArrayList<>();
+        for (int i = 0; i < m1.getMatrix().size(); i++) {
+            List<Fraction> row = new ArrayList<>();
+            for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
+                Fraction summary = new Fraction(BigInteger.ZERO, BigInteger.ONE);
+                for (int k = 0; k < m2.getMatrix().size(); k++) {
+                    summary = adding_frac(summary, multiply_frac(m1.getMatrix().get(i).get(k), m2.getMatrix().get(k).get(j)));
                 }
                 row.add(summary);
             }
@@ -97,36 +127,6 @@ public class Main {
         public List<List<T>> getMatrix() {
             return matrix;
         }
-
-//        public List<List<Float>> gauss() {
-//            float[][] macWyn = new float [this.matrix.size()][this.matrix.size()];
-//            float[] wynik = {0, 0, 0};
-//            float[] wCopy = new float [wynik.length];
-//            System.arraycopy(wynik, 0, wCopy, 0, wynik.length);
-//            for (int i = 0; i < this.matrix.size()-1; i++) {
-//                for (int j = i + 1; j <= this.matrix.size() - 1; j++) {
-//                    for (int k = 0; k < this.matrix.size(); k++) {
-//                        macWyn[j][k] = this.matrix.get(j).get(k) - (this.matrix.get(i).get(k) * (this.matrix.get(j).get(i) / this.matrix.get(i).get(i)));
-//                    }
-//
-//                    wCopy[j] = wynik[j] - (wynik[i] * (this.matrix.get(j).get(i) / this.matrix.get(i).get(i)));
-//
-//                    for (int ii = 0; ii < macWyn.length; ii++) {
-//                        for (int jj = 0; jj < macWyn.length; jj++) {
-//                            this.matrix.get(ii).set(jj, macWyn[ii][jj]);
-//                        }
-//                        wynik[ii] = wCopy[ii];
-//                    }
-//                }
-//            }
-//            for (int j = 0; j < this.matrix.size(); j++) {
-//                for (int k = 0; k < this.matrix.size(); k++) {
-//                    System.out.print(this.matrix.get(j).get(k) + "\t");
-//                }
-//                System.out.println("\t" + wynik[j]);
-//            }
-//            return this.matrix;
-//        }
     }
 
 
@@ -210,9 +210,9 @@ public class Main {
         temp3.setMatrix(rows3);
         Collections.addAll(rows4, row10, row11, row12);
         temp4.setMatrix(rows4);
-//        System.out.println(adding_f(temp, temp2));
-//        System.out.println(multiply_f(temp, temp2));
-//        System.out.println(multiply_f(temp, temp3));
+//        System.out.println(adding_matrix_f(temp, temp2));
+//        System.out.println(multiply_matrix_f(temp, temp2));
+//        System.out.println(multiply_matrix_f(temp, temp3));
 //
 //
 //        List<Integer> toMat = new ArrayList<>();
