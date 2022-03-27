@@ -1,68 +1,11 @@
 package com.company;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Main {
-
-
-    public static void main(String[] args) {
-        MojaMacierz<Float> temp = new MojaMacierz<>();
-        MojaMacierz<Float> temp2 = new MojaMacierz<>();
-        MojaMacierz<Float> temp3 = new MojaMacierz<>();
-        MojaMacierz<Float> temp4 = new MojaMacierz<>();
-        List<Float> row1= new ArrayList<>();
-        List<Float> row2 = new ArrayList<>();
-        List<Float> row3 = new ArrayList<>();
-        List<Float> row4 = new ArrayList<>();
-        List<Float> row5 = new ArrayList<>();
-        List<Float> row6 = new ArrayList<>();
-        List<Float> row7 = new ArrayList<>();
-        List<Float> row8 = new ArrayList<>();
-        List<Float> row9 = new ArrayList<>();
-        List<Float> row10 = new ArrayList<>();
-        List<Float> row11 = new ArrayList<>();
-        List<Float> row12 = new ArrayList<>();
-        Collections.addAll(row1, -1F, -2F, 3F);
-        Collections.addAll(row2, 0F, 2F, -1F);
-        Collections.addAll(row3, -1F, 3F, 0F);
-        Collections.addAll(row4, 1F, 5F, 1F);
-        Collections.addAll(row5, 2F, 1F, 2F);
-        Collections.addAll(row6, 3F, 2F, 3F);
-        Collections.addAll(row7, 1F);
-        Collections.addAll(row8, 2F);
-        Collections.addAll(row9, 3F);
-        Collections.addAll(row10, 1F,-2F,3F,-7F);
-        Collections.addAll(row11, 3F,1F,4F,5F);
-        Collections.addAll(row12, 2F,5F,1F,18F);
-        List<List<Float>> rows = new ArrayList<>();
-        List<List<Float>> rows2 = new ArrayList<>();
-        List<List<Float>> rows3 = new ArrayList<>();
-        List<List<Float>> rows4 = new ArrayList<>();
-        Collections.addAll(rows, row1, row2, row3);
-        temp.setMatrix(rows);
-        Collections.addAll(rows2, row4, row5, row6);
-        temp2.setMatrix(rows2);
-        Collections.addAll(rows3, row7, row8, row9);
-        temp3.setMatrix(rows3);
-        Collections.addAll(rows4, row10, row11, row12);
-        temp4.setMatrix(rows4);
-        System.out.println(adding_f(temp, temp2));
-        System.out.println(multiply_f(temp, temp2));
-        System.out.println(multiply_f(temp, temp3));
-
-
-        List<Integer> toMat = new ArrayList<>();
-        Collections.addAll(toMat, 2, 1, 3, 4, 1, 4, 6, 1, 4);
-        MojaMacierz<Integer> tests = new MojaMacierz<>(3, 3, toMat);
-        System.out.println(tests.getMatrix());
-
-//        System.out.println(temp.adding(temp2));
-//        System.out.println(temp.multiply(temp2));
-//        System.out.println(temp.multiply(temp3));
-//        System.out.println(temp4.gauss());
-    }
 
     static List<List<Float>> adding_f(MojaMacierz<Float> m1, MojaMacierz<Float> m2) {
         List<List<Float>> new_matrix = new ArrayList<>();
@@ -184,5 +127,108 @@ public class Main {
 //            }
 //            return this.matrix;
 //        }
+    }
+
+
+    public static BigInteger LCM(BigInteger a, BigInteger b) {
+        if (a.signum() == 0 || b.signum() == 0) {
+            return BigInteger.ZERO;
+        }
+        return a.divide(a.gcd(b)).multiply(b).abs();
+    }
+
+    public static Fraction adding_frac(Fraction a, Fraction b) {
+        BigInteger lcm = LCM(a.getDenumerator(), b.getDenumerator());
+        BigInteger first_mul = lcm.divide(a.getDenumerator());
+        BigInteger sec_mul = lcm.divide(b.getDenumerator());
+        BigInteger new_numerator = a.getNumerator().multiply(first_mul).add(b.getNumerator().multiply(sec_mul));
+        BigInteger gcd = new_numerator.gcd(lcm);
+        return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
+    }
+
+    public static Fraction substract_frac(Fraction a, Fraction b) {
+        BigInteger lcm = LCM(a.getDenumerator(), b.getDenumerator());
+        BigInteger first_mul = lcm.divide(a.getDenumerator());
+        BigInteger sec_mul = lcm.divide(b.getDenumerator());
+        BigInteger new_numerator = a.getNumerator().multiply(first_mul).subtract(b.getNumerator().multiply(sec_mul));
+        BigInteger gcd = new_numerator.gcd(lcm);
+        return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
+    }
+
+    public static Fraction multiply_frac(Fraction a, Fraction b) {
+        BigInteger new_numerator = a.getNumerator().multiply(b.getNumerator());
+        BigInteger new_denumerator = a.getDenumerator().multiply(b.getDenumerator());
+        BigInteger gcd = new_numerator.gcd(new_denumerator);
+        return new Fraction(new_numerator.divide(gcd), new_denumerator.divide(gcd));
+    }
+
+    public static Fraction divide_frac(Fraction a, Fraction b) {
+        BigInteger new_numerator = a.getNumerator().multiply(b.getDenumerator());
+        BigInteger new_denumerator = a.getDenumerator().multiply(b.getNumerator());
+        BigInteger gcd = new_numerator.gcd(new_denumerator);
+        return new Fraction(new_numerator.divide(gcd), new_denumerator.divide(gcd));
+    }
+
+    public static void main(String[] args) {
+        MojaMacierz<Float> temp = new MojaMacierz<>();
+        MojaMacierz<Float> temp2 = new MojaMacierz<>();
+        MojaMacierz<Float> temp3 = new MojaMacierz<>();
+        MojaMacierz<Float> temp4 = new MojaMacierz<>();
+        List<Float> row1 = new ArrayList<>();
+        List<Float> row2 = new ArrayList<>();
+        List<Float> row3 = new ArrayList<>();
+        List<Float> row4 = new ArrayList<>();
+        List<Float> row5 = new ArrayList<>();
+        List<Float> row6 = new ArrayList<>();
+        List<Float> row7 = new ArrayList<>();
+        List<Float> row8 = new ArrayList<>();
+        List<Float> row9 = new ArrayList<>();
+        List<Float> row10 = new ArrayList<>();
+        List<Float> row11 = new ArrayList<>();
+        List<Float> row12 = new ArrayList<>();
+        Collections.addAll(row1, -1F, -2F, 3F);
+        Collections.addAll(row2, 0F, 2F, -1F);
+        Collections.addAll(row3, -1F, 3F, 0F);
+        Collections.addAll(row4, 1F, 5F, 1F);
+        Collections.addAll(row5, 2F, 1F, 2F);
+        Collections.addAll(row6, 3F, 2F, 3F);
+        Collections.addAll(row7, 1F);
+        Collections.addAll(row8, 2F);
+        Collections.addAll(row9, 3F);
+        Collections.addAll(row10, 1F, -2F, 3F, -7F);
+        Collections.addAll(row11, 3F, 1F, 4F, 5F);
+        Collections.addAll(row12, 2F, 5F, 1F, 18F);
+        List<List<Float>> rows = new ArrayList<>();
+        List<List<Float>> rows2 = new ArrayList<>();
+        List<List<Float>> rows3 = new ArrayList<>();
+        List<List<Float>> rows4 = new ArrayList<>();
+        Collections.addAll(rows, row1, row2, row3);
+        temp.setMatrix(rows);
+        Collections.addAll(rows2, row4, row5, row6);
+        temp2.setMatrix(rows2);
+        Collections.addAll(rows3, row7, row8, row9);
+        temp3.setMatrix(rows3);
+        Collections.addAll(rows4, row10, row11, row12);
+        temp4.setMatrix(rows4);
+//        System.out.println(adding_f(temp, temp2));
+//        System.out.println(multiply_f(temp, temp2));
+//        System.out.println(multiply_f(temp, temp3));
+//
+//
+//        List<Integer> toMat = new ArrayList<>();
+//        Collections.addAll(toMat, 2, 1, 3, 4, 1, 4, 6, 1, 4);
+//        MojaMacierz<Integer> tests = new MojaMacierz<>(3, 3, toMat);
+//        System.out.println(tests.getMatrix());
+        Fraction first = new Fraction(BigInteger.ONE, BigInteger.valueOf(17));
+        Fraction second = new Fraction(BigInteger.TWO, BigInteger.valueOf(6));
+        adding_frac(first, second);
+        System.out.println(adding_frac(first, second).getNumerator());
+        System.out.println(adding_frac(first, second).getDenumerator());
+        System.out.println(substract_frac(first, second).getNumerator());
+        System.out.println(substract_frac(first, second).getDenumerator());
+        System.out.println(multiply_frac(first, second).getNumerator());
+        System.out.println(multiply_frac(first, second).getDenumerator());
+        System.out.println(divide_frac(first, second).getNumerator());
+        System.out.println(divide_frac(first, second).getDenumerator());
     }
 }
