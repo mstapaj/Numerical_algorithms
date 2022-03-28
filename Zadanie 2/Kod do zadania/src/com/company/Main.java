@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Main {
 
@@ -169,6 +170,27 @@ public class Main {
         return new Fraction(new_numerator.divide(gcd), new_denumerator.divide(gcd));
     }
 
+    public static void print_fraction_matrix(List<List<Fraction>> matrix) {
+        for (int i = 0; i < matrix.size(); i++) {
+            for (int j = 0; j < matrix.size(); j++) {
+                System.out.println(matrix.get(i).get(j).getFraction());
+            }
+        }
+    }
+
+    public static List<List<Fraction>> generate(int cols, int rows) {
+        List<List<Fraction>> result = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            List<Fraction> row = new ArrayList<>();
+            for (int j = 0; j < cols; j++) {
+                Random ran = new Random();
+                row.add(new Fraction(BigInteger.valueOf(ran.nextInt()), BigInteger.valueOf(ran.nextInt())));
+            }
+            result.add(row);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         MojaMacierz<Float> temp = new MojaMacierz<>();
         MojaMacierz<Float> temp2 = new MojaMacierz<>();
@@ -231,24 +253,23 @@ public class Main {
 //        System.out.println(divide_frac(first, second).getNumerator());
 //        System.out.println(divide_frac(first, second).getDenumerator());
 
+//        List<Fraction> toMat = new ArrayList<>();
+//        Collections.addAll(toMat, new Fraction(BigInteger.ONE, BigInteger.valueOf(4)), new Fraction(BigInteger.valueOf(4), BigInteger.valueOf(5)), new Fraction(BigInteger.TEN, BigInteger.valueOf(13)), new Fraction(BigInteger.TWO, BigInteger.valueOf(5)));
+//        MojaMacierz<Fraction> tests = new MojaMacierz<>(2, 2, toMat);
+//        System.out.println(tests.getMatrix());
+//        List<List<Fraction>> res_add = adding_matrix_frac(tests, tests);
+//        List<List<Fraction>> res_mul = multiply_matrix_frac(tests, tests);
+
+//        print_fraction_matrix(res_add);
+//        print_fraction_matrix(res_mul);
+
         List<Fraction> toMat = new ArrayList<>();
-        Collections.addAll(toMat, new Fraction(BigInteger.ONE, BigInteger.valueOf(4)), new Fraction(BigInteger.valueOf(4), BigInteger.valueOf(5)), new Fraction(BigInteger.TEN, BigInteger.valueOf(13)), new Fraction(BigInteger.TWO, BigInteger.valueOf(5)));
-        MojaMacierz<Fraction> tests = new MojaMacierz<>(2, 2, toMat);
+        MojaMacierz<Fraction> tests = new MojaMacierz<>(generate(3, 3));
         System.out.println(tests.getMatrix());
+        print_fraction_matrix(tests.getMatrix());
         List<List<Fraction>> res_add = adding_matrix_frac(tests, tests);
-        List<List<Fraction>> res_mul = multiply_matrix_frac(tests, tests);
-
-        for (int i = 0; i < res_add.size(); i++) {
-            for (int j = 0; j < res_add.size(); j++) {
-                System.out.println(res_add.get(i).get(j).getFraction());
-            }
-        }
-
-        for (int i = 0; i < res_mul.size(); i++) {
-            for (int j = 0; j < res_mul.size(); j++) {
-                System.out.println(res_mul.get(i).get(j).getFraction());
-            }
-        }
-
+//        List<List<Fraction>> res_mul = multiply_matrix_frac(tests, tests);
+        print_fraction_matrix(res_add);
+//        print_fraction_matrix(res_mul);
     }
 }
