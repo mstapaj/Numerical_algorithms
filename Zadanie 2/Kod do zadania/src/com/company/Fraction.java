@@ -1,6 +1,8 @@
 package com.company;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Fraction {
     private BigInteger numerator;
@@ -16,6 +18,13 @@ public class Fraction {
 
     public BigInteger getDenumerator() {
         return denumerator;
+    }
+
+    public List<BigInteger> getFraction() {
+        List<BigInteger> res = new ArrayList<>();
+        res.add(numerator);
+        res.add(denumerator);
+        return res;
     }
 
     public void setDenumerator(BigInteger denumerator) {

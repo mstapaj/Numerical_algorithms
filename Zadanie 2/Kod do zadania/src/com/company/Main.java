@@ -222,13 +222,33 @@ public class Main {
         Fraction first = new Fraction(BigInteger.ONE, BigInteger.valueOf(17));
         Fraction second = new Fraction(BigInteger.TWO, BigInteger.valueOf(6));
         adding_frac(first, second);
-        System.out.println(adding_frac(first, second).getNumerator());
-        System.out.println(adding_frac(first, second).getDenumerator());
-        System.out.println(substract_frac(first, second).getNumerator());
-        System.out.println(substract_frac(first, second).getDenumerator());
-        System.out.println(multiply_frac(first, second).getNumerator());
-        System.out.println(multiply_frac(first, second).getDenumerator());
-        System.out.println(divide_frac(first, second).getNumerator());
-        System.out.println(divide_frac(first, second).getDenumerator());
+//        System.out.println(adding_frac(first, second).getNumerator());
+//        System.out.println(adding_frac(first, second).getDenumerator());
+//        System.out.println(substract_frac(first, second).getNumerator());
+//        System.out.println(substract_frac(first, second).getDenumerator());
+//        System.out.println(multiply_frac(first, second).getNumerator());
+//        System.out.println(multiply_frac(first, second).getDenumerator());
+//        System.out.println(divide_frac(first, second).getNumerator());
+//        System.out.println(divide_frac(first, second).getDenumerator());
+
+        List<Fraction> toMat = new ArrayList<>();
+        Collections.addAll(toMat, new Fraction(BigInteger.ONE, BigInteger.valueOf(4)), new Fraction(BigInteger.valueOf(4), BigInteger.valueOf(5)), new Fraction(BigInteger.TEN, BigInteger.valueOf(13)), new Fraction(BigInteger.TWO, BigInteger.valueOf(5)));
+        MojaMacierz<Fraction> tests = new MojaMacierz<>(2, 2, toMat);
+        System.out.println(tests.getMatrix());
+        List<List<Fraction>> res_add = adding_matrix_frac(tests, tests);
+        List<List<Fraction>> res_mul = multiply_matrix_frac(tests, tests);
+
+        for (int i = 0; i < res_add.size(); i++) {
+            for (int j = 0; j < res_add.size(); j++) {
+                System.out.println(res_add.get(i).get(j).getFraction());
+            }
+        }
+
+        for (int i = 0; i < res_mul.size(); i++) {
+            for (int j = 0; j < res_mul.size(); j++) {
+                System.out.println(res_mul.get(i).get(j).getFraction());
+            }
+        }
+
     }
 }
