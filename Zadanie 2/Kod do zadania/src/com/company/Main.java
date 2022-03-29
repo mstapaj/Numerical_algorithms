@@ -191,6 +191,30 @@ public class Main {
         return result;
     }
 
+    public static List<List<Float>> makeFloatMatrix(List<List<Fraction>> matrixFraction) {
+        List<List<Float>> result = new ArrayList<>();
+        for (int i = 0; i < matrixFraction.size(); i++) {
+            List<Float> row = new ArrayList<>();
+            for (int j = 0; j < matrixFraction.get(i).size(); j++) {
+                row.add(matrixFraction.get(i).get(j).getNumerator().floatValue() / matrixFraction.get(i).get(j).getDenumerator().floatValue());
+            }
+            result.add(row);
+        }
+        return result;
+    }
+
+    public static List<List<Double>> makeDoubleMatrix(List<List<Fraction>> matrixFraction) {
+        List<List<Double>> result = new ArrayList<>();
+        for (int i = 0; i < matrixFraction.size(); i++) {
+            List<Double> row = new ArrayList<>();
+            for (int j = 0; j < matrixFraction.get(i).size(); j++) {
+                row.add(matrixFraction.get(i).get(j).getNumerator().doubleValue() / matrixFraction.get(i).get(j).getDenumerator().doubleValue());
+            }
+            result.add(row);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         MojaMacierz<Float> temp = new MojaMacierz<>();
         MojaMacierz<Float> temp2 = new MojaMacierz<>();
@@ -264,12 +288,15 @@ public class Main {
 //        print_fraction_matrix(res_mul);
 
         List<Fraction> toMat = new ArrayList<>();
-        MojaMacierz<Fraction> tests = new MojaMacierz<>(generate(3, 3));
-        System.out.println(tests.getMatrix());
-        print_fraction_matrix(tests.getMatrix());
-        List<List<Fraction>> res_add = adding_matrix_frac(tests, tests);
+        MojaMacierz<Fraction> tests = new MojaMacierz<>(generate(3000, 3000));
+        List<Fraction> toMat2 = new ArrayList<>();
+        MojaMacierz<Double> tests2 = new MojaMacierz<>(makeDoubleMatrix(generate(10, 10)));
+        System.out.println(tests2.getMatrix());
+//        System.out.println(tests.getMatrix());
+//        print_fraction_matrix(tests.getMatrix());
+//        List<List<Fraction>> res_add = adding_matrix_frac(tests, tests);
 //        List<List<Fraction>> res_mul = multiply_matrix_frac(tests, tests);
-        print_fraction_matrix(res_add);
+//        print_fraction_matrix(res_add);
 //        print_fraction_matrix(res_mul);
     }
 }
