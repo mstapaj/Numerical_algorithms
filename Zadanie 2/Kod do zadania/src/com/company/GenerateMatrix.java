@@ -21,10 +21,13 @@ public class GenerateMatrix {
                     myWriterDouble.write(num.doubleValue() / denum.doubleValue() + ",");
                     myWriterFraction.write(num + ";" + denum + ",");
                 }
-                myWriterFloat.write("\n");
-                myWriterDouble.write("\n");
-                myWriterFraction.write("\n");
+                myWriterFloat.write("endline,\n");
+                myWriterDouble.write("endline,\n");
+                myWriterFraction.write("endline,\n");
             }
+//            myWriterFloat.write("/");
+//            myWriterDouble.write("/");
+//            myWriterFraction.write("/");
             myWriterFloat.close();
             myWriterDouble.close();
             myWriterFraction.close();
@@ -35,6 +38,6 @@ public class GenerateMatrix {
 
 
     public static void main(String[] args) {
-        generate(5, 5);
+        generate(3, 3);
     }
 }

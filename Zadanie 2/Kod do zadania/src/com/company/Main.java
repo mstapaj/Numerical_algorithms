@@ -1,10 +1,9 @@
 package com.company;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
 
@@ -216,46 +215,46 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        MojaMacierz<Float> temp = new MojaMacierz<>();
-        MojaMacierz<Float> temp2 = new MojaMacierz<>();
-        MojaMacierz<Float> temp3 = new MojaMacierz<>();
-        MojaMacierz<Float> temp4 = new MojaMacierz<>();
-        List<Float> row1 = new ArrayList<>();
-        List<Float> row2 = new ArrayList<>();
-        List<Float> row3 = new ArrayList<>();
-        List<Float> row4 = new ArrayList<>();
-        List<Float> row5 = new ArrayList<>();
-        List<Float> row6 = new ArrayList<>();
-        List<Float> row7 = new ArrayList<>();
-        List<Float> row8 = new ArrayList<>();
-        List<Float> row9 = new ArrayList<>();
-        List<Float> row10 = new ArrayList<>();
-        List<Float> row11 = new ArrayList<>();
-        List<Float> row12 = new ArrayList<>();
-        Collections.addAll(row1, -1F, -2F, 3F);
-        Collections.addAll(row2, 0F, 2F, -1F);
-        Collections.addAll(row3, -1F, 3F, 0F);
-        Collections.addAll(row4, 1F, 5F, 1F);
-        Collections.addAll(row5, 2F, 1F, 2F);
-        Collections.addAll(row6, 3F, 2F, 3F);
-        Collections.addAll(row7, 1F);
-        Collections.addAll(row8, 2F);
-        Collections.addAll(row9, 3F);
-        Collections.addAll(row10, 1F, -2F, 3F, -7F);
-        Collections.addAll(row11, 3F, 1F, 4F, 5F);
-        Collections.addAll(row12, 2F, 5F, 1F, 18F);
-        List<List<Float>> rows = new ArrayList<>();
-        List<List<Float>> rows2 = new ArrayList<>();
-        List<List<Float>> rows3 = new ArrayList<>();
-        List<List<Float>> rows4 = new ArrayList<>();
-        Collections.addAll(rows, row1, row2, row3);
-        temp.setMatrix(rows);
-        Collections.addAll(rows2, row4, row5, row6);
-        temp2.setMatrix(rows2);
-        Collections.addAll(rows3, row7, row8, row9);
-        temp3.setMatrix(rows3);
-        Collections.addAll(rows4, row10, row11, row12);
-        temp4.setMatrix(rows4);
+//        MojaMacierz<Float> temp = new MojaMacierz<>();
+//        MojaMacierz<Float> temp2 = new MojaMacierz<>();
+//        MojaMacierz<Float> temp3 = new MojaMacierz<>();
+//        MojaMacierz<Float> temp4 = new MojaMacierz<>();
+//        List<Float> row1 = new ArrayList<>();
+//        List<Float> row2 = new ArrayList<>();
+//        List<Float> row3 = new ArrayList<>();
+//        List<Float> row4 = new ArrayList<>();
+//        List<Float> row5 = new ArrayList<>();
+//        List<Float> row6 = new ArrayList<>();
+//        List<Float> row7 = new ArrayList<>();
+//        List<Float> row8 = new ArrayList<>();
+//        List<Float> row9 = new ArrayList<>();
+//        List<Float> row10 = new ArrayList<>();
+//        List<Float> row11 = new ArrayList<>();
+//        List<Float> row12 = new ArrayList<>();
+//        Collections.addAll(row1, -1F, -2F, 3F);
+//        Collections.addAll(row2, 0F, 2F, -1F);
+//        Collections.addAll(row3, -1F, 3F, 0F);
+//        Collections.addAll(row4, 1F, 5F, 1F);
+//        Collections.addAll(row5, 2F, 1F, 2F);
+//        Collections.addAll(row6, 3F, 2F, 3F);
+//        Collections.addAll(row7, 1F);
+//        Collections.addAll(row8, 2F);
+//        Collections.addAll(row9, 3F);
+//        Collections.addAll(row10, 1F, -2F, 3F, -7F);
+//        Collections.addAll(row11, 3F, 1F, 4F, 5F);
+//        Collections.addAll(row12, 2F, 5F, 1F, 18F);
+//        List<List<Float>> rows = new ArrayList<>();
+//        List<List<Float>> rows2 = new ArrayList<>();
+//        List<List<Float>> rows3 = new ArrayList<>();
+//        List<List<Float>> rows4 = new ArrayList<>();
+//        Collections.addAll(rows, row1, row2, row3);
+//        temp.setMatrix(rows);
+//        Collections.addAll(rows2, row4, row5, row6);
+//        temp2.setMatrix(rows2);
+//        Collections.addAll(rows3, row7, row8, row9);
+//        temp3.setMatrix(rows3);
+//        Collections.addAll(rows4, row10, row11, row12);
+//        temp4.setMatrix(rows4);
 //        System.out.println(adding_matrix_f(temp, temp2));
 //        System.out.println(multiply_matrix_f(temp, temp2));
 //        System.out.println(multiply_matrix_f(temp, temp3));
@@ -265,9 +264,9 @@ public class Main {
 //        Collections.addAll(toMat, 2, 1, 3, 4, 1, 4, 6, 1, 4);
 //        MojaMacierz<Integer> tests = new MojaMacierz<>(3, 3, toMat);
 //        System.out.println(tests.getMatrix());
-        Fraction first = new Fraction(BigInteger.ONE, BigInteger.valueOf(17));
-        Fraction second = new Fraction(BigInteger.TWO, BigInteger.valueOf(6));
-        adding_frac(first, second);
+//        Fraction first = new Fraction(BigInteger.ONE, BigInteger.valueOf(17));
+//        Fraction second = new Fraction(BigInteger.TWO, BigInteger.valueOf(6));
+//        adding_frac(first, second);
 //        System.out.println(adding_frac(first, second).getNumerator());
 //        System.out.println(adding_frac(first, second).getDenumerator());
 //        System.out.println(substract_frac(first, second).getNumerator());
@@ -287,16 +286,43 @@ public class Main {
 //        print_fraction_matrix(res_add);
 //        print_fraction_matrix(res_mul);
 
-        List<Fraction> toMat = new ArrayList<>();
-        MojaMacierz<Fraction> tests = new MojaMacierz<>(generate(3000, 3000));
-        List<Fraction> toMat2 = new ArrayList<>();
-        MojaMacierz<Double> tests2 = new MojaMacierz<>(makeDoubleMatrix(generate(10, 10)));
-        System.out.println(tests2.getMatrix());
+//        List<Fraction> toMat = new ArrayList<>();
+//        MojaMacierz<Fraction> tests = new MojaMacierz<>(generate(3000, 3000));
+//        List<Fraction> toMat2 = new ArrayList<>();
+//        MojaMacierz<Double> tests2 = new MojaMacierz<>(makeDoubleMatrix(generate(10, 10)));
+//        System.out.println(tests2.getMatrix());
 //        System.out.println(tests.getMatrix());
 //        print_fraction_matrix(tests.getMatrix());
 //        List<List<Fraction>> res_add = adding_matrix_frac(tests, tests);
 //        List<List<Fraction>> res_mul = multiply_matrix_frac(tests, tests);
 //        print_fraction_matrix(res_add);
 //        print_fraction_matrix(res_mul);
+
+
+        List<List<Double>> toMat = new ArrayList<>();
+        try {
+            String file = "doubleMatrix.txt";
+            Scanner scanner = new Scanner(new File(file));
+            scanner.useDelimiter(",");
+            List<Double> row = new ArrayList<>();
+            while (true) {
+                try {
+                    scanner.useDelimiter(",");
+                    String read = scanner.next();
+                    if (Objects.equals(read, "endline")) {
+                        toMat.add(row);
+                        row = new ArrayList<>();
+                    } else {
+                        row.add(Double.valueOf(read));
+                    }
+                } catch (NumberFormatException e) {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        MojaMacierz<Double> mat = new MojaMacierz<>(toMat);
+        System.out.println(mat.getMatrix());
     }
 }
