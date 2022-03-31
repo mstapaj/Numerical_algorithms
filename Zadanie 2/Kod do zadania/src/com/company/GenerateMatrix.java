@@ -21,9 +21,9 @@ public class GenerateMatrix {
                     myWriterDouble.write(num.doubleValue() / denum.doubleValue() + ",");
                     myWriterFraction.write(num + ";" + denum + ",");
                 }
-                myWriterFloat.write("endline,\n");
-                myWriterDouble.write("endline,\n");
-                myWriterFraction.write("endline,\n");
+                myWriterFloat.write("&,");
+                myWriterDouble.write("&,");
+                myWriterFraction.write("&,");
             }
             myWriterFloat.close();
             myWriterDouble.close();

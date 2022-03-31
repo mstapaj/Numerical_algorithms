@@ -160,7 +160,7 @@ public class Main {
                 try {
                     scanner.useDelimiter(",");
                     String read = scanner.next();
-                    if (Objects.equals(read, "endline")) {
+                    if (Objects.equals(read, "&")) {
                         toMat.add(row);
                         row = new ArrayList<>();
                     } else {
@@ -169,13 +169,13 @@ public class Main {
                         } else if (Objects.equals(type, "float")) {
                             row.add((T) new Float(read));
                         } else if (Objects.equals(type, "fraction")) {
+                            System.out.println(read);
                             row.add((T) new Fraction(new BigInteger(read.split(";")[0]), new BigInteger(read.split(";")[1])));
                         } else {
                             throw new IllegalArgumentException("Type " + type + " is not supported by this method");
                         }
-
                     }
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException | NoSuchElementException e) {
                     break;
                 }
             }
@@ -270,34 +270,14 @@ public class Main {
 //        print_fraction_matrix(res_mul);
 
 
-        List<List<Double>> toMat = new ArrayList<>();
-        try {
-            String file = "doubleMatrix.txt";
-            Scanner scanner = new Scanner(new File(file));
-            scanner.useDelimiter(",");
-            List<Double> row = new ArrayList<>();
-            while (true) {
-                try {
-                    scanner.useDelimiter(",");
-                    String read = scanner.next();
-                    if (Objects.equals(read, "endline")) {
-                        toMat.add(row);
-                        row = new ArrayList<>();
-                    } else {
-                        row.add(Double.valueOf(read));
-                    }
-                } catch (NumberFormatException e) {
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        MyMatrix<Double> mat = new MyMatrix<>(toMat);
+        MyMatrix<Double> mat = readMatrixFromFile("doubleMatrixA.txt", "double");
         System.out.println(mat.getMatrix());
         System.out.println(mat.addingMatrix(mat).getMatrix());
 
-        MyMatrix<Fraction> matFrac = readMatrixFromFile("fractionMatrix.txt", "fraction");
-        print_fraction_matrix(matFrac.getMatrix());
+//        MyMatrix<Fraction> matFrac = readMatrixFromFile("fractionMatrixA.txt", "fraction");
+//        print_fraction_matrix(matFrac.getMatrix());
+//        System.out.println(matFrac.getMatrix());
+//        print_fraction_matrix(matFrac.getMatrix());
+//        System.out.println(mat.getMatrix());
     }
 }
