@@ -7,37 +7,6 @@ import java.util.*;
 
 public class Main {
 
-
-    static List<List<Float>> multiply_matrix_f(MyMatrix<Float> m1, MyMatrix<Float> m2) {
-        List<List<Float>> new_matrix = new ArrayList<>();
-        for (int i = 0; i < m1.getMatrix().size(); i++) {
-            List<Float> row = new ArrayList<>();
-            for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
-                float summary = 0F;
-                for (int k = 0; k < m2.getMatrix().size(); k++) {
-                    summary += m1.getMatrix().get(i).get(k) * m2.getMatrix().get(k).get(j);
-                }
-                row.add(summary);
-            }
-            new_matrix.add(row);
-        }
-        return new_matrix;
-    }
-
-    static List<List<Double>> adding_matrix_d(MyMatrix<Double> m1, MyMatrix<Double> m2) {
-        List<List<Double>> new_matrix = new ArrayList<>();
-        if (m1.getMatrix().size() == m2.getMatrix().size()) {
-            for (int i = 0; i < m1.getMatrix().size(); i++) {
-                List<Double> row = new ArrayList<>();
-                for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
-                    row.add(m1.getMatrix().get(i).get(j) + m2.getMatrix().get(i).get(j));
-                }
-                new_matrix.add(row);
-            }
-        }
-        return new_matrix;
-    }
-
     static List<List<Double>> multiply_matrix_d(MyMatrix<Double> m1, MyMatrix<Double> m2) {
         List<List<Double>> new_matrix = new ArrayList<>();
         for (int i = 0; i < m1.getMatrix().size(); i++) {
@@ -222,8 +191,19 @@ public class Main {
 
 
         MyMatrix<Double> mat = readMatrixFromFile("doubleMatrixA.txt", "double");
-        System.out.println(mat.getMatrix());
+        List<Float> listToMat = new ArrayList<>();
+        Collections.addAll(listToMat, 2F, 5F, 1F, -2F);
+        MyMatrix<Float> matToTest = new MyMatrix<>(2, 2, listToMat);
+        List<Float> listToMat2 = new ArrayList<>();
+        Collections.addAll(listToMat2, 3F, -1F, 7F, 4F);
+        MyMatrix<Float> matToTest2 = new MyMatrix<>(2, 2, listToMat2);
+
         System.out.println(mat.addingMatrix(mat).getMatrix());
+        System.out.println(matToTest.multiplyMatrix(matToTest2).getMatrix());
+
+//        System.out.println(mat.getMatrix());
+//        System.out.println(mat.addingMatrix(mat).getMatrix());
+//        System.out.println(mat.multiplyMatrix(mat).getMatrix());
 
 //        MyMatrix<Fraction> matFrac = readMatrixFromFile("fractionMatrixA.txt", "fraction");
 //        print_fraction_matrix(matFrac.getMatrix());
