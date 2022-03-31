@@ -64,8 +64,9 @@ public class Main {
     public static void print_fraction_matrix(List<List<Fraction>> matrix) {
         for (int i = 0; i < matrix.size(); i++) {
             for (int j = 0; j < matrix.size(); j++) {
-                System.out.println(matrix.get(i).get(j).getFraction());
+                System.out.print(matrix.get(i).get(j).getFraction() + " ");
             }
+            System.out.println();
         }
     }
 
@@ -200,6 +201,16 @@ public class Main {
 
         System.out.println(mat.addingMatrix(mat).getMatrix());
         System.out.println(matToTest.multiplyMatrix(matToTest2).getMatrix());
+
+
+        List<Fraction> toMat = new ArrayList<>();
+        Collections.addAll(toMat, new Fraction(BigInteger.ONE, BigInteger.valueOf(4)), new Fraction(BigInteger.valueOf(4), BigInteger.valueOf(5)), new Fraction(BigInteger.TEN, BigInteger.valueOf(13)), new Fraction(BigInteger.TWO, BigInteger.valueOf(5)));
+        MyMatrix<Fraction> tests = new MyMatrix<>(2, 2, toMat);
+        System.out.println(tests.getMatrix());
+        print_fraction_matrix(tests.getMatrix());
+        print_fraction_matrix(tests.addingMatrix(tests).getMatrix());
+        print_fraction_matrix(tests.multiplyMatrix(tests).getMatrix());
+
 
 //        System.out.println(mat.getMatrix());
 //        System.out.println(mat.addingMatrix(mat).getMatrix());

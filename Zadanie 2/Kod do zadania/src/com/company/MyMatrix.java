@@ -78,7 +78,7 @@ public class MyMatrix<T extends Number> {
                 } else if (this.matrix.get(i).get(j) instanceof Fraction) {
                     Fraction summary = new Fraction(BigInteger.ZERO, BigInteger.ONE);
                     for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
-                        summary = summary.adding_frac((((Fraction) this.matrix.get(i).get(j)).multiply_frac((Fraction) another_matrix.getMatrix().get(i).get(j))));
+                        summary = summary.adding_frac((((Fraction) this.matrix.get(i).get(k)).multiply_frac((Fraction) another_matrix.getMatrix().get(k).get(j))));
                     }
                     row.add((T) summary);
                 } else {
