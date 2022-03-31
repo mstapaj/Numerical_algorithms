@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
 
@@ -19,6 +20,15 @@ public class Main {
         for (int i = 0; i < matrix.size(); i++) {
             for (int j = 0; j < matrix.size(); j++) {
                 System.out.print(matrix.get(i).get(j).getFraction() + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void print_fraction_matrix_big_dec(List<List<Fraction>> matrix) {
+        for (int i = 0; i < matrix.size(); i++) {
+            for (int j = 0; j < matrix.size(); j++) {
+                System.out.print(new BigDecimal(matrix.get(i).get(j).getNumerator().divide(matrix.get(i).get(j).getDenumerator())) + " ");
             }
             System.out.println();
         }
@@ -44,7 +54,6 @@ public class Main {
                         } else if (Objects.equals(type, "float")) {
                             row.add((T) new Float(read));
                         } else if (Objects.equals(type, "fraction")) {
-                            System.out.println(read);
                             row.add((T) new Fraction(new BigInteger(read.split(";")[0]), new BigInteger(read.split(";")[1])));
                         } else {
                             throw new IllegalArgumentException("Type " + type + " is not supported by this method");
@@ -61,36 +70,26 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        // Wczytanie danych z plików
+        MyMatrix<Float> floatMyMatrixA = readMatrixFromFile("floatMatrixA.txt", "float");
+        MyMatrix<Float> floatMyMatrixB = readMatrixFromFile("floatMatrixB.txt", "float");
+        MyMatrix<Float> floatMyMatrixC = readMatrixFromFile("floatMatrixC.txt", "float");
+        MyMatrix<Float> floatMyMatrixX = readMatrixFromFile("floatMatrixX.txt", "float");
+        MyMatrix<Double> doubleMyMatrixA = readMatrixFromFile("doubleMatrixA.txt", "double");
+        MyMatrix<Double> doubleMyMatrixB = readMatrixFromFile("doubleMatrixB.txt", "double");
+        MyMatrix<Double> doubleMyMatrixC = readMatrixFromFile("doubleMatrixC.txt", "double");
+        MyMatrix<Double> doubleMyMatrixX = readMatrixFromFile("doubleMatrixX.txt", "double");
+        MyMatrix<Fraction> fractionMyMatrixA = readMatrixFromFile("fractionMatrixA.txt", "fraction");
+        MyMatrix<Fraction> fractionMyMatrixB = readMatrixFromFile("fractionMatrixB.txt", "fraction");
+        MyMatrix<Fraction> fractionMyMatrixC = readMatrixFromFile("fractionMatrixC.txt", "fraction");
+        MyMatrix<Fraction> fractionMyMatrixX = readMatrixFromFile("fractionMatrixX.txt", "fraction");
 
-        MyMatrix<Double> mat = readMatrixFromFile("doubleMatrixA.txt", "double");
-        List<Float> listToMat = new ArrayList<>();
-        Collections.addAll(listToMat, 2F, 5F, 1F, -2F);
-        MyMatrix<Float> matToTest = new MyMatrix<>(2, 2, listToMat);
-        List<Float> listToMat2 = new ArrayList<>();
-        Collections.addAll(listToMat2, 3F, -1F, 7F, 4F);
-        MyMatrix<Float> matToTest2 = new MyMatrix<>(2, 2, listToMat2);
-
-        System.out.println(mat.addingMatrix(mat).getMatrix());
-        System.out.println(matToTest.multiplyMatrix(matToTest2).getMatrix());
-
-
-        List<Fraction> toMat = new ArrayList<>();
-        Collections.addAll(toMat, new Fraction(BigInteger.ONE, BigInteger.valueOf(4)), new Fraction(BigInteger.valueOf(4), BigInteger.valueOf(5)), new Fraction(BigInteger.TEN, BigInteger.valueOf(13)), new Fraction(BigInteger.TWO, BigInteger.valueOf(5)));
-        MyMatrix<Fraction> tests = new MyMatrix<>(2, 2, toMat);
-        System.out.println(tests.getMatrix());
-        print_fraction_matrix(tests.getMatrix());
-        print_fraction_matrix(tests.addingMatrix(tests).getMatrix());
-        print_fraction_matrix(tests.multiplyMatrix(tests).getMatrix());
-
-
-//        System.out.println(mat.getMatrix());
-//        System.out.println(mat.addingMatrix(mat).getMatrix());
-//        System.out.println(mat.multiplyMatrix(mat).getMatrix());
-
-//        MyMatrix<Fraction> matFrac = readMatrixFromFile("fractionMatrixA.txt", "fraction");
-//        print_fraction_matrix(matFrac.getMatrix());
-//        System.out.println(matFrac.getMatrix());
-//        print_fraction_matrix(matFrac.getMatrix());
-//        System.out.println(mat.getMatrix());
+        // A * X
+        System.out.println(floatMyMatrixA.multiplyMatrix(floatMyMatrixX).getMatrix());
+        System.out.println(doubleMyMatrixA.multiplyMatrix(doubleMyMatrixX).getMatrix());
+//        print_fraction_matrix(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix());
+//        print_fraction_matrix_big_dec(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix());
+//        System.out.println(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0));
+        System.out.println(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix());
     }
 }

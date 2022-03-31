@@ -35,9 +35,9 @@ public class GenerateMatrix {
 
 
     public static void main(String[] args) {
-        generate(3, 3, "A");
-        generate(3, 3, "B");
-        generate(3, 3, "C");
-        generate(1, 3, "X");
+        generate(100, 100, "A");
+        generate(100, 100, "B");
+        generate(100, 100, "C");
+        generate(1, 100, "X");
     }
 }
