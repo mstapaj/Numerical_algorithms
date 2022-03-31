@@ -66,36 +66,36 @@ public class Main {
         }
         return new_matrix;
     }
-
-    static List<List<Fraction>> adding_matrix_frac(MyMatrix<Fraction> m1, MyMatrix<Fraction> m2) {
-        List<List<Fraction>> new_matrix = new ArrayList<>();
-        if (m1.getMatrix().size() == m2.getMatrix().size()) {
-            for (int i = 0; i < m1.getMatrix().size(); i++) {
-                List<Fraction> row = new ArrayList<>();
-                for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
-                    row.add(adding_frac(m1.getMatrix().get(i).get(j), m2.getMatrix().get(i).get(j)));
-                }
-                new_matrix.add(row);
-            }
-        }
-        return new_matrix;
-    }
-
-    static List<List<Fraction>> multiply_matrix_frac(MyMatrix<Fraction> m1, MyMatrix<Fraction> m2) {
-        List<List<Fraction>> new_matrix = new ArrayList<>();
-        for (int i = 0; i < m1.getMatrix().size(); i++) {
-            List<Fraction> row = new ArrayList<>();
-            for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
-                Fraction summary = new Fraction(BigInteger.ZERO, BigInteger.ONE);
-                for (int k = 0; k < m2.getMatrix().size(); k++) {
-                    summary = adding_frac(summary, multiply_frac(m1.getMatrix().get(i).get(k), m2.getMatrix().get(k).get(j)));
-                }
-                row.add(summary);
-            }
-            new_matrix.add(row);
-        }
-        return new_matrix;
-    }
+//
+//    static List<List<Fraction>> adding_matrix_frac(MyMatrix<Fraction> m1, MyMatrix<Fraction> m2) {
+//        List<List<Fraction>> new_matrix = new ArrayList<>();
+//        if (m1.getMatrix().size() == m2.getMatrix().size()) {
+//            for (int i = 0; i < m1.getMatrix().size(); i++) {
+//                List<Fraction> row = new ArrayList<>();
+//                for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
+//                    row.add(adding_frac(m1.getMatrix().get(i).get(j), m2.getMatrix().get(i).get(j)));
+//                }
+//                new_matrix.add(row);
+//            }
+//        }
+//        return new_matrix;
+//    }
+//
+//    static List<List<Fraction>> multiply_matrix_frac(MyMatrix<Fraction> m1, MyMatrix<Fraction> m2) {
+//        List<List<Fraction>> new_matrix = new ArrayList<>();
+//        for (int i = 0; i < m1.getMatrix().size(); i++) {
+//            List<Fraction> row = new ArrayList<>();
+//            for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
+//                Fraction summary = new Fraction(BigInteger.ZERO, BigInteger.ONE);
+//                for (int k = 0; k < m2.getMatrix().size(); k++) {
+//                    summary = adding_frac(summary, multiply_frac(m1.getMatrix().get(i).get(k), m2.getMatrix().get(k).get(j)));
+//                }
+//                row.add(summary);
+//            }
+//            new_matrix.add(row);
+//        }
+//        return new_matrix;
+//    }
 
 
     public static BigInteger LCM(BigInteger a, BigInteger b) {
@@ -103,38 +103,6 @@ public class Main {
             return BigInteger.ZERO;
         }
         return a.divide(a.gcd(b)).multiply(b).abs();
-    }
-
-    public static Fraction adding_frac(Fraction a, Fraction b) {
-        BigInteger lcm = LCM(a.getDenumerator(), b.getDenumerator());
-        BigInteger first_mul = lcm.divide(a.getDenumerator());
-        BigInteger sec_mul = lcm.divide(b.getDenumerator());
-        BigInteger new_numerator = a.getNumerator().multiply(first_mul).add(b.getNumerator().multiply(sec_mul));
-        BigInteger gcd = new_numerator.gcd(lcm);
-        return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
-    }
-
-    public static Fraction substract_frac(Fraction a, Fraction b) {
-        BigInteger lcm = LCM(a.getDenumerator(), b.getDenumerator());
-        BigInteger first_mul = lcm.divide(a.getDenumerator());
-        BigInteger sec_mul = lcm.divide(b.getDenumerator());
-        BigInteger new_numerator = a.getNumerator().multiply(first_mul).subtract(b.getNumerator().multiply(sec_mul));
-        BigInteger gcd = new_numerator.gcd(lcm);
-        return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
-    }
-
-    public static Fraction multiply_frac(Fraction a, Fraction b) {
-        BigInteger new_numerator = a.getNumerator().multiply(b.getNumerator());
-        BigInteger new_denumerator = a.getDenumerator().multiply(b.getDenumerator());
-        BigInteger gcd = new_numerator.gcd(new_denumerator);
-        return new Fraction(new_numerator.divide(gcd), new_denumerator.divide(gcd));
-    }
-
-    public static Fraction divide_frac(Fraction a, Fraction b) {
-        BigInteger new_numerator = a.getNumerator().multiply(b.getDenumerator());
-        BigInteger new_denumerator = a.getDenumerator().multiply(b.getNumerator());
-        BigInteger gcd = new_numerator.gcd(new_denumerator);
-        return new Fraction(new_numerator.divide(gcd), new_denumerator.divide(gcd));
     }
 
     public static void print_fraction_matrix(List<List<Fraction>> matrix) {
@@ -180,6 +148,41 @@ public class Main {
             result.add(row);
         }
         return result;
+    }
+
+    public static <T extends Number> MyMatrix<T> readMatrixFromFile(String file, String type) {
+        List<List<T>> toMat = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(new File(file));
+            scanner.useDelimiter(",");
+            List<T> row = new ArrayList<>();
+            while (true) {
+                try {
+                    scanner.useDelimiter(",");
+                    String read = scanner.next();
+                    if (Objects.equals(read, "endline")) {
+                        toMat.add(row);
+                        row = new ArrayList<>();
+                    } else {
+                        if (Objects.equals(type, "double")) {
+                            row.add((T) new Double(read));
+                        } else if (Objects.equals(type, "float")) {
+                            row.add((T) new Float(read));
+                        } else if (Objects.equals(type, "fraction")) {
+                            row.add((T) new Fraction(new BigInteger(read.split(";")[0]), new BigInteger(read.split(";")[1])));
+                        } else {
+                            throw new IllegalArgumentException("Type " + type + " is not supported by this method");
+                        }
+
+                    }
+                } catch (NumberFormatException e) {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new MyMatrix<>(toMat);
     }
 
     public static void main(String[] args) {
@@ -293,5 +296,8 @@ public class Main {
         MyMatrix<Double> mat = new MyMatrix<>(toMat);
         System.out.println(mat.getMatrix());
         System.out.println(mat.addingMatrix(mat).getMatrix());
+
+        MyMatrix<Fraction> matFrac = readMatrixFromFile("fractionMatrix.txt", "fraction");
+        print_fraction_matrix(matFrac.getMatrix());
     }
 }

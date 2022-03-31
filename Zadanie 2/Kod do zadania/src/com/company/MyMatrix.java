@@ -46,7 +46,7 @@ public class MyMatrix<T extends Number> {
                     } else if (this.matrix.get(i).get(j) instanceof Float) {
                         row.add((T) new Float(this.matrix.get(i).get(j).floatValue() + another_matrix.getMatrix().get(i).get(j).floatValue()));
                     } else if (this.matrix.get(i).get(j) instanceof Fraction) {
-                        row.add((T) new Float(this.matrix.get(i).get(j).floatValue() + another_matrix.getMatrix().get(i).get(j).floatValue()));
+                        row.add((T) (((Fraction) this.matrix.get(i).get(j)).adding_frac((Fraction) another_matrix.getMatrix().get(i).get(j))));
                     } else {
                         throw new IllegalArgumentException("Type " + this.matrix.get(i).get(j).getClass() + " is not supported by this method");
                     }

@@ -25,9 +25,6 @@ public class GenerateMatrix {
                 myWriterDouble.write("endline,\n");
                 myWriterFraction.write("endline,\n");
             }
-//            myWriterFloat.write("/");
-//            myWriterDouble.write("/");
-//            myWriterFraction.write("/");
             myWriterFloat.close();
             myWriterDouble.close();
             myWriterFraction.close();
@@ -39,5 +36,8 @@ public class GenerateMatrix {
 
     public static void main(String[] args) {
         generate(3, 3, "A");
+        generate(3, 3, "B");
+        generate(3, 3, "C");
+        generate(1, 3, "X");
     }
 }
