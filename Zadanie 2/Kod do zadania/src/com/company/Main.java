@@ -7,19 +7,6 @@ import java.util.*;
 
 public class Main {
 
-    static List<List<Float>> adding_matrix_f(MyMatrix<Float> m1, MyMatrix<Float> m2) {
-        List<List<Float>> new_matrix = new ArrayList<>();
-        if (m1.getMatrix().size() == m2.getMatrix().size()) {
-            for (int i = 0; i < m1.getMatrix().size(); i++) {
-                List<Float> row = new ArrayList<>();
-                for (int j = 0; j < m2.getMatrix().get(i).size(); j++) {
-                    row.add(m1.getMatrix().get(i).get(j) + m2.getMatrix().get(i).get(j));
-                }
-                new_matrix.add(row);
-            }
-        }
-        return new_matrix;
-    }
 
     static List<List<Float>> multiply_matrix_f(MyMatrix<Float> m1, MyMatrix<Float> m2) {
         List<List<Float>> new_matrix = new ArrayList<>();
@@ -113,42 +100,6 @@ public class Main {
         }
     }
 
-    public static List<List<Fraction>> generate(int cols, int rows) {
-        List<List<Fraction>> result = new ArrayList<>();
-        for (int i = 0; i < rows; i++) {
-            List<Fraction> row = new ArrayList<>();
-            for (int j = 0; j < cols; j++) {
-                Random ran = new Random();
-                row.add(new Fraction(BigInteger.valueOf(ran.nextInt()), BigInteger.valueOf(ran.nextInt())));
-            }
-            result.add(row);
-        }
-        return result;
-    }
-
-    public static List<List<Float>> makeFloatMatrix(List<List<Fraction>> matrixFraction) {
-        List<List<Float>> result = new ArrayList<>();
-        for (int i = 0; i < matrixFraction.size(); i++) {
-            List<Float> row = new ArrayList<>();
-            for (int j = 0; j < matrixFraction.get(i).size(); j++) {
-                row.add(matrixFraction.get(i).get(j).getNumerator().floatValue() / matrixFraction.get(i).get(j).getDenumerator().floatValue());
-            }
-            result.add(row);
-        }
-        return result;
-    }
-
-    public static List<List<Double>> makeDoubleMatrix(List<List<Fraction>> matrixFraction) {
-        List<List<Double>> result = new ArrayList<>();
-        for (int i = 0; i < matrixFraction.size(); i++) {
-            List<Double> row = new ArrayList<>();
-            for (int j = 0; j < matrixFraction.get(i).size(); j++) {
-                row.add(matrixFraction.get(i).get(j).getNumerator().doubleValue() / matrixFraction.get(i).get(j).getDenumerator().doubleValue());
-            }
-            result.add(row);
-        }
-        return result;
-    }
 
     public static <T extends Number> MyMatrix<T> readMatrixFromFile(String file, String type) {
         List<List<T>> toMat = new ArrayList<>();
