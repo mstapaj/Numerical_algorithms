@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fraction {
+public class Fraction extends Number {
     private BigInteger numerator;
     private BigInteger denumerator;
 
@@ -34,6 +34,26 @@ public class Fraction {
     public Fraction(BigInteger a, BigInteger b) {
         this.numerator = a;
         this.denumerator = b;
+    }
+
+    @Override
+    public int intValue() {
+        return 0;
+    }
+
+    @Override
+    public long longValue() {
+        return 0;
+    }
+
+    @Override
+    public float floatValue() {
+        return 0;
+    }
+
+    @Override
+    public double doubleValue() {
+        return 0;
     }
 }
 

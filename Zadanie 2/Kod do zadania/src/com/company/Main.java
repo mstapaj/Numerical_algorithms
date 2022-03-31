@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Main {
 
-    static List<List<Float>> adding_matrix_f(MojaMacierz<Float> m1, MojaMacierz<Float> m2) {
+    static List<List<Float>> adding_matrix_f(MyMatrix<Float> m1, MyMatrix<Float> m2) {
         List<List<Float>> new_matrix = new ArrayList<>();
         if (m1.getMatrix().size() == m2.getMatrix().size()) {
             for (int i = 0; i < m1.getMatrix().size(); i++) {
@@ -21,7 +21,7 @@ public class Main {
         return new_matrix;
     }
 
-    static List<List<Float>> multiply_matrix_f(MojaMacierz<Float> m1, MojaMacierz<Float> m2) {
+    static List<List<Float>> multiply_matrix_f(MyMatrix<Float> m1, MyMatrix<Float> m2) {
         List<List<Float>> new_matrix = new ArrayList<>();
         for (int i = 0; i < m1.getMatrix().size(); i++) {
             List<Float> row = new ArrayList<>();
@@ -37,7 +37,7 @@ public class Main {
         return new_matrix;
     }
 
-    static List<List<Double>> adding_matrix_d(MojaMacierz<Double> m1, MojaMacierz<Double> m2) {
+    static List<List<Double>> adding_matrix_d(MyMatrix<Double> m1, MyMatrix<Double> m2) {
         List<List<Double>> new_matrix = new ArrayList<>();
         if (m1.getMatrix().size() == m2.getMatrix().size()) {
             for (int i = 0; i < m1.getMatrix().size(); i++) {
@@ -51,7 +51,7 @@ public class Main {
         return new_matrix;
     }
 
-    static List<List<Double>> multiply_matrix_d(MojaMacierz<Double> m1, MojaMacierz<Double> m2) {
+    static List<List<Double>> multiply_matrix_d(MyMatrix<Double> m1, MyMatrix<Double> m2) {
         List<List<Double>> new_matrix = new ArrayList<>();
         for (int i = 0; i < m1.getMatrix().size(); i++) {
             List<Double> row = new ArrayList<>();
@@ -67,7 +67,7 @@ public class Main {
         return new_matrix;
     }
 
-    static List<List<Fraction>> adding_matrix_frac(MojaMacierz<Fraction> m1, MojaMacierz<Fraction> m2) {
+    static List<List<Fraction>> adding_matrix_frac(MyMatrix<Fraction> m1, MyMatrix<Fraction> m2) {
         List<List<Fraction>> new_matrix = new ArrayList<>();
         if (m1.getMatrix().size() == m2.getMatrix().size()) {
             for (int i = 0; i < m1.getMatrix().size(); i++) {
@@ -81,7 +81,7 @@ public class Main {
         return new_matrix;
     }
 
-    static List<List<Fraction>> multiply_matrix_frac(MojaMacierz<Fraction> m1, MojaMacierz<Fraction> m2) {
+    static List<List<Fraction>> multiply_matrix_frac(MyMatrix<Fraction> m1, MyMatrix<Fraction> m2) {
         List<List<Fraction>> new_matrix = new ArrayList<>();
         for (int i = 0; i < m1.getMatrix().size(); i++) {
             List<Fraction> row = new ArrayList<>();
@@ -95,38 +95,6 @@ public class Main {
             new_matrix.add(row);
         }
         return new_matrix;
-    }
-
-    static class MojaMacierz<T> {
-        private List<List<T>> matrix;
-
-        public MojaMacierz() {
-            this.matrix = new ArrayList<>();
-        }
-
-        public MojaMacierz(List<List<T>> new_matrix) {
-            this.matrix = new_matrix;
-        }
-
-        public MojaMacierz(int rows, int cols, List<T> list_of_elem) {
-            List<List<T>> new_matrix = new ArrayList<>();
-            for (int i = 0; i < rows; i++) {
-                List<T> new_row = new ArrayList<>();
-                for (int j = 0; j < cols; j++) {
-                    new_row.add(list_of_elem.get((cols * i) + j));
-                }
-                new_matrix.add(new_row);
-            }
-            this.matrix = new_matrix;
-        }
-
-        public void setMatrix(List<List<T>> matrix) {
-            this.matrix = matrix;
-        }
-
-        public List<List<T>> getMatrix() {
-            return matrix;
-        }
     }
 
 
@@ -215,10 +183,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        MojaMacierz<Float> temp = new MojaMacierz<>();
-//        MojaMacierz<Float> temp2 = new MojaMacierz<>();
-//        MojaMacierz<Float> temp3 = new MojaMacierz<>();
-//        MojaMacierz<Float> temp4 = new MojaMacierz<>();
+//        MyMatrix<Float> temp = new MyMatrix<>();
+//        MyMatrix<Float> temp2 = new MyMatrix<>();
+//        MyMatrix<Float> temp3 = new MyMatrix<>();
+//        MyMatrix<Float> temp4 = new MyMatrix<>();
 //        List<Float> row1 = new ArrayList<>();
 //        List<Float> row2 = new ArrayList<>();
 //        List<Float> row3 = new ArrayList<>();
@@ -262,7 +230,7 @@ public class Main {
 //
 //        List<Integer> toMat = new ArrayList<>();
 //        Collections.addAll(toMat, 2, 1, 3, 4, 1, 4, 6, 1, 4);
-//        MojaMacierz<Integer> tests = new MojaMacierz<>(3, 3, toMat);
+//        MyMatrix<Integer> tests = new MyMatrix<>(3, 3, toMat);
 //        System.out.println(tests.getMatrix());
 //        Fraction first = new Fraction(BigInteger.ONE, BigInteger.valueOf(17));
 //        Fraction second = new Fraction(BigInteger.TWO, BigInteger.valueOf(6));
@@ -278,7 +246,7 @@ public class Main {
 
 //        List<Fraction> toMat = new ArrayList<>();
 //        Collections.addAll(toMat, new Fraction(BigInteger.ONE, BigInteger.valueOf(4)), new Fraction(BigInteger.valueOf(4), BigInteger.valueOf(5)), new Fraction(BigInteger.TEN, BigInteger.valueOf(13)), new Fraction(BigInteger.TWO, BigInteger.valueOf(5)));
-//        MojaMacierz<Fraction> tests = new MojaMacierz<>(2, 2, toMat);
+//        MyMatrix<Fraction> tests = new MyMatrix<>(2, 2, toMat);
 //        System.out.println(tests.getMatrix());
 //        List<List<Fraction>> res_add = adding_matrix_frac(tests, tests);
 //        List<List<Fraction>> res_mul = multiply_matrix_frac(tests, tests);
@@ -287,9 +255,9 @@ public class Main {
 //        print_fraction_matrix(res_mul);
 
 //        List<Fraction> toMat = new ArrayList<>();
-//        MojaMacierz<Fraction> tests = new MojaMacierz<>(generate(3000, 3000));
+//        MyMatrix<Fraction> tests = new MyMatrix<>(generate(3000, 3000));
 //        List<Fraction> toMat2 = new ArrayList<>();
-//        MojaMacierz<Double> tests2 = new MojaMacierz<>(makeDoubleMatrix(generate(10, 10)));
+//        MyMatrix<Double> tests2 = new MyMatrix<>(makeDoubleMatrix(generate(10, 10)));
 //        System.out.println(tests2.getMatrix());
 //        System.out.println(tests.getMatrix());
 //        print_fraction_matrix(tests.getMatrix());
@@ -322,7 +290,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        MojaMacierz<Double> mat = new MojaMacierz<>(toMat);
+        MyMatrix<Double> mat = new MyMatrix<>(toMat);
         System.out.println(mat.getMatrix());
+        System.out.println(mat.addingMatrix(mat).getMatrix());
     }
 }

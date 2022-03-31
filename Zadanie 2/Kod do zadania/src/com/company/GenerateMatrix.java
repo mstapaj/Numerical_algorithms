@@ -7,11 +7,11 @@ import java.util.Random;
 
 public class GenerateMatrix {
 
-    public static void generate(int cols, int rows) {
+    public static void generate(int cols, int rows, String fileName) {
         try {
-            FileWriter myWriterFraction = new FileWriter("fractionMatrix.txt");
-            FileWriter myWriterDouble = new FileWriter("doubleMatrix.txt");
-            FileWriter myWriterFloat = new FileWriter("floatMatrix.txt");
+            FileWriter myWriterFraction = new FileWriter("fractionMatrix" + fileName + ".txt");
+            FileWriter myWriterDouble = new FileWriter("doubleMatrix" + fileName + ".txt");
+            FileWriter myWriterFloat = new FileWriter("floatMatrix" + fileName + ".txt");
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
                     Random ran = new Random();
@@ -38,6 +38,6 @@ public class GenerateMatrix {
 
 
     public static void main(String[] args) {
-        generate(3, 3);
+        generate(3, 3, "A");
     }
 }
