@@ -61,26 +61,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        List<Integer> toMat = new ArrayList<>();
-//        Collections.addAll(toMat, 2, 1, 3, 4, 1, 4, 6, 1, 4);
-//        MyMatrix<Integer> tests = new MyMatrix<>(3, 3, toMat);
-//        System.out.println(tests.getMatrix());
-//        Fraction first = new Fraction(BigInteger.ONE, BigInteger.valueOf(17));
-//        Fraction second = new Fraction(BigInteger.TWO, BigInteger.valueOf(6));
-//        adding_frac(first, second);
-//        System.out.println(adding_frac(first, second).getNumerator());
-//        System.out.println(adding_frac(first, second).getDenumerator());
-//        System.out.println(substract_frac(first, second).getNumerator());
-//        System.out.println(substract_frac(first, second).getDenumerator());
-//        System.out.println(multiply_frac(first, second).getNumerator());
-//        System.out.println(multiply_frac(first, second).getDenumerator());
-//        System.out.println(divide_frac(first, second).getNumerator());
-//        System.out.println(divide_frac(first, second).getDenumerator());
-//
-//        print_fraction_matrix(res_add);
-//        print_fraction_matrix(res_mul);
-
-
 
         MyMatrix<Double> mat = readMatrixFromFile("doubleMatrixA.txt", "double");
         List<Float> listToMat = new ArrayList<>();
