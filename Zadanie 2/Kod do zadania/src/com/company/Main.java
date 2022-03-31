@@ -76,7 +76,7 @@ public class Main {
 //        System.out.println(multiply_frac(first, second).getDenumerator());
 //        System.out.println(divide_frac(first, second).getNumerator());
 //        System.out.println(divide_frac(first, second).getDenumerator());
-
+//
 //        print_fraction_matrix(res_add);
 //        print_fraction_matrix(res_mul);
 

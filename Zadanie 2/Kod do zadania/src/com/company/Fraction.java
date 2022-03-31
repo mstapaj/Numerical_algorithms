@@ -47,11 +47,11 @@ public class Fraction extends Number {
         return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
     }
 
-    public Fraction substract_frac(Fraction a, Fraction b) {
-        BigInteger lcm = LCM(a.getDenumerator(), b.getDenumerator());
-        BigInteger first_mul = lcm.divide(a.getDenumerator());
-        BigInteger sec_mul = lcm.divide(b.getDenumerator());
-        BigInteger new_numerator = a.getNumerator().multiply(first_mul).subtract(b.getNumerator().multiply(sec_mul));
+    public Fraction substract_frac(Fraction frac) {
+        BigInteger lcm = LCM(this.getDenumerator(), frac.getDenumerator());
+        BigInteger first_mul = lcm.divide(this.getDenumerator());
+        BigInteger sec_mul = lcm.divide(frac.getDenumerator());
+        BigInteger new_numerator = this.getNumerator().multiply(first_mul).subtract(frac.getNumerator().multiply(sec_mul));
         BigInteger gcd = new_numerator.gcd(lcm);
         return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
     }
@@ -63,9 +63,9 @@ public class Fraction extends Number {
         return new Fraction(new_numerator.divide(gcd), new_denumerator.divide(gcd));
     }
 
-    public Fraction divide_frac(Fraction a, Fraction b) {
-        BigInteger new_numerator = a.getNumerator().multiply(b.getDenumerator());
-        BigInteger new_denumerator = a.getDenumerator().multiply(b.getNumerator());
+    public Fraction divide_frac(Fraction frac) {
+        BigInteger new_numerator = this.getNumerator().multiply(frac.getDenumerator());
+        BigInteger new_denumerator = this.getDenumerator().multiply(frac.getNumerator());
         BigInteger gcd = new_numerator.gcd(new_denumerator);
         return new Fraction(new_numerator.divide(gcd), new_denumerator.divide(gcd));
     }
