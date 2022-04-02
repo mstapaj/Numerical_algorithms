@@ -64,7 +64,7 @@ public class MyMatrix<T extends Number> {
             List<T> row = new ArrayList<>();
             for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
                 if (this.matrix.get(i).get(j) instanceof Double) {
-                    Double summary = Double.valueOf(0);
+                    double summary = 0;
                     for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
                         summary += new Double(this.matrix.get(i).get(k).doubleValue() * another_matrix.getMatrix().get(k).get(j).doubleValue());
                     }

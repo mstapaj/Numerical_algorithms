@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.company.Main.LCM;
 
 public class Fraction extends Number {
     private BigInteger numerator;
@@ -38,6 +37,13 @@ public class Fraction extends Number {
         this.denumerator = b;
     }
 
+    private BigInteger LCM(BigInteger a, BigInteger b) {
+        if (a.signum() == 0 || b.signum() == 0) {
+            return BigInteger.ZERO;
+        }
+        return a.divide(a.gcd(b)).multiply(b).abs();
+    }
+
     public Fraction adding_frac(Fraction frac) {
         BigInteger lcm = LCM(this.getDenumerator(), frac.getDenumerator());
         BigInteger first_mul = lcm.divide(this.getDenumerator());
@@ -45,6 +51,7 @@ public class Fraction extends Number {
         BigInteger new_numerator = this.getNumerator().multiply(first_mul).add(frac.getNumerator().multiply(sec_mul));
         BigInteger gcd = new_numerator.gcd(lcm);
         return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
+//        return new Fraction(new_numerator, lcm);
     }
 
     public Fraction substract_frac(Fraction frac) {
@@ -54,6 +61,7 @@ public class Fraction extends Number {
         BigInteger new_numerator = this.getNumerator().multiply(first_mul).subtract(frac.getNumerator().multiply(sec_mul));
         BigInteger gcd = new_numerator.gcd(lcm);
         return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
+//        return new Fraction(new_numerator, lcm);
     }
 
     public Fraction multiply_frac(Fraction frac) {
@@ -61,6 +69,7 @@ public class Fraction extends Number {
         BigInteger new_denumerator = this.getDenumerator().multiply(frac.getDenumerator());
         BigInteger gcd = new_numerator.gcd(new_denumerator);
         return new Fraction(new_numerator.divide(gcd), new_denumerator.divide(gcd));
+//        return new Fraction(new_numerator, new_denumerator);
     }
 
     public Fraction divide_frac(Fraction frac) {
@@ -68,6 +77,7 @@ public class Fraction extends Number {
         BigInteger new_denumerator = this.getDenumerator().multiply(frac.getNumerator());
         BigInteger gcd = new_numerator.gcd(new_denumerator);
         return new Fraction(new_numerator.divide(gcd), new_denumerator.divide(gcd));
+//        return new Fraction(new_numerator, new_denumerator);
     }
 
     @Override

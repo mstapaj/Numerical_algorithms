@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GenerateMatrix {
 
-    public static void generate(int cols, int rows, String fileName) {
+    public static void generate(int cols, int rows, String fileName, int max, int min) {
         try {
             FileWriter myWriterFraction = new FileWriter("fractionMatrix" + fileName + ".txt");
             FileWriter myWriterDouble = new FileWriter("doubleMatrix" + fileName + ".txt");
@@ -15,8 +15,8 @@ public class GenerateMatrix {
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
                     Random ran = new Random();
-                    BigInteger num = BigInteger.valueOf(ran.nextInt());
-                    BigInteger denum = BigInteger.valueOf(ran.nextInt());
+                    BigInteger num = BigInteger.valueOf(ran.nextInt(max - min) + min);
+                    BigInteger denum = BigInteger.valueOf(ran.nextInt(max - min) + min);
                     myWriterFloat.write((int) num.floatValue() / denum.floatValue() + ",");
                     myWriterDouble.write(num.doubleValue() / denum.doubleValue() + ",");
                     myWriterFraction.write(num + ";" + denum + ",");
@@ -35,9 +35,9 @@ public class GenerateMatrix {
 
 
     public static void main(String[] args) {
-        generate(100, 100, "A");
-        generate(100, 100, "B");
-        generate(100, 100, "C");
-        generate(1, 100, "X");
+        generate(100, 100, "A", 1000, 1);
+        generate(100, 100, "B", 1000, 1);
+        generate(100, 100, "C", 1000, 1);
+        generate(1, 100, "X", 1000, 1);
     }
 }
