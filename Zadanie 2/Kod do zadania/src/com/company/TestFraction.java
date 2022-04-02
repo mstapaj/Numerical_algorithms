@@ -55,6 +55,4 @@ public class TestFraction {
         first = null;
         second = null;
     }
-
-
 }
