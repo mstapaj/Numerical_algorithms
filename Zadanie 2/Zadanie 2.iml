@@ -17,5 +17,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="ejml.simple" level="project" />
   </component>
 </module>

@@ -1,14 +1,16 @@
 package com.company;
 
+import org.ejml.simple.SimpleMatrix;
+
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Main {
-
 
 
     public static void print_fraction_matrix(List<List<Fraction>> matrix) {
@@ -64,6 +66,19 @@ public class Main {
         return new MyMatrix<>(toMat);
     }
 
+    public static SimpleMatrix makeLibraryMatrix(List<List<Number>> list) {
+        Double[][] array = new Double[list.size()][list.size()];
+        Double[] blankArray = new Double[0];
+        double[][] resArray = new double[array.length][array.length];
+        for (int i = 0; i < list.size(); i++) {
+            array[i] = list.get(i).toArray(blankArray);
+            for (int j = 0; j < array[i].length; j++) {
+                resArray[i][j] = array[i][j].doubleValue();
+            }
+        }
+        return new SimpleMatrix(resArray);
+    }
+
     public static void main(String[] args) {
         // Wczytanie danych z plików
         MyMatrix<Float> floatMyMatrixA = readMatrixFromFile("floatMatrixA.txt", "float");
@@ -78,32 +93,43 @@ public class Main {
         MyMatrix<Fraction> fractionMyMatrixB = readMatrixFromFile("fractionMatrixB.txt", "fraction");
         MyMatrix<Fraction> fractionMyMatrixC = readMatrixFromFile("fractionMatrixC.txt", "fraction");
         MyMatrix<Fraction> fractionMyMatrixX = readMatrixFromFile("fractionMatrixX.txt", "fraction");
+        SimpleMatrix libraryMatrixA = makeLibraryMatrix(readMatrixFromFile("doubleMatrixA.txt", "double").getMatrix());
+        SimpleMatrix libraryMatrixB = makeLibraryMatrix(readMatrixFromFile("doubleMatrixB.txt", "double").getMatrix());
+        SimpleMatrix libraryMatrixC = makeLibraryMatrix(readMatrixFromFile("doubleMatrixC.txt", "double").getMatrix());
+        SimpleMatrix libraryMatrixX = makeLibraryMatrix(readMatrixFromFile("doubleMatrixX.txt", "double").getMatrix());
+
 
         // A * X
-        System.out.println(floatMyMatrixA.multiplyMatrix(floatMyMatrixX).getMatrix());
-        System.out.println(doubleMyMatrixA.multiplyMatrix(doubleMyMatrixX).getMatrix());
-        BigDecimal res3= new BigDecimal(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getNumerator()).divide(new BigDecimal(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getDenumerator()),MathContext.DECIMAL128);
-        System.out.println(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix());
-        System.out.println(res3);
+//        System.out.println(floatMyMatrixA.multiplyMatrix(floatMyMatrixX).getMatrix());
+//        System.out.println(doubleMyMatrixA.multiplyMatrix(doubleMyMatrixX).getMatrix());
+//        BigDecimal res3= new BigDecimal(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getNumerator()).divide(new BigDecimal(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getDenumerator()),MathContext.DECIMAL128);
+//        System.out.println(fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX).getMatrix());
+//        System.out.println(res3);
+//        System.out.println(libraryMatrixA.mult(libraryMatrixX));
+
 
         // (A + B + C) * X
-        MyMatrix <Float> tempFloat= floatMyMatrixA.addingMatrix(floatMyMatrixB).addingMatrix(floatMyMatrixC);
-        System.out.println(tempFloat.multiplyMatrix(floatMyMatrixX).getMatrix());
-        MyMatrix <Double> tempDouble= doubleMyMatrixA.addingMatrix(doubleMyMatrixB).addingMatrix(doubleMyMatrixC);
-        System.out.println(tempDouble.multiplyMatrix(doubleMyMatrixX).getMatrix());
-        MyMatrix <Fraction> tempFraction= fractionMyMatrixA.addingMatrix(fractionMyMatrixB).addingMatrix(fractionMyMatrixC);
-        BigDecimal res= new BigDecimal(tempFraction.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getFraction().get(0)).divide(new BigDecimal(tempFraction.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getFraction().get(1)), MathContext.DECIMAL128);
-//        System.out.println(tempFraction.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getFraction().get(0));
-        System.out.println(res);
+//        MyMatrix <Float> tempFloat= floatMyMatrixA.addingMatrix(floatMyMatrixB).addingMatrix(floatMyMatrixC);
+//        System.out.println(tempFloat.multiplyMatrix(floatMyMatrixX).getMatrix());
+//        MyMatrix <Double> tempDouble= doubleMyMatrixA.addingMatrix(doubleMyMatrixB).addingMatrix(doubleMyMatrixC);
+//        System.out.println(tempDouble.multiplyMatrix(doubleMyMatrixX).getMatrix());
+//        MyMatrix <Fraction> tempFraction= fractionMyMatrixA.addingMatrix(fractionMyMatrixB).addingMatrix(fractionMyMatrixC);
+//        BigDecimal res= new BigDecimal(tempFraction.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getFraction().get(0)).divide(new BigDecimal(tempFraction.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getFraction().get(1)), MathContext.DECIMAL128);
+////        System.out.println(tempFraction.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getFraction().get(0));
+//        System.out.println(res);
+//        SimpleMatrix tempLibMat= libraryMatrixA.plus(libraryMatrixB).plus(libraryMatrixC);
+//        System.out.println(tempLibMat.mult(libraryMatrixX));
 
         // A * (B * C)
-        MyMatrix<Float> tempFloat2 = floatMyMatrixB.multiplyMatrix(floatMyMatrixC);
-        System.out.println(tempFloat2.multiplyMatrix(floatMyMatrixA).getMatrix().get(0));
-        MyMatrix<Double> tempDouble2 = doubleMyMatrixB.multiplyMatrix(doubleMyMatrixC);
-        System.out.println(tempDouble2.multiplyMatrix(doubleMyMatrixA).getMatrix().get(0));
-        MyMatrix<Fraction> tempFraction2 = fractionMyMatrixB.multiplyMatrix(fractionMyMatrixC);
-        BigDecimal res2 = new BigDecimal(tempFraction2.multiplyMatrix(fractionMyMatrixA).getMatrix().get(0).get(0).getFraction().get(0)).divide(new BigDecimal(tempFraction2.multiplyMatrix(fractionMyMatrixA).getMatrix().get(0).get(0).getFraction().get(1)), MathContext.DECIMAL128);
-//        System.out.println(tempFraction.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getFraction().get(0));
-        System.out.println(res2);
+//        MyMatrix<Float> tempFloat2 = floatMyMatrixB.multiplyMatrix(floatMyMatrixC);
+//        System.out.println(tempFloat2.multiplyMatrix(floatMyMatrixA).getMatrix().get(0));
+//        MyMatrix<Double> tempDouble2 = doubleMyMatrixB.multiplyMatrix(doubleMyMatrixC);
+//        System.out.println(tempDouble2.multiplyMatrix(doubleMyMatrixA).getMatrix().get(0));
+//        MyMatrix<Fraction> tempFraction2 = fractionMyMatrixB.multiplyMatrix(fractionMyMatrixC);
+//        BigDecimal res2 = new BigDecimal(tempFraction2.multiplyMatrix(fractionMyMatrixA).getMatrix().get(0).get(0).getFraction().get(0)).divide(new BigDecimal(tempFraction2.multiplyMatrix(fractionMyMatrixA).getMatrix().get(0).get(0).getFraction().get(1)), MathContext.DECIMAL128);
+////        System.out.println(tempFraction.multiplyMatrix(fractionMyMatrixX).getMatrix().get(0).get(0).getFraction().get(0));
+//        System.out.println(res2);
+//        SimpleMatrix res4= libraryMatrixB.mult(libraryMatrixC);
+//        System.out.println(res4.mult(libraryMatrixA).get(0,0));
     }
 }
