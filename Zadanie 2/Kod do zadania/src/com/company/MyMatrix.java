@@ -37,57 +37,63 @@ public class MyMatrix<T extends Number> {
 
 
     public MyMatrix<T> addingMatrix(MyMatrix<T> another_matrix) {
-        List<List<T>> new_matrix = new ArrayList<>();
-        if (this.matrix.size() == another_matrix.getMatrix().size()) {
+        if (this.matrix.get(0).get(0) instanceof Double) {
             for (int i = 0; i < this.matrix.size(); i++) {
-                List<T> row = new ArrayList<>();
                 for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-                    if (this.matrix.get(i).get(j) instanceof Double) {
-                        row.add((T) new Double(this.matrix.get(i).get(j).doubleValue() + another_matrix.getMatrix().get(i).get(j).doubleValue()));
-                    } else if (this.matrix.get(i).get(j) instanceof Float) {
-                        row.add((T) new Float(this.matrix.get(i).get(j).floatValue() + another_matrix.getMatrix().get(i).get(j).floatValue()));
-                    } else if (this.matrix.get(i).get(j) instanceof Fraction) {
-                        row.add((T) (((Fraction) this.matrix.get(i).get(j)).adding_frac((Fraction) another_matrix.getMatrix().get(i).get(j))));
-                    } else {
-                        throw new IllegalArgumentException("Type " + this.matrix.get(i).get(j).getClass() + " is not supported by this method");
-                    }
+                    this.matrix.get(i).set(j, (T) new Double(this.matrix.get(0).get(0).doubleValue() + another_matrix.getMatrix().get(i).get(j).doubleValue()));
                 }
-                new_matrix.add(row);
             }
+        } else if (this.matrix.get(0).get(0) instanceof Float) {
+            for (int i = 0; i < this.matrix.size(); i++) {
+                for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
+                    this.matrix.get(i).set(j, (T) new Float(this.matrix.get(0).get(0).floatValue() + another_matrix.getMatrix().get(i).get(j).floatValue()));
+                }
+            }
+        } else if (this.matrix.get(0).get(0) instanceof Fraction) {
+            for (int i = 0; i < this.matrix.size(); i++) {
+                for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
+                    this.matrix.get(i).set(j, (T) (((Fraction) this.matrix.get(0).get(0)).adding_frac((Fraction) another_matrix.getMatrix().get(i).get(j))));
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("Type " + this.matrix.get(0).get(0).getClass() + " is not supported by this method");
         }
-        return new MyMatrix<T>(new_matrix);
+        return this;
     }
 
     public MyMatrix<T> multiplyMatrix(MyMatrix<T> another_matrix) {
-        List<List<T>> new_matrix = new ArrayList<>();
-        for (int i = 0; i < this.matrix.size(); i++) {
-            List<T> row = new ArrayList<>();
-//            System.out.println(i);
-            for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-                if (this.matrix.get(i).get(j) instanceof Double) {
+        if (this.matrix.get(0).get(0) instanceof Double) {
+            for (int i = 0; i < this.matrix.size(); i++) {
+                for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
                     double summary = 0;
                     for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
                         summary += new Double(this.matrix.get(i).get(k).doubleValue() * another_matrix.getMatrix().get(k).get(j).doubleValue());
                     }
-                    row.add((T) new Double(summary));
-                } else if (this.matrix.get(i).get(j) instanceof Float) {
+                    this.matrix.get(i).set(j, (T) new Double(summary));
+                }
+            }
+        } else if (this.matrix.get(0).get(0) instanceof Float) {
+            for (int i = 0; i < this.matrix.size(); i++) {
+                for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
                     float summary = 0F;
                     for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
                         summary += new Float(this.matrix.get(i).get(k).floatValue() * another_matrix.getMatrix().get(k).get(j).floatValue());
                     }
-                    row.add((T) new Float(summary));
-                } else if (this.matrix.get(i).get(j) instanceof Fraction) {
+                    this.matrix.get(i).set(j, (T) new Float(summary));
+                }
+            }
+        } else if (this.matrix.get(0).get(0) instanceof Fraction) {
+            for (int i = 0; i < this.matrix.size(); i++) {
+                for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
                     Fraction summary = new Fraction(BigInteger.ZERO, BigInteger.ONE);
                     for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
                         summary = summary.adding_frac((((Fraction) this.matrix.get(i).get(k)).multiply_frac((Fraction) another_matrix.getMatrix().get(k).get(j))));
                     }
-                    row.add((T) summary);
-                } else {
-                    throw new IllegalArgumentException("Type " + this.matrix.get(i).get(j).getClass() + " is not supported by this method");
                 }
             }
-            new_matrix.add(row);
+        } else {
+            throw new IllegalArgumentException("Type " + this.matrix.get(0).get(0).getClass() + " is not supported by this method");
         }
-        return new MyMatrix<T>(new_matrix);
+        return this;
     }
 }
