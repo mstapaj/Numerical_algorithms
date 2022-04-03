@@ -1,0 +1,17 @@
+Macierz 100x100
+
+A * X
+Float: 4 millisekund
+Double: 4 millisekund
+Fraction: 169 millisekund
+Library: 20 millisekund
+(A + B + C) * X
+Float: 14 millisekund
+Double: 13 millisekund
+Fraction: 240 millisekund
+Library: 8 millisekund
+A * (B * C)
+Float: 76 millisekund
+Double: 94 millisekund
+Fraction: 3871955 millisekund
+Library: 1 millisekund
