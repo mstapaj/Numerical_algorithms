@@ -36,7 +36,7 @@ public class MyMatrix<T extends Number> {
     }
 
 
-    public MyMatrix<T> addingMatrix(MyMatrix<T> another_matrix) {
+    public void addingMatrix(MyMatrix<T> another_matrix) {
         if (this.matrix.get(0).get(0) instanceof Double) {
             for (int i = 0; i < this.matrix.size(); i++) {
                 for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
@@ -58,10 +58,10 @@ public class MyMatrix<T extends Number> {
         } else {
             throw new IllegalArgumentException("Type " + this.matrix.get(0).get(0).getClass() + " is not supported by this method");
         }
-        return this;
+//        return this;
     }
 
-    public MyMatrix<T> multiplyMatrix(MyMatrix<T> another_matrix) {
+    public void multiplyMatrix(MyMatrix<T> another_matrix) {
         if (this.matrix.get(0).get(0) instanceof Double) {
             for (int i = 0; i < this.matrix.size(); i++) {
                 for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
@@ -84,16 +84,18 @@ public class MyMatrix<T extends Number> {
             }
         } else if (this.matrix.get(0).get(0) instanceof Fraction) {
             for (int i = 0; i < this.matrix.size(); i++) {
+                System.out.println(i);
                 for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
                     Fraction summary = new Fraction(BigInteger.ZERO, BigInteger.ONE);
                     for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
                         summary = summary.adding_frac((((Fraction) this.matrix.get(i).get(k)).multiply_frac((Fraction) another_matrix.getMatrix().get(k).get(j))));
                     }
+//                    List<Fraction> temp=this.matrix.
+                    this.matrix.get(i).set(j, (T) summary);
                 }
             }
         } else {
             throw new IllegalArgumentException("Type " + this.matrix.get(0).get(0).getClass() + " is not supported by this method");
         }
-        return this;
     }
 }

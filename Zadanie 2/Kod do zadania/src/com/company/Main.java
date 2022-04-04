@@ -126,32 +126,36 @@ public class Main {
         // A * X
         System.out.println("A * X");
 
+        MyMatrix<Float> floatRes1 = new MyMatrix<>(floatMyMatrixA.getMatrix());
         start = Instant.now();
-        MyMatrix<Float> floatRes1 = floatMyMatrixA.multiplyMatrix(floatMyMatrixX);
+        floatRes1.multiplyMatrix(floatMyMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Float: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(floatRes1.getMatrix());
         saveResToFile(floatRes1, "floatRes1");
 
+        MyMatrix<Double> doubleRes1 = new MyMatrix<>(doubleMyMatrixA.getMatrix());
         start = Instant.now();
-        MyMatrix<Double> doubleRes1 = doubleMyMatrixA.multiplyMatrix(doubleMyMatrixX);
+        doubleRes1.multiplyMatrix(doubleMyMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Double: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(doubleRes1.getMatrix());
         saveResToFile(doubleRes1, "doubleRes1");
 
+        MyMatrix<Fraction> fractionRes1 = new MyMatrix<>(fractionMyMatrixA.getMatrix());
         start = Instant.now();
-        MyMatrix<Fraction> fractionRes1 = fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX);
+        fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Fraction: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(fractionRes1.getMatrix());
         saveResToFile(fractionRes1, "fractionRes1");
 
+        SimpleMatrix libraryRes1 = new SimpleMatrix(libraryMatrixA);
         start = Instant.now();
-        SimpleMatrix libraryRes1 = libraryMatrixA.mult(libraryMatrixX);
+        libraryRes1 = libraryRes1.mult(libraryMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Library: " + timeElapsed.toMillis() + " millisekund");
@@ -162,32 +166,42 @@ public class Main {
         // (A + B + C) * X
         System.out.println("(A + B + C) * X");
 
+        MyMatrix<Float> floatRes2 = new MyMatrix<>(floatMyMatrixA.getMatrix());
         start = Instant.now();
-        MyMatrix<Float> floatRes2 = floatMyMatrixA.addingMatrix(floatMyMatrixB).addingMatrix(floatMyMatrixC).multiplyMatrix(floatMyMatrixX);
+        floatRes2.addingMatrix(floatMyMatrixB);
+        floatRes2.addingMatrix(floatMyMatrixC);
+        floatRes2.multiplyMatrix(floatMyMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Float: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(floatRes2.getMatrix());
         saveResToFile(floatRes2, "floatRes2");
 
+        MyMatrix<Double> doubleRes2 = new MyMatrix<>(doubleMyMatrixA.getMatrix());
         start = Instant.now();
-        MyMatrix<Double> doubleRes2 = doubleMyMatrixA.addingMatrix(doubleMyMatrixB).addingMatrix(doubleMyMatrixC).multiplyMatrix(doubleMyMatrixX);
+        doubleRes2.addingMatrix(doubleMyMatrixB);
+        doubleRes2.addingMatrix(doubleMyMatrixC);
+        doubleRes2.multiplyMatrix(doubleMyMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Double: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(doubleRes2.getMatrix());
         saveResToFile(doubleRes2, "doubleRes2");
 
+        MyMatrix<Fraction> fractionRes2 = new MyMatrix<>(fractionMyMatrixA.getMatrix());
         start = Instant.now();
-        MyMatrix<Fraction> fractionRes2 = fractionMyMatrixA.addingMatrix(fractionMyMatrixB).addingMatrix(fractionMyMatrixC).multiplyMatrix(fractionMyMatrixX);
+        fractionRes2.addingMatrix(fractionMyMatrixB);
+        fractionRes2.addingMatrix(fractionMyMatrixC);
+        fractionRes2.multiplyMatrix(fractionMyMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Fraction: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(fractionRes2.getMatrix());
         saveResToFile(fractionRes2, "fractionRes2");
 
+        SimpleMatrix libraryRes2 = new SimpleMatrix(libraryMatrixA);
         start = Instant.now();
-        SimpleMatrix libraryRes2 = libraryMatrixA.plus(libraryMatrixB).plus(libraryMatrixC).mult(libraryMatrixX);
+        libraryRes2 = libraryRes2.plus(libraryMatrixB).plus(libraryMatrixC).mult(libraryMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Library: " + timeElapsed.toMillis() + " millisekund");
@@ -197,32 +211,39 @@ public class Main {
         // A * (B * C)
         System.out.println("A * (B * C)");
 
+        MyMatrix<Float> floatRes3 = new MyMatrix<>(floatMyMatrixB.getMatrix());
         start = Instant.now();
-        MyMatrix<Float> floatRes3 = floatMyMatrixB.multiplyMatrix(floatMyMatrixC).multiplyMatrix(floatMyMatrixA);
+        floatRes3.multiplyMatrix(floatMyMatrixC);
+        floatRes3.multiplyMatrix(floatMyMatrixA);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Float: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(floatRes3.getMatrix());
         saveResToFile(floatRes3, "floatRes3");
 
+        MyMatrix<Double> doubleRes3 = new MyMatrix<>(doubleMyMatrixB.getMatrix());
         start = Instant.now();
-        MyMatrix<Double> doubleRes3 = doubleMyMatrixB.multiplyMatrix(doubleMyMatrixC).multiplyMatrix(doubleMyMatrixA);
+        doubleRes3.multiplyMatrix(doubleMyMatrixC);
+        doubleRes3.multiplyMatrix(doubleMyMatrixA);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Double: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(doubleRes3.getMatrix());
         saveResToFile(doubleRes3, "doubleRes3");
 
+        MyMatrix<Fraction> fractionRes3 = new MyMatrix<>(fractionMyMatrixB.getMatrix());
         start = Instant.now();
-        MyMatrix<Fraction> fractionRes3 = fractionMyMatrixB.multiplyMatrix(fractionMyMatrixC).multiplyMatrix(fractionMyMatrixA);
+        fractionRes3.multiplyMatrix(fractionMyMatrixC);
+        fractionRes3.multiplyMatrix(fractionMyMatrixA);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Fraction: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(fractionRes3.getMatrix());
         saveResToFile(fractionRes3, "fractionRes3");
 
+        SimpleMatrix libraryRes3 = new SimpleMatrix(libraryMatrixB);
         start = Instant.now();
-        SimpleMatrix libraryRes3 = libraryMatrixB.mult(libraryMatrixC).mult(libraryMatrixA);
+        libraryRes3 = libraryRes3.mult(libraryMatrixC).mult(libraryMatrixA);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Library: " + timeElapsed.toMillis() + " millisekund");
