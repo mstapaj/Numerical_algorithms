@@ -2,6 +2,8 @@ package com.company;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -59,6 +61,40 @@ public class TestMyMatrix {
         Collections.addAll(res, row1, row2);
         sut.addingMatrix(sut2);
         assertEquals("Add matrix float", res, sut.getMatrix());
+    }
+
+    @Test
+    public void testAddMatrixFraction() {
+        List<MyNumber<Fraction>> listToMat = new ArrayList<>();
+        MyNumber<Fraction> l1 = new MyFraction(BigInteger.ONE, BigInteger.valueOf(4));
+        MyNumber<Fraction> l2 = new MyFraction(BigInteger.valueOf(3), BigInteger.valueOf(4));
+        MyNumber<Fraction> l3 = new MyFraction(BigInteger.valueOf(2), BigInteger.valueOf(3));
+        MyNumber<Fraction> l4 = new MyFraction(BigInteger.valueOf(1), BigInteger.valueOf(6));
+        Collections.addAll(listToMat, l1, l2, l3, l4);
+        MyMatrix<Fraction> sut = new MyMatrix<>(2, 2, listToMat);
+        List<MyNumber<Fraction>> listToMat2 = new ArrayList<>();
+        MyNumber<Fraction> l5 = new MyFraction(BigInteger.valueOf(3), BigInteger.valueOf(4));
+        MyNumber<Fraction> l6 = new MyFraction(BigInteger.valueOf(1), BigInteger.valueOf(3));
+        MyNumber<Fraction> l7 = new MyFraction(BigInteger.valueOf(4), BigInteger.valueOf(6));
+        MyNumber<Fraction> l8 = new MyFraction(BigInteger.valueOf(3), BigInteger.valueOf(4));
+        Collections.addAll(listToMat2, l5, l6, l7, l8);
+        MyMatrix<Fraction> sut2 = new MyMatrix<>(2, 2, listToMat2);
+        List<List<BigDecimal>> res = new ArrayList<>();
+        List<BigDecimal> row1 = new ArrayList<>();
+        List<BigDecimal> row2 = new ArrayList<>();
+        Collections.addAll(row1, new Fraction(BigInteger.ONE, BigInteger.ONE).getFraction(), new Fraction(BigInteger.valueOf(13), BigInteger.valueOf(12)).getFraction());
+        Collections.addAll(row2, new Fraction(BigInteger.valueOf(4), BigInteger.valueOf(3)).getFraction(), new Fraction(BigInteger.valueOf(11), BigInteger.valueOf(12)).getFraction());
+        Collections.addAll(res, row1, row2);
+        sut.addingMatrix(sut2);
+        List<List<BigDecimal>> result = new ArrayList<>();
+        for (int i = 0; i < sut.getMatrix().size(); i++) {
+            List<BigDecimal> temp = new ArrayList<>();
+            for (int j = 0; j < sut.getMatrix().get(i).size(); j++) {
+                temp.add(sut.getMatrix().get(i).get(j).getFraction());
+            }
+            result.add(temp);
+        }
+        assertEquals("Add matrix float", res, result);
     }
 //
 //    @Test

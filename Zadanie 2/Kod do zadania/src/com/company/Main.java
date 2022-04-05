@@ -253,6 +253,7 @@ public class Main {
         MyFraction liczba5 = new MyFraction(BigInteger.ONE, BigInteger.TWO);
         MyNumber<Fraction> liczba6 = new MyFraction(BigInteger.valueOf(2), BigInteger.valueOf(5));
         liczba5.add(liczba6.getValue());
+        System.out.println(liczba5.getValue());
         System.out.println(liczba5.getNumerator());
         System.out.println(liczba5.getDenumerator());
         System.out.println(liczba5.getDecimalValue());

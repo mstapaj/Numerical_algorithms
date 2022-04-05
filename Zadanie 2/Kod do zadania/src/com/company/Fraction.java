@@ -1,6 +1,8 @@
 package com.company;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
 
 public class Fraction {
     private BigInteger numerator;
@@ -25,5 +27,9 @@ public class Fraction {
 
     public void setDenumerator(BigInteger denumerator) {
         this.denumerator = denumerator;
+    }
+
+    public BigDecimal getFraction() {
+        return new BigDecimal(this.numerator).divide(new BigDecimal(this.getDenumerator()), MathContext.DECIMAL128);
     }
 }
