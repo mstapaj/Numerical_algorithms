@@ -11,6 +11,10 @@ public class MyFraction extends MyNumber<Fraction> {
         this.frac = new Fraction(numerator, denumerator);
     }
 
+    public MyFraction() {
+        this.frac = new Fraction(BigInteger.ZERO, BigInteger.ONE);
+    }
+
     public Fraction getValue() {
         return this.frac;
     }

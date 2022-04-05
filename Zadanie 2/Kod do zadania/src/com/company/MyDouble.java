@@ -7,6 +7,10 @@ public class MyDouble extends MyNumber<Double> {
         this.value = value;
     }
 
+    public MyDouble() {
+        this.value = 0.0;
+    }
+
     public Double getValue() {
         return this.value;
     }

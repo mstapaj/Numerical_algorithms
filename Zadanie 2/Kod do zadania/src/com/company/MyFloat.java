@@ -7,6 +7,10 @@ public class MyFloat extends MyNumber<Float> {
         this.value = value;
     }
 
+    public MyFloat() {
+        this.value = 0F;
+    }
+
     public void setValue(float value) {
         this.value = value;
     }
