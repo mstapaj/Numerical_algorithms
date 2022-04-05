@@ -24,12 +24,10 @@ public class MyFraction extends MyNumber<Fraction> {
         return this.frac;
     }
 
-    @Override
     public BigInteger getNumerator() {
         return this.frac.getNumerator();
     }
 
-    @Override
     public BigInteger getDenumerator() {
         return this.frac.getDenumerator();
     }

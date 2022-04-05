@@ -7,9 +7,17 @@ abstract class MyNumber<T> {
     void setValue() {
     }
 
-    public abstract BigInteger getNumerator();
+    BigInteger getNumerator() {
+        return null;
+    }
 
-    public abstract BigInteger getDenumerator();
+    ;
+
+    BigInteger getDenumerator() {
+        return null;
+    }
+
+    ;
 
     void add(T value) {
     }
