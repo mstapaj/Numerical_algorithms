@@ -15,14 +15,21 @@ public class MyFraction extends MyNumber<Fraction> {
         this.frac = new Fraction(BigInteger.ZERO, BigInteger.ONE);
     }
 
+    public void setZero() {
+        this.frac.setNumerator(BigInteger.ZERO);
+        this.frac.setDenumerator(BigInteger.ONE);
+    }
+
     public Fraction getValue() {
         return this.frac;
     }
 
+    @Override
     public BigInteger getNumerator() {
         return this.frac.getNumerator();
     }
 
+    @Override
     public BigInteger getDenumerator() {
         return this.frac.getDenumerator();
     }

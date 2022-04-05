@@ -1,9 +1,15 @@
 package com.company;
 
+import java.math.BigInteger;
+
 abstract class MyNumber<T> {
 
     void setValue() {
     }
+
+    public abstract BigInteger getNumerator();
+
+    public abstract BigInteger getDenumerator();
 
     void add(T value) {
     }
@@ -15,6 +21,9 @@ abstract class MyNumber<T> {
     }
 
     void div(T value) {
+    }
+
+    void setZero() {
     }
 
     public abstract T getValue();

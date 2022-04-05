@@ -1,5 +1,7 @@
 package com.company;
 
+import java.math.BigInteger;
+
 public class MyFloat extends MyNumber<Float> {
     private Float value;
 
@@ -15,8 +17,22 @@ public class MyFloat extends MyNumber<Float> {
         this.value = value;
     }
 
+    public void setZero() {
+        this.value = 0F;
+    }
+
     public Float getValue() {
         return this.value;
+    }
+
+    @Override
+    public BigInteger getNumerator() {
+        return null;
+    }
+
+    @Override
+    public BigInteger getDenumerator() {
+        return null;
     }
 
     public void add(Float another) {
