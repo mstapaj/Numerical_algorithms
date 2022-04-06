@@ -43,6 +43,27 @@ public class MyMatrix<T> {
         return res;
     }
 
+    public List<List<Number>> getNumber() {
+        List<List<Number>> res = new ArrayList<>();
+        for (int i = 0; i < this.matrix.size(); i++) {
+            List<Number> temp = new ArrayList<>();
+            for (int j = 0; j < this.matrix.get(i).size(); j++) {
+                temp.add((Number) this.matrix.get(i).get(j).getValue());
+            }
+            res.add(temp);
+        }
+        return res;
+    }
+
+    public List<List<MyNumber<T>>> getMyNumber() {
+        List<List<MyNumber<T>>> res = new ArrayList<>();
+        for (int i = 0; i < this.matrix.size(); i++) {
+            List<MyNumber<T>> temp = new ArrayList<>(this.matrix.get(i));
+            res.add(temp);
+        }
+        return res;
+    }
+
 
     public void addingMatrix(MyMatrix<T> another_matrix) {
         for (int i = 0; i < this.matrix.size(); i++) {

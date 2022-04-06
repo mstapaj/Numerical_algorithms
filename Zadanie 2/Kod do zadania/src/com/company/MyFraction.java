@@ -46,8 +46,9 @@ public class MyFraction implements MyNumber<Fraction> {
         BigInteger first_mul = lcm.divide(this.frac.getDenumerator());
         BigInteger sec_mul = lcm.divide(frac.getDenumerator());
         this.frac.setNumerator(this.frac.getNumerator().multiply(first_mul).add(frac.getNumerator().multiply(sec_mul)));
-        this.frac.setDenumerator(lcm);
-//        BigInteger gcd = new_numerator.gcd(lcm);
+        BigInteger gcd = this.frac.getNumerator().gcd(lcm);
+        this.frac.setDenumerator(lcm.divide(gcd));
+        this.frac.setNumerator(this.frac.getNumerator().divide(gcd));
 //        return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
     }
 
@@ -64,7 +65,9 @@ public class MyFraction implements MyNumber<Fraction> {
     public void mul(Fraction frac) {
         this.frac.setNumerator(this.frac.getNumerator().multiply(frac.getNumerator()));
         this.frac.setDenumerator(this.frac.getDenumerator().multiply(frac.getDenumerator()));
-//        BigInteger gcd = new_numerator.gcd(new_denumerator);
+        BigInteger gcd = this.frac.getNumerator().gcd(this.frac.getDenumerator());
+        this.frac.setNumerator(this.frac.getNumerator().divide(gcd));
+        this.frac.setDenumerator(this.frac.getDenumerator().divide(gcd));
     }
 
     @Override
