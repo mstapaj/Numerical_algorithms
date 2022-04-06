@@ -53,21 +53,17 @@ public class MyMatrix<T> {
     }
 
     public void multiplyMatrix(MyMatrix<T> another_matrix) {
-        List<List<MyNumber<T>>> new_matrix = new ArrayList<>(this.matrix);
         for (int i = 0; i < this.matrix.size(); i++) {
             List<MyNumber<T>> temp_row = new ArrayList<>();
             for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-                MyNumber<T> summary = new_matrix.get(i).get(0);
-                summary.mul(another_matrix.getMatrix().get(0).get(j));
-                for (int k = 1; k < another_matrix.getMatrix().size(); k++) {
-                    MyNumber<T> temp = new_matrix.get(i).get(k);
+                MyNumber<T> summary = this.matrix.get(i).get(j).initialize();
+                for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
+                    MyNumber<T> temp = this.matrix.get(i).get(k).return_new();
                     temp.mul(another_matrix.getMatrix().get(k).get(j));
                     summary.add(temp.getValue());
                 }
-                System.out.println(summary.getValue());
                 temp_row.add(summary);
             }
-            System.out.println(temp_row);
             this.matrix.set(i, temp_row);
         }
     }

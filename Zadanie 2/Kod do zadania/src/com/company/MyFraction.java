@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 
-public class MyFraction extends MyNumber<Fraction> {
+public class MyFraction implements MyNumber<Fraction> {
     private final Fraction frac;
 
     public MyFraction(BigInteger numerator, BigInteger denumerator) {
@@ -16,6 +16,7 @@ public class MyFraction extends MyNumber<Fraction> {
         this.frac.setDenumerator(BigInteger.ONE);
     }
 
+    @Override
     public Fraction getValue() {
         return this.frac;
     }
@@ -39,6 +40,7 @@ public class MyFraction extends MyNumber<Fraction> {
         return a.divide(a.gcd(b)).multiply(b).abs();
     }
 
+    @Override
     public void add(Fraction frac) {
         BigInteger lcm = LCM(this.frac.getDenumerator(), frac.getDenumerator());
         BigInteger first_mul = lcm.divide(this.frac.getDenumerator());
@@ -49,6 +51,7 @@ public class MyFraction extends MyNumber<Fraction> {
 //        return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
     }
 
+    @Override
     public void sub(Fraction frac) {
         BigInteger lcm = LCM(this.frac.getDenumerator(), frac.getDenumerator());
         BigInteger first_mul = lcm.divide(this.frac.getDenumerator());
@@ -57,14 +60,26 @@ public class MyFraction extends MyNumber<Fraction> {
         this.frac.setDenumerator(lcm);
     }
 
+    @Override
     public void mul(Fraction frac) {
         this.frac.setNumerator(this.frac.getNumerator().multiply(frac.getNumerator()));
         this.frac.setDenumerator(this.frac.getDenumerator().multiply(frac.getDenumerator()));
 //        BigInteger gcd = new_numerator.gcd(new_denumerator);
     }
 
+    @Override
     public void div(Fraction frac) {
         this.frac.setNumerator(this.frac.getDenumerator().multiply(frac.getDenumerator()));
         this.frac.setDenumerator(this.frac.getNumerator().multiply(frac.getNumerator()));
+    }
+
+    @Override
+    public MyFraction initialize() {
+        return new MyFraction(BigInteger.ZERO, BigInteger.ONE);
+    }
+
+    @Override
+    public MyFraction return_new() {
+        return new MyFraction(frac.getNumerator(), frac.getDenumerator());
     }
 }
