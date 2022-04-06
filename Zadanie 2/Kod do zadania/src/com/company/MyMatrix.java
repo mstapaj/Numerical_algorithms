@@ -64,6 +64,13 @@ public class MyMatrix<T> {
         return res;
     }
 
+    public void shortenMatrix() {
+        for (int i = 0; i < this.matrix.size(); i++) {
+            for (int j = 0; j < this.matrix.get(i).size(); j++) {
+                this.matrix.get(i).get(j).shorten();
+            }
+        }
+    }
 
     public void addingMatrix(MyMatrix<T> another_matrix) {
         for (int i = 0; i < this.matrix.size(); i++) {

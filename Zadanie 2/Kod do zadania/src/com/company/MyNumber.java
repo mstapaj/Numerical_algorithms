@@ -38,4 +38,6 @@ interface MyNumber<T> {
     default T getValue() {
         return null;
     }
+
+    void shorten();
 }

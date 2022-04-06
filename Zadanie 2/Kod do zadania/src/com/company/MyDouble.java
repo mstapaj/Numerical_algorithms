@@ -12,6 +12,11 @@ public class MyDouble implements MyNumber<Double> {
         return this.value;
     }
 
+    @Override
+    public void shorten() {
+
+    }
+
     public void setValue(Double another) {
         this.value = another;
     }

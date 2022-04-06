@@ -117,6 +117,10 @@ public class Main {
         MyMatrix<Fraction> fractionMyMatrixB = readMatrixFromFile("fractionMatrixB.txt", "fraction");
         MyMatrix<Fraction> fractionMyMatrixC = readMatrixFromFile("fractionMatrixC.txt", "fraction");
         MyMatrix<Fraction> fractionMyMatrixX = readMatrixFromFile("fractionMatrixX.txt", "fraction");
+        fractionMyMatrixA.shortenMatrix();
+        fractionMyMatrixB.shortenMatrix();
+        fractionMyMatrixC.shortenMatrix();
+        fractionMyMatrixX.shortenMatrix();
         SimpleMatrix libraryMatrixA = makeLibraryMatrix(readMatrixFromFile("doubleMatrixA.txt", "double").getNumber());
         SimpleMatrix libraryMatrixB = makeLibraryMatrix(readMatrixFromFile("doubleMatrixB.txt", "double").getNumber());
         SimpleMatrix libraryMatrixC = makeLibraryMatrix(readMatrixFromFile("doubleMatrixC.txt", "double").getNumber());
@@ -195,7 +199,9 @@ public class Main {
         MyMatrix<Fraction> fractionRes2 = new MyMatrix<>(fractionMyMatrixA.getMyNumber());
         start = Instant.now();
         fractionRes2.addingMatrix(fractionMyMatrixB);
+        fractionRes2.shortenMatrix();
         fractionRes2.addingMatrix(fractionMyMatrixC);
+        fractionRes2.shortenMatrix();
         fractionRes2.multiplyMatrix(fractionMyMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
@@ -238,6 +244,7 @@ public class Main {
         MyMatrix<Fraction> fractionRes3 = new MyMatrix<>(fractionMyMatrixB.getMyNumber());
         start = Instant.now();
         fractionRes3.multiplyMatrix(fractionMyMatrixC);
+        fractionRes3.shortenMatrix();
         fractionRes3.multiplyMatrix(fractionMyMatrixA);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);

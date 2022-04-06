@@ -41,6 +41,13 @@ public class MyFraction implements MyNumber<Fraction> {
     }
 
     @Override
+    public void shorten() {
+        BigInteger gcd = this.frac.getNumerator().gcd(this.frac.getDenumerator());
+        this.frac.setNumerator(this.frac.getNumerator().divide(gcd));
+        this.frac.setDenumerator(this.frac.getDenumerator().divide(gcd));
+    }
+
+    @Override
     public void add(Fraction frac) {
         BigInteger lcm = LCM(this.frac.getDenumerator(), frac.getDenumerator());
         BigInteger first_mul = lcm.divide(this.frac.getDenumerator());

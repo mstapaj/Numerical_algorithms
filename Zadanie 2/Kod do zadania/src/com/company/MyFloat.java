@@ -17,6 +17,11 @@ public class MyFloat implements MyNumber<Float> {
     }
 
     @Override
+    public void shorten() {
+
+    }
+
+    @Override
     public void add(Float another) {
         this.value += another;
     }
