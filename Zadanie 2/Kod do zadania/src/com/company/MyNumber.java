@@ -4,9 +4,6 @@ import java.math.BigInteger;
 
 abstract class MyNumber<T> {
 
-    void setValue() {
-    }
-
     BigInteger getNumerator() {
         return null;
     }
@@ -34,5 +31,40 @@ abstract class MyNumber<T> {
     void setZero() {
     }
 
-    public abstract T getValue();
+    abstract public T getValue();
+
+    public MyNumber<T> copy(MyFraction ob) {
+        return (MyNumber<T>) new MyFraction(ob.getNumerator(), ob.getDenumerator());
+    }
+
+    public MyNumber<T> copy(MyDouble ob) {
+        return (MyNumber<T>) new MyDouble(ob.getValue());
+    }
+
+    public MyNumber<T> copy(MyFloat ob) {
+        return (MyNumber<T>) new MyFloat(ob.getValue());
+    }
+
+
+//    public MyNumber<T> copy(Class<T> type,MyNumber<T> a){
+//        return new MyDouble(a.getValue());
+//    }
+//
+//    @Override
+//    public Object clone() {
+//        try {
+//            return super.clone();
+//        } catch (CloneNotSupportedException e) {
+//            throw new AssertionError();
+//        }
+//    }
+
+//    @Override
+//    public MyNumber<T> clone() {
+//        try {
+//            return (MyNumber<T>) super.clone();
+//        } catch (CloneNotSupportedException e) {
+//            throw new AssertionError();
+//        }
+//    }
 }

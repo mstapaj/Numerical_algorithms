@@ -60,7 +60,7 @@ public class TestMyMatrix {
         Collections.addAll(row2, 8.0, 2.0);
         Collections.addAll(res, row1, row2);
         sut.addingMatrix(sut2);
-        assertEquals("Add matrix float", res, sut.getMatrix());
+        assertEquals("Add matrix double", res, sut.getMatrix());
     }
 
     @Test
@@ -94,7 +94,7 @@ public class TestMyMatrix {
             }
             result.add(temp);
         }
-        assertEquals("Add matrix float", res, result);
+        assertEquals("Add matrix fraction", res, result);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class TestMyMatrix {
         Collections.addAll(row2, -11F, -9F);
         Collections.addAll(res, row1, row2);
         sut.multiplyMatrix(sut2);
-        assertEquals("Add matrix float", res, sut.getMatrix());
+        assertEquals("Multiply matrix float", res, sut.getMatrix());
     }
 
     @Test
@@ -146,7 +146,7 @@ public class TestMyMatrix {
         Collections.addAll(row2, -11.0, -9.0);
         Collections.addAll(res, row1, row2);
         sut.multiplyMatrix(sut2);
-        assertEquals("Add matrix float", res, sut.getMatrix());
+        assertEquals("Multiply matrix double", res, sut.getMatrix());
     }
 
     @Test
@@ -180,7 +180,7 @@ public class TestMyMatrix {
             }
             result.add(temp);
         }
-        assertEquals("Add matrix float", res, result);
+        assertEquals("Multiply matrix fraction", res, result);
     }
 
 //    @Test

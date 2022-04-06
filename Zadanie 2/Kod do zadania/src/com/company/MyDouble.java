@@ -7,10 +7,6 @@ public class MyDouble extends MyNumber<Double> {
         this.value = value;
     }
 
-    public MyDouble() {
-        this.value = 0.0;
-    }
-
     public void setZerp() {
         this.value = 0.0;
     }

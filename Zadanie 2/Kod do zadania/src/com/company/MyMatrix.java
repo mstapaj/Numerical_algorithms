@@ -53,53 +53,22 @@ public class MyMatrix<T> {
     }
 
     public void multiplyMatrix(MyMatrix<T> another_matrix) {
-        if (this.matrix.get(0).get(0) instanceof MyFloat) {
-            for (int i = 0; i < this.matrix.size(); i++) {
-                List<MyNumber<T>> temp_row = new ArrayList<>();
-                for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-                    MyNumber<Float> summary = new MyFloat();
-                    for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
-                        MyNumber<Float> temp = new MyFloat((Float) this.matrix.get(i).get(k).getValue());
-                        temp.mul((Float) another_matrix.getMatrix().get(k).get(j));
-                        summary.add(temp.getValue());
-                    }
-                    temp_row.add((MyNumber<T>) summary);
+        List<List<MyNumber<T>>> new_matrix = new ArrayList<>(this.matrix);
+        for (int i = 0; i < this.matrix.size(); i++) {
+            List<MyNumber<T>> temp_row = new ArrayList<>();
+            for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
+                MyNumber<T> summary = new_matrix.get(i).get(0);
+                summary.mul(another_matrix.getMatrix().get(0).get(j));
+                for (int k = 1; k < another_matrix.getMatrix().size(); k++) {
+                    MyNumber<T> temp = new_matrix.get(i).get(k);
+                    temp.mul(another_matrix.getMatrix().get(k).get(j));
+                    summary.add(temp.getValue());
                 }
-                System.out.println(temp_row);
-                this.matrix.set(i, temp_row);
+                System.out.println(summary.getValue());
+                temp_row.add(summary);
             }
-        } else if (this.matrix.get(0).get(0) instanceof MyDouble) {
-            for (int i = 0; i < this.matrix.size(); i++) {
-                List<MyNumber<T>> temp_row = new ArrayList<>();
-                for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-                    MyNumber<Double> summary = new MyDouble();
-                    for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
-                        MyNumber<Double> temp = new MyDouble((Double) this.matrix.get(i).get(k).getValue());
-                        temp.mul((Double) another_matrix.getMatrix().get(k).get(j));
-                        summary.add(temp.getValue());
-                    }
-                    temp_row.add((MyNumber<T>) summary);
-                }
-                System.out.println(temp_row);
-                this.matrix.set(i, temp_row);
-            }
-        } else if (this.matrix.get(0).get(0) instanceof MyFraction) {
-            for (int i = 0; i < this.matrix.size(); i++) {
-                List<MyNumber<T>> temp_row = new ArrayList<>();
-                for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-                    MyNumber<Fraction> summary = new MyFraction();
-                    for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
-                        MyFraction toCreate = new MyFraction(this.matrix.get(i).get(k).getNumerator(), this.matrix.get(i).get(k).getDenumerator());
-                        MyNumber<Fraction> temp = new MyFraction(toCreate.getNumerator(), toCreate.getDenumerator());
-                        temp.mul((Fraction) another_matrix.getMatrix().get(k).get(j));
-                        summary.add(temp.getValue());
-                    }
-                    temp_row.add((MyNumber<T>) summary);
-                }
-                System.out.println(temp_row);
-                this.matrix.set(i, temp_row);
-            }
+            System.out.println(temp_row);
+            this.matrix.set(i, temp_row);
         }
-
     }
 }
