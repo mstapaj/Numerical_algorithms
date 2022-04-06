@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyMatrix<T> {
-    private List<List<MyNumber<T>>> matrix;
+    public List<List<MyNumber<T>>> matrix;
 //    private MyNumber<T>[][] tests;
 
     public MyMatrix() {

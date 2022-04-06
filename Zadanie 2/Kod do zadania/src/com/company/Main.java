@@ -147,16 +147,16 @@ public class Main {
         System.out.println("Double: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(doubleRes1.getMatrix());
         saveResToFile(doubleRes1, "doubleRes1");
-
+//
         MyMatrix<Fraction> fractionRes1 = new MyMatrix<>(fractionMyMatrixA.getMyNumber());
         start = Instant.now();
-        fractionMyMatrixA.multiplyMatrix(fractionMyMatrixX);
+        fractionRes1.multiplyMatrix(fractionMyMatrixX);
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Fraction: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(fractionRes1.getMatrix());
         saveResToFile(fractionRes1, "fractionRes1");
-
+//
         SimpleMatrix libraryRes1 = new SimpleMatrix(libraryMatrixA);
         start = Instant.now();
         libraryRes1 = libraryRes1.mult(libraryMatrixX);
@@ -192,16 +192,16 @@ public class Main {
 //        System.out.println(doubleRes2.getMyNumber());
         saveResToFile(doubleRes2, "doubleRes2");
 
-//        MyMatrix<Fraction> fractionRes2 = new MyMatrix<>(fractionMyMatrixA.getMyNumber());
-//        start = Instant.now();
-//        fractionRes2.addingMatrix(fractionMyMatrixB);
-//        fractionRes2.addingMatrix(fractionMyMatrixC);
-//        fractionRes2.multiplyMatrix(fractionMyMatrixX);
-//        end = Instant.now();
-//        timeElapsed = Duration.between(start, end);
-//        System.out.println("Fraction: " + timeElapsed.toMillis() + " millisekund");
-////        System.out.println(fractionRes2.getMyNumber());
-//        saveResToFile(fractionRes2, "fractionRes2");
+        MyMatrix<Fraction> fractionRes2 = new MyMatrix<>(fractionMyMatrixA.getMyNumber());
+        start = Instant.now();
+        fractionRes2.addingMatrix(fractionMyMatrixB);
+        fractionRes2.addingMatrix(fractionMyMatrixC);
+        fractionRes2.multiplyMatrix(fractionMyMatrixX);
+        end = Instant.now();
+        timeElapsed = Duration.between(start, end);
+        System.out.println("Fraction: " + timeElapsed.toMillis() + " millisekund");
+//        System.out.println(fractionRes2.getMyNumber());
+        saveResToFile(fractionRes2, "fractionRes2");
 
         SimpleMatrix libraryRes2 = new SimpleMatrix(libraryMatrixA);
         start = Instant.now();
@@ -260,17 +260,17 @@ public class Main {
         liczba1.add(liczba2.getValue());
         System.out.println(liczba1.getValue());
 
-        MyNumber<Float> liczba3 = new MyFloat(5F);
-        MyNumber<Float> liczba4 = new MyFloat(9F);
-        liczba3.add(liczba4.getValue());
-        System.out.println(liczba3.getValue());
-
-        MyFraction liczba5 = new MyFraction(BigInteger.ONE, BigInteger.TWO);
-        MyNumber<Fraction> liczba6 = new MyFraction(BigInteger.valueOf(2), BigInteger.valueOf(5));
-        liczba5.add(liczba6.getValue());
-        System.out.println(liczba5.getValue());
-        System.out.println(liczba5.getNumerator());
-        System.out.println(liczba5.getDenumerator());
-        System.out.println(liczba5.getDecimalValue());
+//        MyNumber<Float> liczba3 = new MyFloat(5F);
+//        MyNumber<Float> liczba4 = new MyFloat(9F);
+//        liczba3.add(liczba4.getValue());
+//        System.out.println(liczba3.getValue());
+//
+//        MyFraction liczba5 = new MyFraction(BigInteger.ONE, BigInteger.TWO);
+//        MyNumber<Fraction> liczba6 = new MyFraction(BigInteger.valueOf(2), BigInteger.valueOf(5));
+//        liczba5.add(liczba6.getValue());
+//        System.out.println(liczba5.getValue());
+//        System.out.println(liczba5.getNumerator());
+//        System.out.println(liczba5.getDenumerator());
+//        System.out.println(liczba5.getDecimalValue());
     }
 }
