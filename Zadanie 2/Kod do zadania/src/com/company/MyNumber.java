@@ -39,5 +39,8 @@ interface MyNumber<T> {
         return null;
     }
 
+    default void setValue(T value) {
+    }
+
     void shorten();
 }

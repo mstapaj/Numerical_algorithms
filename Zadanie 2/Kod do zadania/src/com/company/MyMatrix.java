@@ -95,4 +95,38 @@ public class MyMatrix<T> {
             this.matrix.set(i, temp_row);
         }
     }
+
+    public void gaussMatrixG() {
+        List<MyNumber<T>> result = new ArrayList<>();
+        for (int k = 0; k < this.matrix.size(); k++) {
+            for (int i = k + 1; i < this.matrix.size(); i++) {
+                MyNumber<T> temp = this.matrix.get(i).get(k).return_new();
+                temp.div(this.matrix.get(k).get(k).getValue());
+                for (int j = k + 1; j < this.matrix.get(i).size(); j++) {   // jak nie będzie działać to zmień na get(k)
+                    MyNumber<T> temp2 = this.matrix.get(k).get(j).return_new();
+                    temp2.mul(temp.getValue());
+                    this.matrix.get(i).get(j).sub(temp2.getValue());
+                }
+                this.matrix.get(i).get(k).setZero();
+            }
+        }
+        for (int i = 0; i < this.matrix.size(); i++) {
+            result.add(this.matrix.get(0).get(0).initialize());
+        }
+
+        for (int i = this.matrix.size() - 1; i >= 0; i--) {
+            result.set(i, this.matrix.get(i).get(this.matrix.size()));
+            for (int j = i + 1; j < this.matrix.size(); j++) {
+                MyNumber<T> temp = this.matrix.get(i).get(j).return_new();
+                temp.mul(result.get(j).getValue());
+                result.get(i).sub(temp.getValue());
+            }
+            MyNumber<T> temp2 = result.get(i);
+            temp2.div(this.matrix.get(i).get(i).getValue());
+            result.set(i, temp2);
+        }
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println(result.get(i).getValue());
+        }
+    }
 }

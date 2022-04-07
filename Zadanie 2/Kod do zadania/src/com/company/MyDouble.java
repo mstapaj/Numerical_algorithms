@@ -17,6 +17,11 @@ public class MyDouble implements MyNumber<Double> {
 
     }
 
+    @Override
+    public void setZero() {
+        this.value = 0.0;
+    }
+
     public void setValue(Double another) {
         this.value = another;
     }

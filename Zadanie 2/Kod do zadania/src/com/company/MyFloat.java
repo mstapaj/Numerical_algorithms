@@ -22,6 +22,11 @@ public class MyFloat implements MyNumber<Float> {
     }
 
     @Override
+    public void setZero() {
+        this.value = 0F;
+    }
+
+    @Override
     public void add(Float another) {
         this.value += another;
     }
