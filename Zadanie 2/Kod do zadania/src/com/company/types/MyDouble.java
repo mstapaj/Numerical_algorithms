@@ -149,4 +149,9 @@ public class MyDouble implements MyNumber<MyDouble> {
     public MyDouble getValue() {
         return this;
     }
+
+    @Override
+    public void shorten() {
+
+    }
 }

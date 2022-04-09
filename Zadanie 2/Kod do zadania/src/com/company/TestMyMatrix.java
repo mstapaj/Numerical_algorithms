@@ -36,7 +36,7 @@ public class TestMyMatrix {
         Collections.addAll(row1, 5F, 4F);
         Collections.addAll(row2, 8F, 2F);
         Collections.addAll(res, row1, row2);
-        sut.addingMatrix(sut2);
+        sut = sut.addingMatrix(sut2);
         assertEquals("Add matrix float", res, sut.getNumber());
     }
 
@@ -62,7 +62,7 @@ public class TestMyMatrix {
         Collections.addAll(row1, 5.0, 4.0);
         Collections.addAll(row2, 8.0, 2.0);
         Collections.addAll(res, row1, row2);
-        sut.addingMatrix(sut2);
+        sut = sut.addingMatrix(sut2);
         assertEquals("Add matrix double", res, sut.getNumber());
     }
 
@@ -88,7 +88,7 @@ public class TestMyMatrix {
         Collections.addAll(row1, new MyFraction(BigInteger.ONE, BigInteger.ONE).returnValue(), new MyFraction(BigInteger.valueOf(13), BigInteger.valueOf(12)).returnValue());
         Collections.addAll(row2, new MyFraction(BigInteger.valueOf(4), BigInteger.valueOf(3)).returnValue(), new MyFraction(BigInteger.valueOf(11), BigInteger.valueOf(12)).returnValue());
         Collections.addAll(res, row1, row2);
-        sut.addingMatrix(sut2);
+        sut = sut.addingMatrix(sut2);
         List<List<BigDecimal>> result = new ArrayList<>();
         for (int i = 0; i < sut.getMatrix().size(); i++) {
             List<BigDecimal> temp = new ArrayList<>();
@@ -122,8 +122,8 @@ public class TestMyMatrix {
         Collections.addAll(row1, 41F, 18F);
         Collections.addAll(row2, -11F, -9F);
         Collections.addAll(res, row1, row2);
-        sut.multiplyMatrix(sut2);
-        assertEquals("Multiply matrix float", res, sut.getNumber());
+        MyMatrix<MyFloat> result = sut.multiplyMatrix(sut2);
+        assertEquals("Multiply matrix float", res, result.getNumber());
     }
 
     @Test
@@ -148,8 +148,8 @@ public class TestMyMatrix {
         Collections.addAll(row1, 41.0, 18.0);
         Collections.addAll(row2, -11.0, -9.0);
         Collections.addAll(res, row1, row2);
-        sut.multiplyMatrix(sut2);
-        assertEquals("Multiply matrix double", res, sut.getNumber());
+        MyMatrix<MyDouble> result = sut.multiplyMatrix(sut2);
+        assertEquals("Multiply matrix double", res, result.getNumber());
     }
 
     @Test
@@ -174,7 +174,7 @@ public class TestMyMatrix {
         Collections.addAll(row1, new MyFraction(BigInteger.valueOf(11), BigInteger.valueOf(16)).getNumber(), new MyFraction(BigInteger.valueOf(31), BigInteger.valueOf(48)).getNumber());
         Collections.addAll(row2, new MyFraction(BigInteger.valueOf(11), BigInteger.valueOf(18)).getNumber(), new MyFraction(BigInteger.valueOf(25), BigInteger.valueOf(72)).getNumber());
         Collections.addAll(res, row1, row2);
-        sut.multiplyMatrix(sut2);
+        MyMatrix<MyFraction> resultM = sut.multiplyMatrix(sut2);
         List<List<BigDecimal>> result = new ArrayList<>();
         for (int i = 0; i < sut.getMatrix().size(); i++) {
             List<BigDecimal> temp = new ArrayList<>();
@@ -183,7 +183,7 @@ public class TestMyMatrix {
             }
             result.add(temp);
         }
-        assertEquals("Multiply matrix fraction", res, result);
+        assertEquals("Multiply matrix fraction", res, resultM.getNumber());
     }
 
 

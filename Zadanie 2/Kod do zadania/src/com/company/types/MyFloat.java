@@ -67,4 +67,9 @@ public class MyFloat implements MyNumber<MyFloat> {
     public MyFloat getValue() {
         return this;
     }
+
+    @Override
+    public void shorten() {
+
+    }
 }

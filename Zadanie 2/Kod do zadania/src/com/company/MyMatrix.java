@@ -40,18 +40,6 @@ public class MyMatrix<T extends MyNumber<T>> {
         return res;
     }
 
-//    public List<List<BigDecimal>> getMatrixValues(){
-//        List<List<BigDecimal>> res = new ArrayList<>();
-//        for (int i = 0; i < this.matrix.size(); i++) {
-//            List<Number> temp = new ArrayList<>();
-//            for (int j=0;j<this.matrix.get(i).size();j++){
-//                temp.add(this.matrix.get(i).get(j).getValue());
-//            }
-//            res.add(temp);
-//        }
-//        return res;
-//    }
-
     public List<List<Number>> getNumber() {
         List<List<Number>> res = new ArrayList<>();
         for (int i = 0; i < this.matrix.size(); i++) {
@@ -64,50 +52,47 @@ public class MyMatrix<T extends MyNumber<T>> {
         return res;
     }
 
-    public List<List<T>> getMyNumber() {
-        List<List<T>> res = new ArrayList<>();
+    public void shortenMatrix() {
         for (int i = 0; i < this.matrix.size(); i++) {
-            List<T> temp = new ArrayList<>(this.matrix.get(i));
-            res.add(temp);
+            for (int j = 0; j < this.matrix.get(i).size(); j++) {
+                this.matrix.get(i).get(j).shorten();
+            }
         }
-        return res;
     }
 
-//    public void shortenMatrix() {
-//        for (int i = 0; i < this.matrix.size(); i++) {
-//            for (int j = 0; j < this.matrix.get(i).size(); j++) {
-//                this.matrix.get(i).get(j).shorten();
-//            }
-//        }
-//    }
-
-    public void addingMatrix(MyMatrix<T> another_matrix) {
+    public MyMatrix<T> addingMatrix(MyMatrix<T> another_matrix) {
+        int rows = this.matrix.size();
+        int columns = another_matrix.getMatrix().get(0).size();
+        List<T> matrixElements = new ArrayList<>();
         for (int i = 0; i < this.matrix.size(); i++) {
             for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-                this.matrix.get(i).get(j).add(another_matrix.getMatrix().get(i).get(j));
+                T newElem = this.matrix.get(i).get(j).initialize();
+                newElem.add(another_matrix.getMatrix().get(i).get(j));
+                matrixElements.add(newElem);
             }
         }
+        return new MyMatrix<>(rows, columns, matrixElements);
     }
 
-    public void multiplyMatrix(MyMatrix<T> another_matrix) {
-//        List<List<MyNumber<T>>> new_mat= new ArrayList<>();
-        int rows1 = this.matrix.size();
-        int columns1 = another_matrix.getMatrix().get(0).size();
-        int rows2 = another_matrix.getMatrix().size();
-        for (int i = 0; i < rows1; i++) {
-            List<T> temp_row = new ArrayList<>();
-            for (int j = 0; j < columns1; j++) {
-                T summary = this.matrix.get(0).get(0).initialize_zero();
-                for (int k = 0; k < rows2; k++) {
-                    MyNumber<T> temp = this.matrix.get(i).get(k).initialize();
-                    temp.mul(another_matrix.getMatrix().get(k).get(j));
-                    summary.add(temp.getValue());
-                }
-                temp_row.add(summary);
-            }
-            this.matrix.set(i, temp_row);
-        }
-    }
+//    public void multiplyMatrix(MyMatrix<T> another_matrix) {
+////        List<List<MyNumber<T>>> new_mat= new ArrayList<>();
+//        int rows1 = this.matrix.size();
+//        int columns1 = another_matrix.getMatrix().get(0).size();
+//        int rows2 = another_matrix.getMatrix().size();
+//        for (int i = 0; i < rows1; i++) {
+//            List<T> temp_row = new ArrayList<>();
+//            for (int j = 0; j < columns1; j++) {
+//                T summary = this.matrix.get(0).get(0).initialize_zero();
+//                for (int k = 0; k < rows2; k++) {
+//                    MyNumber<T> temp = this.matrix.get(i).get(k).initialize();
+//                    temp.mul(another_matrix.getMatrix().get(k).get(j));
+//                    summary.add(temp.getValue());
+//                }
+//                temp_row.add(summary);
+//            }
+//            this.matrix.set(i, temp_row);
+//        }
+//    }
 
 //    public List<MyNumber<T>> gaussMatrixG() {
 //        List<MyNumber<T>> result = new ArrayList<>();
@@ -172,23 +157,23 @@ public class MyMatrix<T extends MyNumber<T>> {
 //        return result;
 //    }
 
-//    public void multiplyMatrix(MyMatrix<T> matrix) {
-//        int rows = this.matrix.size();
-//        int columns = matrix.getMatrix().get(0).size();
-//        List<T> matrixElements = new ArrayList<>();
-//        for (int i = 0; i < rows; i++) {
-//            for (int k = 0; k < columns; k++) {
-//                T sum = matrix.getMatrix().get(0).get(0).initialize_zero();
-//                for (int j = 0; j < rows; j++) {
-//                    T firstNumber = matrix.matrix.get(0).get(0).initialize(this.matrix.get(i).get(j));
-//                    T secondNumber = matrix.matrix.get(0).get(0).initialize(matrix.matrix.get(j).get(k));
-//                    firstNumber.mul(secondNumber);
-//                    sum.add(firstNumber);
-//                }
-//                matrixElements.add(sum);
-//
-//            }
-//        }
-//        new MyMatrix<>(rows,columns,matrixElements);
-//    }
+    public MyMatrix<T> multiplyMatrix(MyMatrix<T> another_matrix) {
+        int rows = this.matrix.size();
+        int columns = another_matrix.getMatrix().get(0).size();
+        List<T> matrixElements = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+//            System.out.println(i);
+            for (int k = 0; k < columns; k++) {
+                T sum = another_matrix.getMatrix().get(0).get(0).initialize_zero();
+                for (int j = 0; j < rows; j++) {
+                    T firstNumber = this.matrix.get(i).get(j).initialize();
+                    T secondNumber = another_matrix.matrix.get(j).get(k).initialize();
+                    firstNumber.mul(secondNumber);
+                    sum.add(firstNumber);
+                }
+                matrixElements.add(sum);
+            }
+        }
+        return new MyMatrix<>(columns, rows, matrixElements);
+    }
 }
