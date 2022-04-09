@@ -49,8 +49,8 @@ public class MyFraction implements MyNumber<MyFraction> {
 
     @Override
     public void div(MyFraction frac) {
-        this.numerator = this.numerator.divide(frac.numerator);
-        this.denumerator = this.denumerator.divide(frac.denumerator);
+        this.numerator = this.numerator.multiply(frac.denumerator);
+        this.denumerator = this.denumerator.multiply(frac.numerator);
     }
 
     @Override
@@ -87,9 +87,8 @@ public class MyFraction implements MyNumber<MyFraction> {
     }
 
     @Override
-    public void shorten() {
+    public MyFraction shorten() {
         BigInteger gcd = this.numerator.gcd(this.denumerator);
-        this.numerator = this.numerator.divide(gcd);
-        this.denumerator = this.denumerator.divide(gcd);
+        return new MyFraction(this.numerator.divide(gcd), this.denumerator.divide(gcd));
     }
 }

@@ -151,7 +151,7 @@ public class MyDouble implements MyNumber<MyDouble> {
     }
 
     @Override
-    public void shorten() {
-
+    public MyDouble shorten() {
+        return this;
     }
 }

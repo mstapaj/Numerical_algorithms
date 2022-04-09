@@ -25,5 +25,5 @@ public interface MyNumber<T> {
 
     T getValue();
 
-    void shorten();
+    T shorten();
 }

@@ -69,7 +69,7 @@ public class MyFloat implements MyNumber<MyFloat> {
     }
 
     @Override
-    public void shorten() {
-
+    public MyFloat shorten() {
+        return this;
     }
 }

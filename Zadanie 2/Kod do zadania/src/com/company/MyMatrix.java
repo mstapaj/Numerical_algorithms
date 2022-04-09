@@ -52,20 +52,32 @@ public class MyMatrix<T extends MyNumber<T>> {
         return res;
     }
 
-    public void shortenMatrix() {
+    public void printNumber() {
         for (int i = 0; i < this.matrix.size(); i++) {
             for (int j = 0; j < this.matrix.get(i).size(); j++) {
-                this.matrix.get(i).get(j).shorten();
+                System.out.println(this.matrix.get(i).get(j).getNumber());
             }
         }
+    }
+
+    public MyMatrix<T> shortenMatrix() {
+        int rows = this.matrix.size();
+        int columns = this.matrix.get(0).size();
+        List<T> matrixElements = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                matrixElements.add(this.matrix.get(i).get(j).shorten());
+            }
+        }
+        return new MyMatrix<>(rows, columns, matrixElements);
     }
 
     public MyMatrix<T> addingMatrix(MyMatrix<T> another_matrix) {
         int rows = this.matrix.size();
         int columns = another_matrix.getMatrix().get(0).size();
         List<T> matrixElements = new ArrayList<>();
-        for (int i = 0; i < this.matrix.size(); i++) {
-            for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 T newElem = this.matrix.get(i).get(j).initialize();
                 newElem.add(another_matrix.getMatrix().get(i).get(j));
                 matrixElements.add(newElem);
@@ -74,7 +86,62 @@ public class MyMatrix<T extends MyNumber<T>> {
         return new MyMatrix<>(rows, columns, matrixElements);
     }
 
-//    public void multiplyMatrix(MyMatrix<T> another_matrix) {
+    public List<T> gaussMatrixG() {
+        List<T> result = new ArrayList<>();
+        int columns = this.matrix.size();
+        int rows = this.matrix.get(0).size();
+        for (int k = 0; k < columns; k++) {
+            for (int i = k + 1; i < columns; i++) {
+                T temp = this.matrix.get(i).get(k).initialize();
+                temp.div(this.matrix.get(k).get(k));
+                for (int j = k + 1; j < rows; j++) {   // jak nie będzie działać to zmień na get(k)
+                    T temp2 = this.matrix.get(k).get(j).initialize();
+                    temp2.mul(temp);
+                    this.matrix.get(i).get(j).sub(temp2);
+                }
+                this.matrix.get(i).set(k, this.matrix.get(0).get(0).initialize_zero());
+            }
+            this.matrix = this.shortenMatrix().getMatrix();
+        }
+        for (int i = 0; i < columns; i++) {
+            result.add(this.matrix.get(0).get(0).initialize());
+        }
+        for (int i = columns - 1; i >= 0; i--) {
+            result.set(i, this.matrix.get(i).get(columns));
+            for (int j = i + 1; j < columns; j++) {
+                T temp = this.matrix.get(i).get(j).initialize();
+                temp.mul(result.get(j));
+                result.get(i).sub(temp);
+            }
+            T temp2 = result.get(i);
+            temp2.div(this.matrix.get(i).get(i));
+            result.set(i, temp2);
+        }
+        return result;
+    }
+
+    public MyMatrix<T> multiplyMatrix(MyMatrix<T> another_matrix) {
+        int rows = this.matrix.size();
+        int columns = another_matrix.getMatrix().get(0).size();
+        List<T> matrixElements = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            for (int k = 0; k < columns; k++) {
+                T sum = another_matrix.getMatrix().get(0).get(0).initialize_zero();
+                for (int j = 0; j < rows; j++) {
+                    T firstNumber = this.matrix.get(i).get(j).initialize();
+                    T secondNumber = another_matrix.matrix.get(j).get(k).initialize();
+                    firstNumber.mul(secondNumber);
+                    sum.add(firstNumber);
+                }
+                matrixElements.add(sum);
+            }
+        }
+        return new MyMatrix<>(rows, columns, matrixElements);
+    }
+
+    // Inne mnożenie
+
+    //    public void multiplyMatrix(MyMatrix<T> another_matrix) {
 ////        List<List<MyNumber<T>>> new_mat= new ArrayList<>();
 //        int rows1 = this.matrix.size();
 //        int columns1 = another_matrix.getMatrix().get(0).size();
@@ -94,86 +161,4 @@ public class MyMatrix<T extends MyNumber<T>> {
 //        }
 //    }
 
-//    public List<MyNumber<T>> gaussMatrixG() {
-//        List<MyNumber<T>> result = new ArrayList<>();
-//        for (int k = 0; k < this.matrix.size(); k++) {
-//            for (int i = k + 1; i < this.matrix.size(); i++) {
-//                MyNumber<T> temp = this.matrix.get(i).get(k).return_new();
-//                temp.div(this.matrix.get(k).get(k).getValue());
-//                for (int j = k + 1; j < this.matrix.get(i).size(); j++) {   // jak nie będzie działać to zmień na get(k)
-//                    MyNumber<T> temp2 = this.matrix.get(k).get(j).return_new();
-//                    temp2.mul(temp.getValue());
-//                    this.matrix.get(i).get(j).sub(temp2.getValue());
-//                }
-//                this.matrix.get(i).get(k).setZero();
-//            }
-//            this.shortenMatrix();
-//        }
-//        for (int i = 0; i < this.matrix.size(); i++) {
-//            result.add(this.matrix.get(0).get(0).initialize());
-//        }
-//        for (int i = this.matrix.size() - 1; i >= 0; i--) {
-//            result.set(i, this.matrix.get(i).get(this.matrix.size()));
-//            for (int j = i + 1; j < this.matrix.size(); j++) {
-//                MyNumber<T> temp = this.matrix.get(i).get(j).return_new();
-//                temp.mul(result.get(j).getValue());
-//                result.get(i).sub(temp.getValue());
-//            }
-//            MyNumber<T> temp2 = result.get(i);
-//            temp2.div(this.matrix.get(i).get(i).getValue());
-//            result.set(i, temp2);
-//        }
-//        return result;
-//    }
-//
-//    public List<MyNumber<T>> gaussMatrixPG() {
-//        List<MyNumber<T>> result = new ArrayList<>();
-//        for (int k = 0; k < this.matrix.size(); k++) {
-//            for (int i = k + 1; i < this.matrix.size(); i++) {
-//                MyNumber<T> temp = this.matrix.get(i).get(k).return_new();
-//                temp.div(this.matrix.get(k).get(k).getValue());
-//                for (int j = k + 1; j < this.matrix.get(i).size(); j++) {   // jak nie będzie działać to zmień na get(k)
-//                    MyNumber<T> temp2 = this.matrix.get(k).get(j).return_new();
-//                    temp2.mul(temp.getValue());
-//                    this.matrix.get(i).get(j).sub(temp2.getValue());
-//                }
-//                this.matrix.get(i).get(k).setZero();
-//            }
-//        }
-//        for (int i = 0; i < this.matrix.size(); i++) {
-//            result.add(this.matrix.get(0).get(0).initialize());
-//        }
-//        for (int i = this.matrix.size() - 1; i >= 0; i--) {
-//            result.set(i, this.matrix.get(i).get(this.matrix.size()));
-//            for (int j = i + 1; j < this.matrix.size(); j++) {
-//                MyNumber<T> temp = this.matrix.get(i).get(j).return_new();
-//                temp.mul(result.get(j).getValue());
-//                result.get(i).sub(temp.getValue());
-//            }
-//            MyNumber<T> temp2 = result.get(i);
-//            temp2.div(this.matrix.get(i).get(i).getValue());
-//            result.set(i, temp2);
-//        }
-//        return result;
-//    }
-
-    public MyMatrix<T> multiplyMatrix(MyMatrix<T> another_matrix) {
-        int rows = this.matrix.size();
-        int columns = another_matrix.getMatrix().get(0).size();
-        List<T> matrixElements = new ArrayList<>();
-        for (int i = 0; i < rows; i++) {
-//            System.out.println(i);
-            for (int k = 0; k < columns; k++) {
-                T sum = another_matrix.getMatrix().get(0).get(0).initialize_zero();
-                for (int j = 0; j < rows; j++) {
-                    T firstNumber = this.matrix.get(i).get(j).initialize();
-                    T secondNumber = another_matrix.matrix.get(j).get(k).initialize();
-                    firstNumber.mul(secondNumber);
-                    sum.add(firstNumber);
-                }
-                matrixElements.add(sum);
-            }
-        }
-        return new MyMatrix<>(columns, rows, matrixElements);
-    }
 }
