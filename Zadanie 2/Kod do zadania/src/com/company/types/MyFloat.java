@@ -1,4 +1,6 @@
-package com.company;
+package com.company.types;
+
+import com.company.MyNumber;
 
 import java.math.BigDecimal;
 
@@ -16,26 +18,26 @@ public class MyFloat implements MyNumber<MyFloat> {
     }
 
     @Override
-    public void subtract(MyFloat a) {
+    public void sub(MyFloat a) {
         this.value = this.value - a.value;
 
     }
 
     @Override
-    public void multiply(MyFloat a) {
+    public void mul(MyFloat a) {
         this.value = this.value * a.value;
 
     }
 
     @Override
-    public void divide(MyFloat a) {
+    public void div(MyFloat a) {
         this.value = this.value / a.value;
 
     }
 
     @Override
-    public MyFloat initialize(MyFloat a) {
-        return new MyFloat(a.value);
+    public MyFloat initialize() {
+        return new MyFloat(this.value);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class MyFloat implements MyNumber<MyFloat> {
     }
 
     @Override
-    public MyFloat initializeWithZero() {
+    public MyFloat initialize_zero() {
         return new MyFloat(0F);
     }
 

@@ -5,17 +5,17 @@ import java.math.BigDecimal;
 public interface MyNumber<T> {
     void add(T a);
 
-    void subtract(T a);
+    void sub(T a);
 
-    void multiply(T a);
+    void mul(T a);
 
-    void divide(T a);
+    void div(T a);
 
-    T initialize(T a);
+    T initialize();
 
     T absolute();
 
-    T initializeWithZero();
+    T initialize_zero();
 
     Integer compare(T a);
 

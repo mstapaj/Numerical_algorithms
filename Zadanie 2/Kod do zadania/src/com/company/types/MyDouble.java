@@ -1,4 +1,4 @@
-package com.company;//package com.company;
+package com.company.types;//package com.company;
 //
 //import java.math.BigInteger;
 //
@@ -83,6 +83,8 @@ package com.company;//package com.company;
 ////    }
 //}
 
+import com.company.MyNumber;
+
 import java.math.BigDecimal;
 
 public class MyDouble implements MyNumber<MyDouble> {
@@ -98,26 +100,26 @@ public class MyDouble implements MyNumber<MyDouble> {
     }
 
     @Override
-    public void subtract(MyDouble a) {
+    public void sub(MyDouble a) {
         this.value = this.value - a.value;
 
     }
 
     @Override
-    public void multiply(MyDouble a) {
+    public void mul(MyDouble a) {
         this.value = this.value * a.value;
 
     }
 
     @Override
-    public void divide(MyDouble a) {
+    public void div(MyDouble a) {
         this.value = this.value / a.value;
 
     }
 
     @Override
-    public MyDouble initialize(MyDouble a) {
-        return new MyDouble(a.value);
+    public MyDouble initialize() {
+        return new MyDouble(this.value);
     }
 
     @Override
@@ -126,7 +128,7 @@ public class MyDouble implements MyNumber<MyDouble> {
     }
 
     @Override
-    public MyDouble initializeWithZero() {
+    public MyDouble initialize_zero() {
         return new MyDouble(0D);
     }
 

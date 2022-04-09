@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.types.MyDouble;
+import com.company.types.MyFloat;
 import org.ejml.simple.SimpleMatrix;
 
 import java.io.IOException;

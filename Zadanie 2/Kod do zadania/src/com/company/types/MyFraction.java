@@ -1,4 +1,6 @@
-package com.company;
+package com.company.types;
+
+import com.company.MyNumber;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -31,7 +33,7 @@ public class MyFraction implements MyNumber<MyFraction> {
     }
 
     @Override
-    public void subtract(MyFraction frac) {
+    public void sub(MyFraction frac) {
         BigInteger lcm = LCM(this.denumerator, frac.denumerator);
         BigInteger first_mul = lcm.divide(this.denumerator);
         BigInteger sec_mul = lcm.divide(frac.denumerator);
@@ -40,20 +42,20 @@ public class MyFraction implements MyNumber<MyFraction> {
     }
 
     @Override
-    public void multiply(MyFraction frac) {
+    public void mul(MyFraction frac) {
         this.numerator = this.numerator.multiply(frac.numerator);
         this.denumerator = this.denumerator.multiply(frac.denumerator);
     }
 
     @Override
-    public void divide(MyFraction frac) {
+    public void div(MyFraction frac) {
         this.numerator = this.numerator.divide(frac.numerator);
         this.denumerator = this.denumerator.divide(frac.denumerator);
     }
 
     @Override
-    public MyFraction initialize(MyFraction a) {
-        return new MyFraction(a.numerator, a.denumerator);
+    public MyFraction initialize() {
+        return new MyFraction(this.numerator, this.denumerator);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class MyFraction implements MyNumber<MyFraction> {
     }
 
     @Override
-    public MyFraction initializeWithZero() {
+    public MyFraction initialize_zero() {
         return new MyFraction(BigInteger.ZERO, BigInteger.ONE);
     }
 

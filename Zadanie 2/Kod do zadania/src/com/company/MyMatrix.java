@@ -89,23 +89,25 @@ public class MyMatrix<T extends MyNumber<T>> {
         }
     }
 
-//    public void multiplyMatrix(MyMatrix<T> another_matrix) {
-////        List<List<MyNumber<T>>> new_mat= new ArrayList<>();
-//        for (int i = 0; i < this.matrix.size(); i++) {
-//            List<MyNumber<T>> temp_row = new ArrayList<>();
-//            for (int j = 0; j < another_matrix.getMatrix().get(i).size(); j++) {
-//                MyNumber<T> summary = this.matrix.get(0).get(0).initialize();
-//                for (int k = 0; k < another_matrix.getMatrix().size(); k++) {
-//                    MyNumber<T> temp = this.matrix.get(i).get(k).return_new();
-//                    temp.mul(another_matrix.getMatrix().get(k).get(j));
-//                    summary.add(temp.getValue());
-//                }
-////                this.matrix.get(i).get(j).setValue(summary.getValue());
-//                temp_row.add(summary);
-//            }
-//            this.matrix.set(i, temp_row);
-//        }
-//    }
+    public void multiplyMatrix(MyMatrix<T> another_matrix) {
+//        List<List<MyNumber<T>>> new_mat= new ArrayList<>();
+        int rows1 = this.matrix.size();
+        int columns1 = another_matrix.getMatrix().get(0).size();
+        int rows2 = another_matrix.getMatrix().size();
+        for (int i = 0; i < rows1; i++) {
+            List<T> temp_row = new ArrayList<>();
+            for (int j = 0; j < columns1; j++) {
+                T summary = this.matrix.get(0).get(0).initialize_zero();
+                for (int k = 0; k < rows2; k++) {
+                    MyNumber<T> temp = this.matrix.get(i).get(k).initialize();
+                    temp.mul(another_matrix.getMatrix().get(k).get(j));
+                    summary.add(temp.getValue());
+                }
+                temp_row.add(summary);
+            }
+            this.matrix.set(i, temp_row);
+        }
+    }
 
 //    public List<MyNumber<T>> gaussMatrixG() {
 //        List<MyNumber<T>> result = new ArrayList<>();
