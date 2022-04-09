@@ -1,46 +1,27 @@
 package com.company;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
-interface MyNumber<T> {
+public interface MyNumber<T> {
+    void add(T a);
 
-    default MyNumber<T> initialize() {
-        return this;
-    }
+    void subtract(T a);
 
-    default MyNumber<T> return_new() {
-        return this;
-    }
+    void multiply(T a);
 
-    default BigInteger getNumerator() {
-        return null;
-    }
+    void divide(T a);
 
-    default BigInteger getDenumerator() {
-        return null;
-    }
+    T initialize(T a);
 
-    default void add(T value) {
-    }
+    T absolute();
 
-    default void sub(T value) {
-    }
+    T initializeWithZero();
 
-    default void mul(T value) {
-    }
+    Integer compare(T a);
 
-    default void div(T value) {
-    }
+    BigDecimal returnValue();
 
-    default void setZero() {
-    }
+    Number getNumber();
 
-    default T getValue() {
-        return null;
-    }
-
-    default void setValue(T value) {
-    }
-
-    void shorten();
+    T getValue();
 }

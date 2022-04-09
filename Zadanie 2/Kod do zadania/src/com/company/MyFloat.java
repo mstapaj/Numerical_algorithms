@@ -1,58 +1,68 @@
 package com.company;
 
-public class MyFloat implements MyNumber<Float> {
-    private Float value;
+import java.math.BigDecimal;
 
-    public MyFloat(float value) {
+public class MyFloat implements MyNumber<MyFloat> {
+    public Float value;
+
+    public MyFloat(Float value) {
         this.value = value;
     }
 
-    public void setValue(float value) {
-        this.value = value;
+
+    @Override
+    public void add(MyFloat a) {
+        this.value = this.value + a.value;
     }
 
     @Override
-    public Float getValue() {
-        return this.value;
-    }
-
-    @Override
-    public void shorten() {
+    public void subtract(MyFloat a) {
+        this.value = this.value - a.value;
 
     }
 
     @Override
-    public void setZero() {
-        this.value = 0F;
+    public void multiply(MyFloat a) {
+        this.value = this.value * a.value;
+
     }
 
     @Override
-    public void add(Float another) {
-        this.value += another;
+    public void divide(MyFloat a) {
+        this.value = this.value / a.value;
+
     }
 
     @Override
-    public void sub(Float another) {
-        this.value = this.value - another;
+    public MyFloat initialize(MyFloat a) {
+        return new MyFloat(a.value);
     }
 
     @Override
-    public void mul(Float another) {
-        this.value = this.value * another;
+    public MyFloat absolute() {
+        return new MyFloat(Math.abs(this.value));
     }
 
     @Override
-    public void div(Float another) {
-        this.value = this.value / another;
-    }
-
-    @Override
-    public MyFloat initialize() {
+    public MyFloat initializeWithZero() {
         return new MyFloat(0F);
     }
 
     @Override
-    public MyFloat return_new() {
-        return new MyFloat(value);
+    public Integer compare(MyFloat a) {
+        return this.value.compareTo(a.value);
+    }
+
+    @Override
+    public BigDecimal returnValue() {
+        return BigDecimal.valueOf(this.value);
+    }
+
+    public Float getNumber() {
+        return this.value;
+    }
+
+    public MyFloat getValue() {
+        return this;
     }
 }

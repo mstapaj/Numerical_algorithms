@@ -9,9 +9,9 @@ public class GenerateMatrix {
 
     public static void generate(int cols, int rows, String fileName, int min, int max) {
         try {
-            FileWriter myWriterFraction = new FileWriter("fractionMatrix" + fileName + ".txt");
-            FileWriter myWriterDouble = new FileWriter("doubleMatrix" + fileName + ".txt");
-            FileWriter myWriterFloat = new FileWriter("floatMatrix" + fileName + ".txt");
+            FileWriter myWriterFraction = new FileWriter("data/fractionMatrix" + fileName + ".txt");
+            FileWriter myWriterDouble = new FileWriter("data/doubleMatrix" + fileName + ".txt");
+            FileWriter myWriterFloat = new FileWriter("data/floatMatrix" + fileName + ".txt");
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
                     Random ran = new Random();
@@ -19,14 +19,23 @@ public class GenerateMatrix {
                     BigInteger denum;
                     if (max == 0 && min == 0) {
                         num = BigInteger.valueOf(ran.nextInt());
-                        denum = BigInteger.valueOf(ran.nextInt());
+                        while (true) {
+                            denum = BigInteger.valueOf(ran.nextInt());
+                            if (denum.equals(BigInteger.ZERO)) {
+                            } else break;
+                        }
                     } else {
                         num = BigInteger.valueOf(ran.nextInt(max - min) + min);
-                        denum = BigInteger.valueOf(ran.nextInt(max - min) + min);
+                        while (true) {
+                            denum = BigInteger.valueOf(ran.nextInt(max - min) + min);
+                            ;
+                            if (denum.equals(BigInteger.ZERO)) {
+                            } else break;
+                        }
                     }
-                    myWriterFloat.write((int) num.floatValue() / denum.floatValue() + ",");
-                    myWriterDouble.write(num.doubleValue() / denum.doubleValue() + ",");
-                    myWriterFraction.write(num + ";" + denum + ",");
+                    myWriterFloat.write((num.floatValue() / denum.floatValue()) / 65536 + ",");
+                    myWriterDouble.write((num.doubleValue() / denum.doubleValue()) / 65536 + ",");
+                    myWriterFraction.write(num + ";" + (denum.multiply(BigInteger.valueOf(65536))) + ",");
                 }
                 myWriterFloat.write("&,");
                 myWriterDouble.write("&,");
@@ -42,9 +51,10 @@ public class GenerateMatrix {
 
 
     public static void main(String[] args) {
-        generate(100, 100, "A", 0, 0);
-        generate(100, 100, "B", 0, 0);
-        generate(100, 100, "C", 0, 0);
-        generate(1, 100, "X", 0, 0);
+        generate(500, 500, "A", -65536, 65535);
+        generate(500, 500, "B", -65536, 65535);
+        generate(500, 500, "C", -65536, 65535);
+        generate(1, 500, "X", -65536, 65535);
+        generate(1001, 1000, "Gauss", -65536, 65535);
     }
 }

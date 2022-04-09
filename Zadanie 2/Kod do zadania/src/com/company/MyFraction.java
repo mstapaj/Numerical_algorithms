@@ -4,34 +4,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
 
-public class MyFraction implements MyNumber<Fraction> {
-    private final Fraction frac;
-
-    public MyFraction(BigInteger numerator, BigInteger denumerator) {
-        this.frac = new Fraction(numerator, denumerator);
-    }
-
-    public void setZero() {
-        this.frac.setNumerator(BigInteger.ZERO);
-        this.frac.setDenumerator(BigInteger.ONE);
-    }
-
-    @Override
-    public Fraction getValue() {
-        return this.frac;
-    }
-
-    public BigInteger getNumerator() {
-        return this.frac.getNumerator();
-    }
-
-    public BigInteger getDenumerator() {
-        return this.frac.getDenumerator();
-    }
-
-    public BigDecimal getDecimalValue() {
-        return new BigDecimal(this.frac.getNumerator()).divide(new BigDecimal(this.frac.getDenumerator()), MathContext.DECIMAL128);
-    }
+public class MyFraction implements MyNumber<MyFraction> {
+    public BigInteger numerator;
+    public BigInteger denumerator;
 
     private BigInteger LCM(BigInteger a, BigInteger b) {
         if (a.signum() == 0 || b.signum() == 0) {
@@ -40,57 +15,128 @@ public class MyFraction implements MyNumber<Fraction> {
         return a.divide(a.gcd(b)).multiply(b).abs();
     }
 
-    @Override
-    public void shorten() {
-        BigInteger gcd = this.frac.getNumerator().gcd(this.frac.getDenumerator());
-        this.frac.setNumerator(this.frac.getNumerator().divide(gcd));
-        this.frac.setDenumerator(this.frac.getDenumerator().divide(gcd));
+    public MyFraction(BigInteger numerator, BigInteger denumerator) {
+        this.numerator = numerator;
+        this.denumerator = denumerator;
     }
 
     @Override
-    public void add(Fraction frac) {
-        BigInteger lcm = LCM(this.frac.getDenumerator(), frac.getDenumerator());
-        BigInteger first_mul = lcm.divide(this.frac.getDenumerator());
-        BigInteger sec_mul = lcm.divide(frac.getDenumerator());
-        this.frac.setNumerator(this.frac.getNumerator().multiply(first_mul).add(frac.getNumerator().multiply(sec_mul)));
-        this.frac.setDenumerator(lcm);
-//        BigInteger gcd = this.frac.getNumerator().gcd(lcm);
-//        this.frac.setDenumerator(lcm.divide(gcd));
-//        this.frac.setNumerator(this.frac.getNumerator().divide(gcd));
-//        return new Fraction(new_numerator.divide(gcd), lcm.divide(gcd));
+    public void add(MyFraction frac) {
+        BigInteger lcm = LCM(this.denumerator, frac.denumerator);
+        BigInteger first_mul = lcm.divide(this.denumerator);
+        BigInteger sec_mul = lcm.divide(frac.denumerator);
+        this.numerator = this.numerator.multiply(first_mul).add(frac.numerator.multiply(sec_mul));
+        this.denumerator = lcm;
+
     }
 
     @Override
-    public void sub(Fraction frac) {
-        BigInteger lcm = LCM(this.frac.getDenumerator(), frac.getDenumerator());
-        BigInteger first_mul = lcm.divide(this.frac.getDenumerator());
-        BigInteger sec_mul = lcm.divide(frac.getDenumerator());
-        this.frac.setNumerator(this.frac.getNumerator().multiply(first_mul).subtract(frac.getNumerator().multiply(sec_mul)));
-        this.frac.setDenumerator(lcm);
+    public void subtract(MyFraction frac) {
+        BigInteger lcm = LCM(this.denumerator, frac.denumerator);
+        BigInteger first_mul = lcm.divide(this.denumerator);
+        BigInteger sec_mul = lcm.divide(frac.denumerator);
+        this.numerator = this.numerator.multiply(first_mul).subtract(frac.numerator.multiply(sec_mul));
+        this.denumerator = lcm;
     }
 
     @Override
-    public void mul(Fraction frac) {
-        this.frac.setNumerator(this.frac.getNumerator().multiply(frac.getNumerator()));
-        this.frac.setDenumerator(this.frac.getDenumerator().multiply(frac.getDenumerator()));
-//        BigInteger gcd = this.frac.getNumerator().gcd(this.frac.getDenumerator());
-//        this.frac.setNumerator(this.frac.getNumerator().divide(gcd));
-//        this.frac.setDenumerator(this.frac.getDenumerator().divide(gcd));
+    public void multiply(MyFraction frac) {
+        this.numerator = this.numerator.multiply(frac.numerator);
+        this.denumerator = this.denumerator.multiply(frac.denumerator);
     }
 
     @Override
-    public void div(Fraction frac) {
-        this.frac.setNumerator(this.frac.getDenumerator().multiply(frac.getDenumerator()));
-        this.frac.setDenumerator(this.frac.getNumerator().multiply(frac.getNumerator()));
+    public void divide(MyFraction frac) {
+        this.numerator = this.numerator.divide(frac.numerator);
+        this.denumerator = this.denumerator.divide(frac.denumerator);
     }
 
     @Override
-    public MyFraction initialize() {
+    public MyFraction initialize(MyFraction a) {
+        return new MyFraction(a.numerator, a.denumerator);
+    }
+
+    @Override
+    public MyFraction absolute() {
+        return null;
+    }
+
+    @Override
+    public MyFraction initializeWithZero() {
         return new MyFraction(BigInteger.ZERO, BigInteger.ONE);
     }
 
     @Override
-    public MyFraction return_new() {
-        return new MyFraction(frac.getNumerator(), frac.getDenumerator());
+    public Integer compare(MyFraction a) {
+        return null;
     }
+
+    @Override
+    public BigDecimal returnValue() {
+        return new BigDecimal(this.numerator).divide(new BigDecimal(this.denumerator), MathContext.DECIMAL128);
+    }
+
+    public BigDecimal getNumber() {
+        return new BigDecimal(this.numerator).divide(new BigDecimal(this.denumerator), MathContext.DECIMAL128);
+    }
+
+    public MyFraction getValue() {
+        return this;
+    }
+
+//    @Override
+//    public Fraction getValue() {
+//        return this.frac;
+//    }
+//
+//    @Override
+//    public void setValue(Fraction value) {
+//        this.frac = value;
+//    }
+//
+//    public BigInteger getNumerator() {
+//        return this.frac.getNumerator();
+//    }
+//
+//    public BigInteger getDenumerator() {
+//        return this.frac.getDenumerator();
+//    }
+//
+//    public BigDecimal getDecimalValue() {
+//        return new BigDecimal(this.frac.getNumerator()).divide(new BigDecimal(this.frac.getDenumerator()), MathContext.DECIMAL128);
+//    }
+//
+//    private BigInteger LCM(BigInteger a, BigInteger b) {
+//        if (a.signum() == 0 || b.signum() == 0) {
+//            return BigInteger.ZERO;
+//        }
+//        return a.divide(a.gcd(b)).multiply(b).abs();
+//    }
+//
+//    @Override
+//    public void shorten() {
+//        BigInteger gcd = this.frac.getNumerator().gcd(this.frac.getDenumerator());
+//        this.frac.setNumerator(this.frac.getNumerator().divide(gcd));
+//        this.frac.setDenumerator(this.frac.getDenumerator().divide(gcd));
+//    }
+//
+//
+//
+//
+//
+//    @Override
+//    public void div(Fraction frac) {
+//        this.frac.setNumerator(this.frac.getDenumerator().multiply(frac.getDenumerator()));
+//        this.frac.setDenumerator(this.frac.getNumerator().multiply(frac.getNumerator()));
+//    }
+//
+//    @Override
+//    public MyFraction return_new() {
+//        return new MyFraction(frac.getNumerator(), frac.getDenumerator());
+//    }
+//
+//    @Override
+//    public Fraction initialize_zero() {
+//        return new Fraction(BigInteger.ZERO, BigInteger.ONE);
+//    }
 }
