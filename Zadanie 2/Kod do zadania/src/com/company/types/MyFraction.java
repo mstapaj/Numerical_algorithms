@@ -60,7 +60,7 @@ public class MyFraction implements MyNumber<MyFraction> {
 
     @Override
     public MyFraction absolute() {
-        return null;
+        return new MyFraction(this.numerator.abs(), this.denumerator);
     }
 
     @Override
@@ -69,8 +69,11 @@ public class MyFraction implements MyNumber<MyFraction> {
     }
 
     @Override
-    public Integer compare(MyFraction a) {
-        return null;
+    public Integer compare(MyFraction frac) {
+        BigInteger lcm = LCM(this.denumerator, frac.denumerator);
+        BigInteger first_mul = lcm.divide(this.denumerator);
+        BigInteger sec_mul = lcm.divide(frac.denumerator);
+        return this.numerator.multiply(first_mul).compareTo(frac.numerator.multiply(sec_mul));
     }
 
     @Override

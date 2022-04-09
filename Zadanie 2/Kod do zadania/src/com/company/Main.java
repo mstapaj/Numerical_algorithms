@@ -109,25 +109,31 @@ public class Main {
         MyMatrix<MyFloat> floatMyMatrixC = readMatrixFromFile("floatMatrixC.txt", "float");
         MyMatrix<MyFloat> floatMyMatrixX = readMatrixFromFile("floatMatrixX.txt", "float");
         MyMatrix<MyFloat> floatMyMatrixGauss = readMatrixFromFile("floatMatrixGauss.txt", "float");
+        MyMatrix<MyFloat> floatMyMatrixGauss2 = readMatrixFromFile("floatMatrixGauss.txt", "float");
         MyMatrix<MyDouble> doubleMyMatrixA = readMatrixFromFile("doubleMatrixA.txt", "double");
         MyMatrix<MyDouble> doubleMyMatrixB = readMatrixFromFile("doubleMatrixB.txt", "double");
         MyMatrix<MyDouble> doubleMyMatrixC = readMatrixFromFile("doubleMatrixC.txt", "double");
         MyMatrix<MyDouble> doubleMyMatrixX = readMatrixFromFile("doubleMatrixX.txt", "double");
         MyMatrix<MyDouble> doubleMyMatrixGauss = readMatrixFromFile("doubleMatrixGauss.txt", "float");
+        MyMatrix<MyDouble> doubleMyMatrixGauss2 = readMatrixFromFile("doubleMatrixGauss.txt", "double");
         MyMatrix<MyFraction> fractionMyMatrixA = readMatrixFromFile("fractionMatrixA.txt", "fraction");
         MyMatrix<MyFraction> fractionMyMatrixB = readMatrixFromFile("fractionMatrixB.txt", "fraction");
         MyMatrix<MyFraction> fractionMyMatrixC = readMatrixFromFile("fractionMatrixC.txt", "fraction");
         MyMatrix<MyFraction> fractionMyMatrixX = readMatrixFromFile("fractionMatrixX.txt", "fraction");
         MyMatrix<MyFraction> fractionMyMatrixGauss = readMatrixFromFile("fractionMatrixGauss.txt", "fraction");
+        MyMatrix<MyFraction> fractionMyMatrixGauss2 = readMatrixFromFile("fractionMatrixGauss.txt", "fraction");
         fractionMyMatrixA = fractionMyMatrixA.shortenMatrix();
         fractionMyMatrixB = fractionMyMatrixB.shortenMatrix();
         fractionMyMatrixC = fractionMyMatrixC.shortenMatrix();
         fractionMyMatrixX = fractionMyMatrixX.shortenMatrix();
+        fractionMyMatrixGauss = fractionMyMatrixGauss.shortenMatrix();
+        fractionMyMatrixGauss2 = fractionMyMatrixGauss2.shortenMatrix();
         SimpleMatrix libraryMatrixA = makeLibraryMatrix(readMatrixFromFile("doubleMatrixA.txt", "double").getNumber());
         SimpleMatrix libraryMatrixB = makeLibraryMatrix(readMatrixFromFile("doubleMatrixB.txt", "double").getNumber());
         SimpleMatrix libraryMatrixC = makeLibraryMatrix(readMatrixFromFile("doubleMatrixC.txt", "double").getNumber());
         SimpleMatrix libraryMatrixX = makeLibraryMatrix(readMatrixFromFile("doubleMatrixX.txt", "double").getNumber());
         SimpleMatrix libraryMatrixGauss = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss.txt", "double").getNumber());
+        SimpleMatrix libraryMatrixGauss2 = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss.txt", "double").getNumber());
 
 //
         Instant start;
@@ -318,36 +324,36 @@ public class Main {
 
         // Gauss P
         System.out.println("Gauss P");
-//
+
         MyMatrix<MyFloat> floatResGauss = new MyMatrix<>(floatMyMatrixGauss.getMatrix());
-        List<MyFloat> resGaussF = new ArrayList<>();
+        List<MyFloat> resGaussF;
         start = Instant.now();
         resGaussF = floatResGauss.gaussMatrixG();
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Float: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(floatResGauss.getMyNumber());
-        saveResToFile(new MyMatrix<>(100, 1, resGaussF), "floatResGauss.txt");
+        saveResToFile(new MyMatrix<>(10, 1, resGaussF), "floatResGauss");
 
         MyMatrix<MyDouble> doubleResGauss = new MyMatrix<>(doubleMyMatrixGauss.getMatrix());
-        List<MyDouble> resGaussD = new ArrayList<>();
+        List<MyDouble> resGaussD;
         start = Instant.now();
         resGaussD = doubleResGauss.gaussMatrixG();
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Double: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(doubleResGauss.getMyNumber());
-        saveResToFile(new MyMatrix<>(100, 1, resGaussD), "doubleResGauss.txt");
+        saveResToFile(new MyMatrix<>(10, 1, resGaussD), "doubleResGauss");
 
         MyMatrix<MyFraction> fractionResGauss = new MyMatrix<>(fractionMyMatrixGauss.getMatrix());
-        List<MyFraction> resGaussFr = new ArrayList<>();
+        List<MyFraction> resGaussFr;
         start = Instant.now();
         resGaussFr = fractionResGauss.gaussMatrixG();
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         System.out.println("Fraction: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(fractionResGauss.getMyNumber());
-        saveResToFile(fractionResGauss, "fractionResGauss.txt");
+        saveResToFile(new MyMatrix<>(10, 1, resGaussFr), "fractionResGauss");
 
         SimpleMatrix libraryResGauss = new SimpleMatrix(libraryMatrixGauss);
         start = Instant.now();
@@ -357,5 +363,48 @@ public class Main {
         System.out.println("Library: " + timeElapsed.toMillis() + " millisekund");
 //        System.out.println(libraryResGauss);
         libraryResGauss.saveToFileCSV("results/libraryResGauss.txt");
+
+        // Gauss PG
+        System.out.println("Gauss PG");
+//
+        MyMatrix<MyFloat> floatResGauss2 = new MyMatrix<>(floatMyMatrixGauss2.getMatrix());
+        List<MyFloat> resGaussF2;
+        start = Instant.now();
+        resGaussF2 = floatResGauss2.gaussMatrixPG();
+        end = Instant.now();
+        timeElapsed = Duration.between(start, end);
+        System.out.println("Float: " + timeElapsed.toMillis() + " millisekund");
+//        System.out.println(floatResGauss.getMyNumber());
+        saveResToFile(new MyMatrix<>(10, 1, resGaussF2), "floatResGauss2");
+
+        MyMatrix<MyDouble> doubleResGauss2 = new MyMatrix<>(doubleMyMatrixGauss2.getMatrix());
+        List<MyDouble> resGaussD2;
+        start = Instant.now();
+        resGaussD2 = doubleResGauss2.gaussMatrixPG();
+        end = Instant.now();
+        timeElapsed = Duration.between(start, end);
+        System.out.println("Double: " + timeElapsed.toMillis() + " millisekund");
+//        System.out.println(doubleResGauss.getMyNumber());
+        saveResToFile(new MyMatrix<>(10, 1, resGaussD2), "doubleResGauss2");
+
+        MyMatrix<MyFraction> fractionResGauss2 = new MyMatrix<>(fractionMyMatrixGauss2.getMatrix());
+        List<MyFraction> resGaussFr2;
+        start = Instant.now();
+        resGaussFr2 = fractionResGauss2.gaussMatrixPG();
+        end = Instant.now();
+        timeElapsed = Duration.between(start, end);
+        System.out.println("Fraction: " + timeElapsed.toMillis() + " millisekund");
+//        System.out.println(fractionResGauss.getMyNumber());
+        saveResToFile(new MyMatrix<>(10, 1, resGaussFr2), "fractionResGauss2");
+
+        SimpleMatrix libraryResGauss2 = new SimpleMatrix(libraryMatrixGauss2);
+        start = Instant.now();
+        libraryResGauss2 = libraryResGauss2.cols(0, libraryResGauss2.numCols() - 1).solve(libraryResGauss2.cols(libraryResGauss2.numCols() - 1, libraryResGauss2.numCols()));
+        end = Instant.now();
+        timeElapsed = Duration.between(start, end);
+        System.out.println("Library: " + timeElapsed.toMillis() + " millisekund");
+//        System.out.println(libraryResGauss);
+        libraryResGauss2.saveToFileCSV("results/libraryResGauss2.txt");
+
     }
 }
