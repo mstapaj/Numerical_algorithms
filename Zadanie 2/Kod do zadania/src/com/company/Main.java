@@ -149,14 +149,17 @@ public class Main {
         MatrixOperations<MyFloat> matrixOperationsFloat = new MatrixOperations<>();
         MatrixOperations<MyDouble> matrixOperationsDouble = new MatrixOperations<>();
         MatrixOperations<MyFraction> matrixOperationsFraction = new MatrixOperations<>();
+        MatrixLibrary matrixLibrary = new MatrixLibrary();
 
 //        System.out.println(matrixOperationsFloat.calculate(floatMyMatrixA, floatMyMatrixB, floatMyMatrixC, floatMyMatrixX, "float"));
 //        System.out.println(matrixOperationsDouble.calculate(doubleMyMatrixA, doubleMyMatrixB, doubleMyMatrixC, doubleMyMatrixX, "double"));
 //        System.out.println(matrixOperationsFraction.calculate(fractionMyMatrixA, fractionMyMatrixB, fractionMyMatrixC, fractionMyMatrixX, "fraction"));
+//        System.out.println(matrixLibrary.calculate(libraryMatrixA,libraryMatrixB,libraryMatrixC,libraryMatrixX,"library"));
 
         System.out.println(matrixOperationsFloat.calculateGauss(floatMyMatrixGauss, "floatGauss"));
         System.out.println(matrixOperationsDouble.calculateGauss(doubleMyMatrixGauss, "doubleGauss"));
         System.out.println(matrixOperationsFraction.calculateGauss(fractionMyMatrixGauss, "fractionGauss"));
+        System.out.println(matrixLibrary.calculateGauss(libraryMatrixGauss, "libraryGauss"));
 
         //A * X
 //        System.out.println("A * X");

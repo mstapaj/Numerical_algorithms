@@ -39,7 +39,7 @@ public class MatrixOperations<T extends MyNumber<T>> {
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         timeResults = timeResults + "A * X: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(matRes1, "matRes" + fileName);
+        saveResToFile(matRes1, "matRes1" + fileName);
 
         MyMatrix<T> matRes2 = new MyMatrix<>(matrixA.getMatrix());
         start = Instant.now();
