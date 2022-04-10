@@ -118,13 +118,13 @@ public class ReadMatrixData {
         this.libraryMatrixC = makeLibraryMatrix(readMatrixFromFile("doubleMatrixC" + fileName + ".txt", "double").getNumber());
         this.libraryMatrixX = makeLibraryMatrix(readMatrixFromFile("doubleMatrixX" + fileName + ".txt", "double").getNumber());
         this.libraryMatrixGauss = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss" + fileName + ".txt", "double").getNumber());
-        this.fractionMyMatrixA.shortenMatrix();
-        this.fractionMyMatrixB.shortenMatrix();
-        this.fractionMyMatrixC.shortenMatrix();
-        this.fractionMyMatrixX.shortenMatrix();
-        this.fractionMyMatrixGaussP.shortenMatrix();
-        this.fractionMyMatrixGaussPG.shortenMatrix();
-        this.fractionMyMatrixGaussFG.shortenMatrix();
+        this.fractionMyMatrixA = this.fractionMyMatrixA.shortenMatrix();
+        this.fractionMyMatrixB = this.fractionMyMatrixB.shortenMatrix();
+        this.fractionMyMatrixC = this.fractionMyMatrixC.shortenMatrix();
+        this.fractionMyMatrixX = this.fractionMyMatrixX.shortenMatrix();
+        this.fractionMyMatrixGaussP = this.fractionMyMatrixGaussP.shortenMatrix();
+        this.fractionMyMatrixGaussPG = this.fractionMyMatrixGaussPG.shortenMatrix();
+        this.fractionMyMatrixGaussFG = this.fractionMyMatrixGaussFG.shortenMatrix();
         return this;
     }
 }

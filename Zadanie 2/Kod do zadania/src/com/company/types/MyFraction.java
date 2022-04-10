@@ -29,6 +29,14 @@ public class MyFraction implements MyNumber<MyFraction> {
         BigInteger sec_mul = lcm.divide(frac.denumerator);
         this.numerator = this.numerator.multiply(first_mul).add(frac.numerator.multiply(sec_mul));
         this.denumerator = lcm;
+//        BigInteger temp = new BigInteger(String.valueOf(frac.denumerator.multiply(this.numerator)));
+//        this.numerator = this.numerator.multiply(frac.denumerator).add(temp);
+//        this.denumerator = this.denumerator.multiply(frac.denumerator);
+
+
+//        MyFraction temp =this.shorten();
+//        this.numerator=temp.numerator;
+//        this.denumerator=temp.denumerator;
 
     }
 
@@ -39,18 +47,36 @@ public class MyFraction implements MyNumber<MyFraction> {
         BigInteger sec_mul = lcm.divide(frac.denumerator);
         this.numerator = this.numerator.multiply(first_mul).subtract(frac.numerator.multiply(sec_mul));
         this.denumerator = lcm;
+//        BigInteger temp = new BigInteger(String.valueOf(frac.denumerator.multiply(this.numerator)));
+//        this.numerator = this.numerator.multiply(frac.denumerator).subtract(temp);
+//        this.denumerator = this.denumerator.multiply(frac.denumerator);
+
+
+//        MyFraction temp =this.shorten();
+//        this.numerator=temp.numerator;
+//        this.denumerator=temp.denumerator;
     }
 
     @Override
     public void mul(MyFraction frac) {
         this.numerator = this.numerator.multiply(frac.numerator);
         this.denumerator = this.denumerator.multiply(frac.denumerator);
+
+
+//        MyFraction temp =this.shorten();
+//        this.numerator=temp.numerator;
+//        this.denumerator=temp.denumerator;
     }
 
     @Override
     public void div(MyFraction frac) {
         this.numerator = this.numerator.multiply(frac.denumerator);
         this.denumerator = this.denumerator.multiply(frac.numerator);
+
+
+//        MyFraction temp =this.shorten();
+//        this.numerator=temp.numerator;
+//        this.denumerator=temp.denumerator;
     }
 
     @Override
