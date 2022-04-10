@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class MyMatrix<T extends MyNumber<T>> {
     public List<List<T>> matrix;
@@ -92,6 +93,7 @@ public class MyMatrix<T extends MyNumber<T>> {
         int columns = this.matrix.size();
         int rows = this.matrix.get(0).size();
         for (int k = 0; k < columns; k++) {
+//            System.out.println(k);
             for (int i = k + 1; i < columns; i++) {
                 T temp = this.matrix.get(i).get(k).initialize();
                 temp.div(this.matrix.get(k).get(k));
@@ -108,6 +110,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             result.add(this.matrix.get(0).get(0).initialize());
         }
         for (int i = columns - 1; i >= 0; i--) {
+//            System.out.println(i);
             result.set(i, this.matrix.get(i).get(columns));
             for (int j = i + 1; j < columns; j++) {
                 T temp = this.matrix.get(i).get(j).initialize();
@@ -126,10 +129,11 @@ public class MyMatrix<T extends MyNumber<T>> {
         int columns = this.matrix.size();
         int rows = this.matrix.get(0).size();
         for (int k = 0; k < columns; k++) {
+//            System.out.println(k);
             int i_max = k;
             T v_max = this.matrix.get(i_max).get(k).initialize();
             for (int i = k + 1; i < columns; i++) {
-                if (this.matrix.get(i).get(k).absolute().compare(v_max) == 1) {
+                if (this.matrix.get(i).get(k).absolute().compare(v_max) == -1) {
                     v_max = this.matrix.get(i).get(k).initialize();
                     i_max = i;
                 }
@@ -153,6 +157,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             result.add(this.matrix.get(0).get(0).initialize());
         }
         for (int i = columns - 1; i >= 0; i--) {
+//            System.out.println(i);
             result.set(i, this.matrix.get(i).get(columns));
             for (int j = i + 1; j < columns; j++) {
                 T temp = this.matrix.get(i).get(j).initialize();
@@ -164,6 +169,74 @@ public class MyMatrix<T extends MyNumber<T>> {
             result.set(i, temp2);
         }
         return result;
+    }
+
+    public List<T> gaussMatrixFG() {
+        List<T> result = new ArrayList<>();
+        List<T> result2 = new ArrayList<>();
+        int columns = this.matrix.size();
+        int rows = this.matrix.get(0).size();
+        List<Integer> range = new ArrayList<>(IntStream.rangeClosed(0, columns - 1).boxed().toList());
+        for (int k = 0; k < columns; k++) {
+            int i_max = k;
+            T v_max = this.matrix.get(i_max).get(k).initialize();
+            int i_max2 = k;
+            T v_max2 = this.matrix.get(i_max2).get(k).initialize();
+            for (int i = k + 1; i < columns; i++) {
+                if (this.matrix.get(i).get(k).absolute().compare(v_max) == -1) {
+                    v_max = this.matrix.get(i).get(k).initialize();
+                    i_max = i;
+                }
+            }
+
+            for (int i = k + 1; i < columns; i++) {
+                if (this.matrix.get(k).get(i).absolute().compare(v_max2) == -1) {
+                    v_max2 = this.matrix.get(k).get(i).initialize();
+                    i_max2 = i;
+                }
+            }
+            if (i_max != k) {
+                Collections.swap(this.matrix, k, i_max);
+            }
+            if (i_max2 != k) {
+                for (int j = 0; j < columns; j++) {
+                    T temp = this.matrix.get(j).get(i_max2).initialize();
+                    this.matrix.get(j).set(i_max2, this.matrix.get(j).get(k));
+                    this.matrix.get(j).set(k, temp);
+                }
+                Collections.swap(range, i_max2, k);
+            }
+            for (int i = k + 1; i < columns; i++) {
+                T temp = this.matrix.get(i).get(k).initialize();
+                temp.div(this.matrix.get(k).get(k));
+                for (int j = k + 1; j < rows; j++) {   // jak nie będzie działać to zmień na get(k)
+                    T temp2 = this.matrix.get(k).get(j).initialize();
+                    temp2.mul(temp);
+                    this.matrix.get(i).get(j).sub(temp2);
+                }
+                this.matrix.get(i).set(k, this.matrix.get(0).get(0).initialize_zero());
+            }
+            this.matrix = this.shortenMatrix().getMatrix();
+        }
+        for (int i = 0; i < columns; i++) {
+            result.add(this.matrix.get(0).get(0).initialize());
+        }
+        for (int i = columns - 1; i >= 0; i--) {
+//            System.out.println(i);
+            result.set(i, this.matrix.get(i).get(columns));
+            for (int j = i + 1; j < columns; j++) {
+                T temp = this.matrix.get(i).get(j).initialize();
+                temp.mul(result.get(j));
+                result.get(i).sub(temp);
+            }
+            T temp2 = result.get(i);
+            temp2.div(this.matrix.get(i).get(i));
+            result.set(i, temp2);
+        }
+        for (int i = 0; i < range.size(); i++) {
+            result2.add(result.get(range.get(i)));
+        }
+        return result2;
     }
 
     public MyMatrix<T> multiplyMatrix(MyMatrix<T> another_matrix) {

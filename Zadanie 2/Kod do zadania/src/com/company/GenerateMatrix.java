@@ -55,6 +55,6 @@ public class GenerateMatrix {
         generate(100, 100, "B", -65536, 65535);
         generate(100, 100, "C", -65536, 65535);
         generate(1, 100, "X", -65536, 65535);
-        generate(101, 100, "Gauss", -65536, 65535);
+        generate(26, 25, "Gauss", -65536, 65535);
     }
 }
