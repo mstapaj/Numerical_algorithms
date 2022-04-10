@@ -74,7 +74,6 @@ public class Main {
     }
 
     public static SimpleMatrix makeLibraryMatrix(List<List<Number>> list) {
-//        Double[][] array = new Double[list.size()][list.size()];
         double[][] resArray = new double[list.size()][list.get(0).size()];
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < list.get(0).size(); j++) {
@@ -156,9 +155,9 @@ public class Main {
 //        System.out.println(matrixOperationsFraction.calculate(fractionMyMatrixA, fractionMyMatrixB, fractionMyMatrixC, fractionMyMatrixX, "fraction"));
 //        System.out.println(matrixLibrary.calculate(libraryMatrixA,libraryMatrixB,libraryMatrixC,libraryMatrixX,"library"));
 
-        System.out.println(matrixOperationsFloat.calculateGauss(floatMyMatrixGauss, "floatGauss"));
-        System.out.println(matrixOperationsDouble.calculateGauss(doubleMyMatrixGauss, "doubleGauss"));
-        System.out.println(matrixOperationsFraction.calculateGauss(fractionMyMatrixGauss, "fractionGauss"));
+        System.out.println(matrixOperationsFloat.calculateGauss(floatMyMatrixGauss, floatMyMatrixGauss2, floatMyMatrixGauss3, "floatGauss"));
+        System.out.println(matrixOperationsDouble.calculateGauss(doubleMyMatrixGauss, doubleMyMatrixGauss2, doubleMyMatrixGauss3, "doubleGauss"));
+        System.out.println(matrixOperationsFraction.calculateGauss(fractionMyMatrixGauss, fractionMyMatrixGauss2, fractionMyMatrixGauss3, "fractionGauss"));
         System.out.println(matrixLibrary.calculateGauss(libraryMatrixGauss, "libraryGauss"));
 
         //A * X
@@ -468,7 +467,6 @@ public class Main {
 //        System.out.println("Library: " + timeElapsed.toMillis() + " millisekund");
 ////        System.out.println(libraryResGauss);
 //        libraryResGauss3.saveToFileCSV("results/libraryResGauss3.txt");
-
 
     }
 }

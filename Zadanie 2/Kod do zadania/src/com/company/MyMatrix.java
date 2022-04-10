@@ -93,7 +93,6 @@ public class MyMatrix<T extends MyNumber<T>> {
         int columns = this.matrix.size();
         int rows = this.matrix.get(0).size();
         for (int k = 0; k < columns; k++) {
-//            System.out.println(k);
             for (int i = k + 1; i < columns; i++) {
                 T temp = this.matrix.get(i).get(k).initialize();
                 temp.div(this.matrix.get(k).get(k));
@@ -133,7 +132,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             int i_max = k;
             T v_max = this.matrix.get(i_max).get(k).initialize();
             for (int i = k + 1; i < columns; i++) {
-                if (this.matrix.get(i).get(k).absolute().compare(v_max) == -1) {
+                if (this.matrix.get(i).get(k).absolute().compare(v_max) == 1) {
                     v_max = this.matrix.get(i).get(k).initialize();
                     i_max = i;
                 }
@@ -157,7 +156,6 @@ public class MyMatrix<T extends MyNumber<T>> {
             result.add(this.matrix.get(0).get(0).initialize());
         }
         for (int i = columns - 1; i >= 0; i--) {
-//            System.out.println(i);
             result.set(i, this.matrix.get(i).get(columns));
             for (int j = i + 1; j < columns; j++) {
                 T temp = this.matrix.get(i).get(j).initialize();
@@ -180,27 +178,26 @@ public class MyMatrix<T extends MyNumber<T>> {
         for (int k = 0; k < columns; k++) {
             int i_max = k;
             T v_max = this.matrix.get(i_max).get(k).initialize();
-            int i_max2 = k;
-            T v_max2 = this.matrix.get(i_max2).get(k).initialize();
             for (int i = k + 1; i < columns; i++) {
                 if (this.matrix.get(i).get(k).absolute().compare(v_max) == -1) {
                     v_max = this.matrix.get(i).get(k).initialize();
                     i_max = i;
                 }
             }
-
+            if (i_max != k) {
+                Collections.swap(this.matrix, k, i_max);
+            }
+            int i_max2 = k;
+            T v_max2 = this.matrix.get(i_max2).get(k).initialize();
             for (int i = k + 1; i < columns; i++) {
                 if (this.matrix.get(k).get(i).absolute().compare(v_max2) == -1) {
                     v_max2 = this.matrix.get(k).get(i).initialize();
                     i_max2 = i;
                 }
             }
-            if (i_max != k) {
-                Collections.swap(this.matrix, k, i_max);
-            }
             if (i_max2 != k) {
                 for (int j = 0; j < columns; j++) {
-                    T temp = this.matrix.get(j).get(i_max2).initialize();
+                    T temp = this.matrix.get(j).get(i_max2);
                     this.matrix.get(j).set(i_max2, this.matrix.get(j).get(k));
                     this.matrix.get(j).set(k, temp);
                 }
@@ -222,7 +219,6 @@ public class MyMatrix<T extends MyNumber<T>> {
             result.add(this.matrix.get(0).get(0).initialize());
         }
         for (int i = columns - 1; i >= 0; i--) {
-//            System.out.println(i);
             result.set(i, this.matrix.get(i).get(columns));
             for (int j = i + 1; j < columns; j++) {
                 T temp = this.matrix.get(i).get(j).initialize();
@@ -257,27 +253,4 @@ public class MyMatrix<T extends MyNumber<T>> {
         }
         return new MyMatrix<>(rows, columns, matrixElements);
     }
-
-    // Inne mnożenie
-
-    //    public void multiplyMatrix(MyMatrix<T> another_matrix) {
-////        List<List<MyNumber<T>>> new_mat= new ArrayList<>();
-//        int rows1 = this.matrix.size();
-//        int columns1 = another_matrix.getMatrix().get(0).size();
-//        int rows2 = another_matrix.getMatrix().size();
-//        for (int i = 0; i < rows1; i++) {
-//            List<T> temp_row = new ArrayList<>();
-//            for (int j = 0; j < columns1; j++) {
-//                T summary = this.matrix.get(0).get(0).initialize_zero();
-//                for (int k = 0; k < rows2; k++) {
-//                    MyNumber<T> temp = this.matrix.get(i).get(k).initialize();
-//                    temp.mul(another_matrix.getMatrix().get(k).get(j));
-//                    summary.add(temp.getValue());
-//                }
-//                temp_row.add(summary);
-//            }
-//            this.matrix.set(i, temp_row);
-//        }
-//    }
-
 }

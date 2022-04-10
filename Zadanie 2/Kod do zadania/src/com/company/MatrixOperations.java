@@ -59,34 +59,34 @@ public class MatrixOperations<T extends MyNumber<T>> {
         return timeResults;
     }
 
-    public String calculateGauss(MyMatrix<T> matrix, String fileName) {
+    public String calculateGauss(MyMatrix<T> matrix1, MyMatrix<T> matrix2, MyMatrix<T> matrix3, String fileName) {
         String timeResults = fileName + "\n";
-        MyMatrix<T> matRes1 = new MyMatrix<>(matrix.getMatrix());
+        MyMatrix<T> matRes1 = new MyMatrix<>(matrix1.getMatrix());
         List<T> resGauss1;
         start = Instant.now();
         resGauss1 = matRes1.gaussMatrixG();
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         timeResults = timeResults + "Gauss P: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(new MyMatrix<>(matrix.getMatrix().size(), 1, resGauss1), "gaussPRes" + fileName);
+        saveResToFile(new MyMatrix<>(matrix1.getMatrix().size(), 1, resGauss1), "gaussPRes" + fileName);
 
-        MyMatrix<T> matRes2 = new MyMatrix<>(matrix.getMatrix());
+        MyMatrix<T> matRes2 = new MyMatrix<>(matrix2.getMatrix());
         List<T> resGauss2;
         start = Instant.now();
         resGauss2 = matRes2.gaussMatrixPG();
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         timeResults = timeResults + "Gauss PG: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(new MyMatrix<>(matrix.getMatrix().size(), 1, resGauss2), "gaussPGRes" + fileName);
+        saveResToFile(new MyMatrix<>(matrix2.getMatrix().size(), 1, resGauss2), "gaussPGRes" + fileName);
 
-        MyMatrix<T> matRes3 = new MyMatrix<>(matrix.getMatrix());
+        MyMatrix<T> matRes3 = new MyMatrix<>(matrix3.getMatrix());
         List<T> resGauss3;
         start = Instant.now();
         resGauss3 = matRes3.gaussMatrixFG();
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         timeResults = timeResults + "Gauss FG: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(new MyMatrix<>(matrix.getMatrix().size(), 1, resGauss3), "gaussFGRes" + fileName);
+        saveResToFile(new MyMatrix<>(matrix3.getMatrix().size(), 1, resGauss3), "gaussFGRes" + fileName);
 
         return timeResults;
     }
