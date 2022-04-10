@@ -3,15 +3,11 @@ package com.company;
 import com.company.types.MyDouble;
 import com.company.types.MyFloat;
 import com.company.types.MyFraction;
-import org.ejml.simple.SimpleMatrix;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.*;
 
 public class Main {
 
@@ -35,54 +31,6 @@ public class Main {
 //    }
 
 
-    public static <T extends MyNumber<T>> MyMatrix<T> readMatrixFromFile(String file, String type) {
-        List<List<T>> toMat = new ArrayList<>();
-        try {
-            Scanner scanner = new Scanner(new File("data/" + file));
-            scanner.useDelimiter(",");
-            List<T> row = new ArrayList<>();
-            while (true) {
-                try {
-                    scanner.useDelimiter(",");
-                    String read = scanner.next();
-                    if (Objects.equals(read, "&")) {
-                        toMat.add(row);
-                        row = new ArrayList<>();
-                    } else {
-                        if (Objects.equals(type, "double")) {
-                            T temp = (T) new MyDouble(Double.parseDouble(read)).initialize();
-                            row.add(temp);
-                        } else if (Objects.equals(type, "float")) {
-                            T temp = (T) new MyFloat(Float.parseFloat(read));
-                            row.add(temp);
-                        } else if (Objects.equals(type, "fraction")) {
-//                            row.add((T) new Fraction(new BigInteger(read.split(";")[0]), new BigInteger(read.split(";")[1])));
-                            T temp = (T) new MyFraction(new BigInteger(read.split(";")[0]), new BigInteger(read.split(";")[1]));
-                            row.add(temp);
-                        } else {
-                            throw new IllegalArgumentException("Type " + type + " is not supported by this method");
-                        }
-                    }
-                } catch (NumberFormatException | NoSuchElementException e) {
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return new MyMatrix<>(toMat);
-    }
-
-    public static SimpleMatrix makeLibraryMatrix(List<List<Number>> list) {
-        double[][] resArray = new double[list.size()][list.get(0).size()];
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < list.get(0).size(); j++) {
-                resArray[i][j] = list.get(i).get(j).doubleValue();
-            }
-        }
-        return new SimpleMatrix(resArray);
-    }
-
     public static <T extends MyNumber<T>> void saveResToFile(MyMatrix<T> resMatrix, String fileName) {
         try {
             FileWriter fileWriter = new FileWriter("results/" + fileName + ".txt");
@@ -103,42 +51,45 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         // Wczytanie danych z plików
-        MyMatrix<MyFloat> floatMyMatrixA = readMatrixFromFile("floatMatrixA.txt", "float");
-        MyMatrix<MyFloat> floatMyMatrixB = readMatrixFromFile("floatMatrixB.txt", "float");
-        MyMatrix<MyFloat> floatMyMatrixC = readMatrixFromFile("floatMatrixC.txt", "float");
-        MyMatrix<MyFloat> floatMyMatrixX = readMatrixFromFile("floatMatrixX.txt", "float");
-        MyMatrix<MyFloat> floatMyMatrixGauss = readMatrixFromFile("floatMatrixGauss.txt", "float");
-        MyMatrix<MyFloat> floatMyMatrixGauss2 = readMatrixFromFile("floatMatrixGauss.txt", "float");
-        MyMatrix<MyFloat> floatMyMatrixGauss3 = readMatrixFromFile("floatMatrixGauss.txt", "float");
-        MyMatrix<MyDouble> doubleMyMatrixA = readMatrixFromFile("doubleMatrixA.txt", "double");
-        MyMatrix<MyDouble> doubleMyMatrixB = readMatrixFromFile("doubleMatrixB.txt", "double");
-        MyMatrix<MyDouble> doubleMyMatrixC = readMatrixFromFile("doubleMatrixC.txt", "double");
-        MyMatrix<MyDouble> doubleMyMatrixX = readMatrixFromFile("doubleMatrixX.txt", "double");
-        MyMatrix<MyDouble> doubleMyMatrixGauss = readMatrixFromFile("doubleMatrixGauss.txt", "double");
-        MyMatrix<MyDouble> doubleMyMatrixGauss2 = readMatrixFromFile("doubleMatrixGauss.txt", "double");
-        MyMatrix<MyDouble> doubleMyMatrixGauss3 = readMatrixFromFile("doubleMatrixGauss.txt", "double");
-        MyMatrix<MyFraction> fractionMyMatrixA = readMatrixFromFile("fractionMatrixA.txt", "fraction");
-        MyMatrix<MyFraction> fractionMyMatrixB = readMatrixFromFile("fractionMatrixB.txt", "fraction");
-        MyMatrix<MyFraction> fractionMyMatrixC = readMatrixFromFile("fractionMatrixC.txt", "fraction");
-        MyMatrix<MyFraction> fractionMyMatrixX = readMatrixFromFile("fractionMatrixX.txt", "fraction");
-        MyMatrix<MyFraction> fractionMyMatrixGauss = readMatrixFromFile("fractionMatrixGauss.txt", "fraction");
-        MyMatrix<MyFraction> fractionMyMatrixGauss2 = readMatrixFromFile("fractionMatrixGauss.txt", "fraction");
-        MyMatrix<MyFraction> fractionMyMatrixGauss3 = readMatrixFromFile("fractionMatrixGauss.txt", "fraction");
-        fractionMyMatrixA = fractionMyMatrixA.shortenMatrix();
-        fractionMyMatrixB = fractionMyMatrixB.shortenMatrix();
-        fractionMyMatrixC = fractionMyMatrixC.shortenMatrix();
-        fractionMyMatrixX = fractionMyMatrixX.shortenMatrix();
-        fractionMyMatrixGauss = fractionMyMatrixGauss.shortenMatrix();
-        fractionMyMatrixGauss2 = fractionMyMatrixGauss2.shortenMatrix();
-        fractionMyMatrixGauss3 = fractionMyMatrixGauss3.shortenMatrix();
-        SimpleMatrix libraryMatrixA = makeLibraryMatrix(readMatrixFromFile("doubleMatrixA.txt", "double").getNumber());
-        SimpleMatrix libraryMatrixB = makeLibraryMatrix(readMatrixFromFile("doubleMatrixB.txt", "double").getNumber());
-        SimpleMatrix libraryMatrixC = makeLibraryMatrix(readMatrixFromFile("doubleMatrixC.txt", "double").getNumber());
-        SimpleMatrix libraryMatrixX = makeLibraryMatrix(readMatrixFromFile("doubleMatrixX.txt", "double").getNumber());
-        SimpleMatrix libraryMatrixGauss = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss.txt", "double").getNumber());
-        SimpleMatrix libraryMatrixGauss2 = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss.txt", "double").getNumber());
-        SimpleMatrix libraryMatrixGauss3 = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss.txt", "double").getNumber());
+//        MyMatrix<MyFloat> floatMyMatrixA50 = readMatrixFromFile("floatMatrixA50.txt", "float");
+//        MyMatrix<MyFloat> floatMyMatrixB50 = readMatrixFromFile("floatMatrixB50.txt", "float");
+//        MyMatrix<MyFloat> floatMyMatrixC50 = readMatrixFromFile("floatMatrixC50.txt", "float");
+//        MyMatrix<MyFloat> floatMyMatrixX50 = readMatrixFromFile("floatMatrixX50.txt", "float");
+//        MyMatrix<MyFloat> floatMyMatrixGaussP = readMatrixFromFile("floatMatrixGauss.txt", "float");
+//        MyMatrix<MyFloat> floatMyMatrixGaussPG = readMatrixFromFile("floatMatrixGauss.txt", "float");
+//        MyMatrix<MyFloat> floatMyMatrixGaussFG = readMatrixFromFile("floatMatrixGauss.txt", "float");
+//        MyMatrix<MyDouble> doubleMyMatrixA50 = readMatrixFromFile("doubleMatrixA50.txt", "double");
+//        MyMatrix<MyDouble> doubleMyMatrixB50 = readMatrixFromFile("doubleMatrixB50.txt", "double");
+//        MyMatrix<MyDouble> doubleMyMatrixC50 = readMatrixFromFile("doubleMatrixC50.txt", "double");
+//        MyMatrix<MyDouble> doubleMyMatrixX50 = readMatrixFromFile("doubleMatrixX50.txt", "double");
+//        MyMatrix<MyDouble> doubleMyMatrixGaussP = readMatrixFromFile("doubleMatrixGauss.txt", "double");
+//        MyMatrix<MyDouble> doubleMyMatrixGaussPG = readMatrixFromFile("doubleMatrixGauss.txt", "double");
+//        MyMatrix<MyDouble> doubleMyMatrixGaussFG = readMatrixFromFile("doubleMatrixGauss.txt", "double");
+//        MyMatrix<MyFraction> fractionMyMatrixA50 = readMatrixFromFile("fractionMatrixA50.txt", "fraction");
+//        MyMatrix<MyFraction> fractionMyMatrixB50 = readMatrixFromFile("fractionMatrixB50.txt", "fraction");
+//        MyMatrix<MyFraction> fractionMyMatrixC50 = readMatrixFromFile("fractionMatrixC50.txt", "fraction");
+//        MyMatrix<MyFraction> fractionMyMatrixX50 = readMatrixFromFile("fractionMatrixX50.txt", "fraction");
+//        MyMatrix<MyFraction> fractionMyMatrixGaussP= readMatrixFromFile("fractionMatrixGauss.txt", "fraction");
+//        MyMatrix<MyFraction> fractionMyMatrixGaussPG = readMatrixFromFile("fractionMatrixGauss.txt", "fraction");
+//        MyMatrix<MyFraction> fractionMyMatrixGaussFG = readMatrixFromFile("fractionMatrixGauss.txt", "fraction");
+//        fractionMyMatrixA50 = fractionMyMatrixA50.shortenMatrix();
+//        fractionMyMatrixB50 = fractionMyMatrixB50.shortenMatrix();
+//        fractionMyMatrixC50 = fractionMyMatrixC50.shortenMatrix();
+//        fractionMyMatrixX50 = fractionMyMatrixX50.shortenMatrix();
+//        fractionMyMatrixGaussP= fractionMyMatrixGaussP.shortenMatrix();
+//        fractionMyMatrixGaussPG = fractionMyMatrixGaussPG.shortenMatrix();
+//        fractionMyMatrixGaussFG = fractionMyMatrixGaussFG.shortenMatrix();
+//        SimpleMatrix libraryMatrixA50 = makeLibraryMatrix(readMatrixFromFile("doubleMatrixA50.txt", "double").getNumber());
+//        SimpleMatrix libraryMatrixB50 = makeLibraryMatrix(readMatrixFromFile("doubleMatrixB50.txt", "double").getNumber());
+//        SimpleMatrix libraryMatrixC50 = makeLibraryMatrix(readMatrixFromFile("doubleMatrixC50.txt", "double").getNumber());
+//        SimpleMatrix libraryMatrixX50 = makeLibraryMatrix(readMatrixFromFile("doubleMatrixX50.txt", "double").getNumber());
+//        SimpleMatrix libraryMatrixGaussP = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss.txt", "double").getNumber());
+//        SimpleMatrix libraryMatrixGaussPG = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss.txt", "double").getNumber());
+//        SimpleMatrix libraryMatrixGaussFG = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss.txt", "double").getNumber());
 
+        ReadMatrixData matrix50 = new ReadMatrixData("50").collectData();
+        ReadMatrixData matrix100 = new ReadMatrixData("100").collectData();
+        ReadMatrixData matrix200 = new ReadMatrixData("200").collectData();
 
 //
         Instant start;
@@ -150,15 +101,35 @@ public class Main {
         MatrixOperations<MyFraction> matrixOperationsFraction = new MatrixOperations<>();
         MatrixLibrary matrixLibrary = new MatrixLibrary();
 
-//        System.out.println(matrixOperationsFloat.calculate(floatMyMatrixA, floatMyMatrixB, floatMyMatrixC, floatMyMatrixX, "float"));
-//        System.out.println(matrixOperationsDouble.calculate(doubleMyMatrixA, doubleMyMatrixB, doubleMyMatrixC, doubleMyMatrixX, "double"));
-//        System.out.println(matrixOperationsFraction.calculate(fractionMyMatrixA, fractionMyMatrixB, fractionMyMatrixC, fractionMyMatrixX, "fraction"));
-//        System.out.println(matrixLibrary.calculate(libraryMatrixA,libraryMatrixB,libraryMatrixC,libraryMatrixX,"library"));
+        System.out.println(matrixOperationsFloat.calculate(matrix50.floatMyMatrixA, matrix50.floatMyMatrixB, matrix50.floatMyMatrixC, matrix50.floatMyMatrixX, "float50"));
+        System.out.println(matrixOperationsDouble.calculate(matrix50.doubleMyMatrixA, matrix50.doubleMyMatrixB, matrix50.doubleMyMatrixC, matrix50.doubleMyMatrixX, "double50"));
+        System.out.println(matrixOperationsFraction.calculate(matrix50.fractionMyMatrixA, matrix50.fractionMyMatrixB, matrix50.fractionMyMatrixC, matrix50.fractionMyMatrixX, "fraction50"));
+        System.out.println(matrixLibrary.calculate(matrix50.libraryMatrixA, matrix50.libraryMatrixB, matrix50.libraryMatrixC, matrix50.libraryMatrixX, "library50"));
 
-        System.out.println(matrixOperationsFloat.calculateGauss(floatMyMatrixGauss, floatMyMatrixGauss2, floatMyMatrixGauss3, "floatGauss"));
-        System.out.println(matrixOperationsDouble.calculateGauss(doubleMyMatrixGauss, doubleMyMatrixGauss2, doubleMyMatrixGauss3, "doubleGauss"));
-        System.out.println(matrixOperationsFraction.calculateGauss(fractionMyMatrixGauss, fractionMyMatrixGauss2, fractionMyMatrixGauss3, "fractionGauss"));
-        System.out.println(matrixLibrary.calculateGauss(libraryMatrixGauss, "libraryGauss"));
+        System.out.println(matrixOperationsFloat.calculateGauss(matrix50.floatMyMatrixGaussP, matrix50.floatMyMatrixGaussPG, matrix50.floatMyMatrixGaussFG, "float50Gauss"));
+        System.out.println(matrixOperationsDouble.calculateGauss(matrix50.doubleMyMatrixGaussP, matrix50.doubleMyMatrixGaussPG, matrix50.doubleMyMatrixGaussFG, "double50Gauss"));
+        System.out.println(matrixOperationsFraction.calculateGauss(matrix50.fractionMyMatrixGaussP, matrix50.fractionMyMatrixGaussPG, matrix50.fractionMyMatrixGaussFG, "fraction50Gauss"));
+        System.out.println(matrixLibrary.calculateGauss(matrix50.libraryMatrixGauss, "library50Gauss"));
+
+        System.out.println(matrixOperationsFloat.calculate(matrix100.floatMyMatrixA, matrix100.floatMyMatrixB, matrix100.floatMyMatrixC, matrix100.floatMyMatrixX, "float100"));
+        System.out.println(matrixOperationsDouble.calculate(matrix100.doubleMyMatrixA, matrix100.doubleMyMatrixB, matrix100.doubleMyMatrixC, matrix100.doubleMyMatrixX, "double100"));
+        System.out.println(matrixOperationsFraction.calculate(matrix100.fractionMyMatrixA, matrix100.fractionMyMatrixB, matrix100.fractionMyMatrixC, matrix100.fractionMyMatrixX, "fraction100"));
+        System.out.println(matrixLibrary.calculate(matrix100.libraryMatrixA, matrix100.libraryMatrixB, matrix100.libraryMatrixC, matrix100.libraryMatrixX, "library100"));
+
+        System.out.println(matrixOperationsFloat.calculateGauss(matrix100.floatMyMatrixGaussP, matrix100.floatMyMatrixGaussPG, matrix100.floatMyMatrixGaussFG, "float100Gauss"));
+        System.out.println(matrixOperationsDouble.calculateGauss(matrix100.doubleMyMatrixGaussP, matrix100.doubleMyMatrixGaussPG, matrix100.doubleMyMatrixGaussFG, "double100Gauss"));
+        System.out.println(matrixOperationsFraction.calculateGauss(matrix100.fractionMyMatrixGaussP, matrix100.fractionMyMatrixGaussPG, matrix100.fractionMyMatrixGaussFG, "fraction100Gauss"));
+        System.out.println(matrixLibrary.calculateGauss(matrix100.libraryMatrixGauss, "library100Gauss"));
+
+        System.out.println(matrixOperationsFloat.calculate(matrix200.floatMyMatrixA, matrix200.floatMyMatrixB, matrix200.floatMyMatrixC, matrix200.floatMyMatrixX, "float200"));
+        System.out.println(matrixOperationsDouble.calculate(matrix200.doubleMyMatrixA, matrix200.doubleMyMatrixB, matrix200.doubleMyMatrixC, matrix200.doubleMyMatrixX, "double200"));
+        System.out.println(matrixOperationsFraction.calculate(matrix200.fractionMyMatrixA, matrix200.fractionMyMatrixB, matrix200.fractionMyMatrixC, matrix200.fractionMyMatrixX, "fraction200"));
+        System.out.println(matrixLibrary.calculate(matrix200.libraryMatrixA, matrix200.libraryMatrixB, matrix200.libraryMatrixC, matrix200.libraryMatrixX, "library200"));
+
+        System.out.println(matrixOperationsFloat.calculateGauss(matrix200.floatMyMatrixGaussP, matrix200.floatMyMatrixGaussPG, matrix200.floatMyMatrixGaussFG, "float200Gauss"));
+        System.out.println(matrixOperationsDouble.calculateGauss(matrix200.doubleMyMatrixGaussP, matrix200.doubleMyMatrixGaussPG, matrix200.doubleMyMatrixGaussFG, "double200Gauss"));
+        System.out.println(matrixOperationsFraction.calculateGauss(matrix200.fractionMyMatrixGaussP, matrix200.fractionMyMatrixGaussPG, matrix200.fractionMyMatrixGaussFG, "fraction200Gauss"));
+        System.out.println(matrixLibrary.calculateGauss(matrix200.libraryMatrixGauss, "library200Gauss"));
 
         //A * X
 //        System.out.println("A * X");
