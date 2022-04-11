@@ -93,7 +93,7 @@ public class MyMatrix<T extends MyNumber<T>> {
         int columns = this.matrix.size();
         int rows = this.matrix.get(0).size();
         for (int k = 0; k < columns; k++) {
-            System.out.println(k);
+//            System.out.println(k);
             result.add(this.matrix.get(0).get(0).initialize());
             for (int i = k + 1; i < columns; i++) {
                 T temp = this.matrix.get(i).get(k).initialize();
@@ -177,7 +177,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             int i_max = k;
             T v_max = this.matrix.get(i_max).get(k).initialize();
             for (int i = k + 1; i < columns; i++) {
-                if (this.matrix.get(i).get(k).absolute().compare(v_max) == -1) {
+                if (this.matrix.get(i).get(k).absolute().compare(v_max) == 1) {
                     v_max = this.matrix.get(i).get(k).initialize();
                     i_max = i;
                 }
@@ -188,7 +188,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             int i_max2 = k;
             T v_max2 = this.matrix.get(i_max2).get(k).initialize();
             for (int i = k + 1; i < columns; i++) {
-                if (this.matrix.get(k).get(i).absolute().compare(v_max2) == -1) {
+                if (this.matrix.get(k).get(i).absolute().compare(v_max2) == 1) {
                     v_max2 = this.matrix.get(k).get(i).initialize();
                     i_max2 = i;
                 }
