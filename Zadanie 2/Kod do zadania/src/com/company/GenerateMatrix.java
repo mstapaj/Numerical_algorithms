@@ -51,11 +51,11 @@ public class GenerateMatrix {
 
 
     public static void main(String[] args) {
-        generate(10, 10, "A50", -65536, 65535);
-        generate(10, 10, "B50", -65536, 65535);
-        generate(10, 10, "C50", -65536, 65535);
-        generate(1, 10, "X50", -65536, 65535);
-        generate(11, 10, "Gauss50", -65536, 65535);
+        generate(25, 25, "A50", -65536, 65535);
+        generate(25, 25, "B50", -65536, 65535);
+        generate(25, 25, "C50", -65536, 65535);
+        generate(1, 25, "X50", -65536, 65535);
+        generate(26, 25, "Gauss50", -65536, 65535);
 
 //        generate(100, 100, "A100", -65536, 65535);
 //        generate(100, 100, "B100", -65536, 65535);

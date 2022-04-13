@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -170,10 +169,8 @@ public class MyMatrix<T extends MyNumber<T>> {
     public List<T> gaussMatrixFG() {
         List<T> result = new ArrayList<>();
         Integer[] switchCols = new Integer[this.matrix.get(0).size() - 1];
-//        List<T> result2 = new ArrayList<>();
         int columns = this.matrix.size();
         int rows = this.matrix.get(0).size();
-//        List<Integer> range = new ArrayList<>(IntStream.rangeClosed(0, columns - 1).boxed().toList());
         for (int k = 0; k < columns; k++) {
             int i_max = k;
             T v_max = this.matrix.get(i_max).get(k).initialize();
@@ -200,8 +197,6 @@ public class MyMatrix<T extends MyNumber<T>> {
                     this.matrix.get(j).set(i_max2, this.matrix.get(j).get(k));
                     this.matrix.get(j).set(k, temp);
                 }
-//                Collections.swap(range, i_max2, k);
-//                Collections.swap(this.matrix, k, i_max2);
             }
             switchCols[k] = i_max2;
             for (int i = k + 1; i < columns; i++) {
@@ -230,12 +225,6 @@ public class MyMatrix<T extends MyNumber<T>> {
             temp2.div(this.matrix.get(i).get(i));
             result.set(i, temp2);
         }
-//        for (int i = 0; i < range.size(); i++) {
-//            result2.add(result.get(range.get(i)));
-//        }
-//        return result2;
-//        Collections.reverse(result);
-        System.out.println(Arrays.toString(switchCols));
         for (int i = switchCols.length - 1; i >= 0; i--) {
             if (i != switchCols[i]) {
                 T temp = result.get(i);
