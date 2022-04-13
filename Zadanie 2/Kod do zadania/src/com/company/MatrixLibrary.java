@@ -69,7 +69,7 @@ public class MatrixLibrary {
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         timeResults = timeResults + "Gauss library: " + timeElapsed.toMillis() + " millisekund\n";
-        matRes1.saveToFileCSV("results/libraryResGauss" + fileName + ".txt");
+        saveResToFile(matRes1, "libraryResGauss");
 
         return timeResults;
     }
