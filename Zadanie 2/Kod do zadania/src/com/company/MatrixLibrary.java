@@ -36,8 +36,7 @@ public class MatrixLibrary {
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         timeResults = timeResults + "A * X: " + timeElapsed.toMillis() + " millisekund\n";
-//        matRes1.saveToFileCSV("results/libraryRes1" + fileName + ".txt");
-        saveResToFile(matRes1, "libraryRes1");
+        saveResToFile(matRes1, "matRes1" + fileName);
 
         SimpleMatrix matRes2 = new SimpleMatrix(matrixA);
         start = Instant.now();
@@ -45,8 +44,7 @@ public class MatrixLibrary {
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         timeResults = timeResults + "(A + B + C) * X: " + timeElapsed.toMillis() + " millisekund\n";
-//        matRes2.saveToFileCSV("results/libraryRes2" + fileName + ".txt");
-        saveResToFile(matRes2, "libraryRes2");
+        saveResToFile(matRes2, "matRes2" + fileName);
 
         SimpleMatrix matRes3 = new SimpleMatrix(matrixB);
         start = Instant.now();
@@ -54,8 +52,7 @@ public class MatrixLibrary {
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         timeResults = timeResults + "A * (B * C): " + timeElapsed.toMillis() + " millisekund\n";
-//        matRes3.saveToFileCSV("results/libraryRes3" + fileName + ".txt");
-        saveResToFile(matRes3, "libraryRes3");
+        saveResToFile(matRes3, "matRes3" + fileName);
 
         return timeResults;
     }
@@ -69,7 +66,7 @@ public class MatrixLibrary {
         end = Instant.now();
         timeElapsed = Duration.between(start, end);
         timeResults = timeResults + "Gauss library: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(matRes1, "libraryResGauss");
+        saveResToFile(matRes1, "matResGauss" + fileName);
 
         return timeResults;
     }

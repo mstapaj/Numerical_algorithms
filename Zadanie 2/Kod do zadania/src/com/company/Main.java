@@ -81,30 +81,14 @@ public class Main {
         ReadMatrixData matrix300 = new ReadMatrixData("300").collectData();
         System.out.println(matrixOperationsFloat.calculate(matrix300.floatMyMatrixA, matrix300.floatMyMatrixB, matrix300.floatMyMatrixC, matrix300.floatMyMatrixX, "float300"));
         System.out.println(matrixOperationsDouble.calculate(matrix300.doubleMyMatrixA, matrix300.doubleMyMatrixB, matrix300.doubleMyMatrixC, matrix300.doubleMyMatrixX, "double300"));
-        System.out.println(matrixOperationsFraction.calculate(matrix300.fractionMyMatrixA, matrix300.fractionMyMatrixB, matrix300.fractionMyMatrixC, matrix300.fractionMyMatrixX, "fraction300"));
         System.out.println(matrixLibrary.calculate(matrix300.libraryMatrixA, matrix300.libraryMatrixB, matrix300.libraryMatrixC, matrix300.libraryMatrixX, "library300"));
         matrix300 = null;
 
         ReadMatrixData matrix500 = new ReadMatrixData("500").collectData();
         System.out.println(matrixOperationsFloat.calculate(matrix500.floatMyMatrixA, matrix500.floatMyMatrixB, matrix500.floatMyMatrixC, matrix500.floatMyMatrixX, "float500"));
         System.out.println(matrixOperationsDouble.calculate(matrix500.doubleMyMatrixA, matrix500.doubleMyMatrixB, matrix500.doubleMyMatrixC, matrix500.doubleMyMatrixX, "double500"));
-        System.out.println(matrixOperationsFraction.calculate(matrix500.fractionMyMatrixA, matrix500.fractionMyMatrixB, matrix500.fractionMyMatrixC, matrix500.fractionMyMatrixX, "fraction500"));
         System.out.println(matrixLibrary.calculate(matrix500.libraryMatrixA, matrix500.libraryMatrixB, matrix500.libraryMatrixC, matrix500.libraryMatrixX, "library500"));
         matrix500 = null;
-
-        ReadMatrixData matrix1000 = new ReadMatrixData("1000").collectData();
-        System.out.println(matrixOperationsFloat.calculate(matrix1000.floatMyMatrixA, matrix1000.floatMyMatrixB, matrix1000.floatMyMatrixC, matrix1000.floatMyMatrixX, "float1000"));
-        System.out.println(matrixOperationsDouble.calculate(matrix1000.doubleMyMatrixA, matrix1000.doubleMyMatrixB, matrix1000.doubleMyMatrixC, matrix1000.doubleMyMatrixX, "double1000"));
-        System.out.println(matrixOperationsFraction.calculate(matrix1000.fractionMyMatrixA, matrix1000.fractionMyMatrixB, matrix1000.fractionMyMatrixC, matrix1000.fractionMyMatrixX, "fraction1000"));
-        System.out.println(matrixLibrary.calculate(matrix1000.libraryMatrixA, matrix1000.libraryMatrixB, matrix1000.libraryMatrixC, matrix1000.libraryMatrixX, "library1000"));
-        matrix1000 = null;
-
-        ReadMatrixData matrix2000 = new ReadMatrixData("2000").collectData();
-        System.out.println(matrixOperationsFloat.calculate(matrix2000.floatMyMatrixA, matrix2000.floatMyMatrixB, matrix2000.floatMyMatrixC, matrix2000.floatMyMatrixX, "float2000"));
-        System.out.println(matrixOperationsDouble.calculate(matrix2000.doubleMyMatrixA, matrix2000.doubleMyMatrixB, matrix2000.doubleMyMatrixC, matrix2000.doubleMyMatrixX, "double2000"));
-        System.out.println(matrixOperationsFraction.calculate(matrix2000.fractionMyMatrixA, matrix2000.fractionMyMatrixB, matrix2000.fractionMyMatrixC, matrix2000.fractionMyMatrixX, "fraction2000"));
-        System.out.println(matrixLibrary.calculate(matrix2000.libraryMatrixA, matrix2000.libraryMatrixB, matrix2000.libraryMatrixC, matrix2000.libraryMatrixX, "library2000"));
-        matrix2000 = null;
 
         // Gauss
         matrix10 = new ReadMatrixData("10").collectData();
@@ -120,7 +104,6 @@ public class Main {
         System.out.println(matrixOperationsFraction.calculateGauss(matrix20.fractionMyMatrixGaussP, matrix20.fractionMyMatrixGaussPG, matrix20.fractionMyMatrixGaussFG, "fraction20Gauss"));
         System.out.println(matrixLibrary.calculateGauss(matrix20.libraryMatrixGauss, "library20Gauss"));
         matrix20 = null;
-
 
         matrix30 = new ReadMatrixData("30").collectData();
         System.out.println(matrixOperationsFloat.calculateGauss(matrix30.floatMyMatrixGaussP, matrix30.floatMyMatrixGaussPG, matrix30.floatMyMatrixGaussFG, "float30Gauss"));
@@ -146,33 +129,20 @@ public class Main {
         matrix100 = new ReadMatrixData("100").collectData();
         System.out.println(matrixOperationsFloat.calculateGauss(matrix100.floatMyMatrixGaussP, matrix100.floatMyMatrixGaussPG, matrix100.floatMyMatrixGaussFG, "float100Gauss"));
         System.out.println(matrixOperationsDouble.calculateGauss(matrix100.doubleMyMatrixGaussP, matrix100.doubleMyMatrixGaussPG, matrix100.doubleMyMatrixGaussFG, "double100Gauss"));
-        System.out.println(matrixOperationsFraction.calculateGauss(matrix100.fractionMyMatrixGaussP, matrix100.fractionMyMatrixGaussPG, matrix100.fractionMyMatrixGaussFG, "fraction100Gauss"));
+        System.out.println(matrixLibrary.calculateGauss(matrix100.libraryMatrixGauss, "library100Gauss"));
         matrix100 = null;
 
 
         matrix300 = new ReadMatrixData("300").collectData();
         System.out.println(matrixOperationsFloat.calculateGauss(matrix300.floatMyMatrixGaussP, matrix300.floatMyMatrixGaussPG, matrix300.floatMyMatrixGaussFG, "float300Gauss"));
         System.out.println(matrixOperationsDouble.calculateGauss(matrix300.doubleMyMatrixGaussP, matrix300.doubleMyMatrixGaussPG, matrix300.doubleMyMatrixGaussFG, "double300Gauss"));
-        System.out.println(matrixOperationsFraction.calculateGauss(matrix300.fractionMyMatrixGaussP, matrix300.fractionMyMatrixGaussPG, matrix300.fractionMyMatrixGaussFG, "fraction300Gauss"));
+        System.out.println(matrixLibrary.calculateGauss(matrix300.libraryMatrixGauss, "library300Gauss"));
         matrix300 = null;
 
         matrix500 = new ReadMatrixData("500").collectData();
         System.out.println(matrixOperationsFloat.calculateGauss(matrix500.floatMyMatrixGaussP, matrix500.floatMyMatrixGaussPG, matrix500.floatMyMatrixGaussFG, "float500Gauss"));
         System.out.println(matrixOperationsDouble.calculateGauss(matrix500.doubleMyMatrixGaussP, matrix500.doubleMyMatrixGaussPG, matrix500.doubleMyMatrixGaussFG, "double500Gauss"));
-        System.out.println(matrixOperationsFraction.calculateGauss(matrix500.fractionMyMatrixGaussP, matrix500.fractionMyMatrixGaussPG, matrix500.fractionMyMatrixGaussFG, "fraction500Gauss"));
+        System.out.println(matrixLibrary.calculateGauss(matrix500.libraryMatrixGauss, "library500Gauss"));
         matrix500 = null;
-
-        matrix1000 = new ReadMatrixData("1000").collectData();
-        System.out.println(matrixOperationsFloat.calculateGauss(matrix1000.floatMyMatrixGaussP, matrix1000.floatMyMatrixGaussPG, matrix1000.floatMyMatrixGaussFG, "float1000Gauss"));
-        System.out.println(matrixOperationsDouble.calculateGauss(matrix1000.doubleMyMatrixGaussP, matrix1000.doubleMyMatrixGaussPG, matrix1000.doubleMyMatrixGaussFG, "double1000Gauss"));
-        System.out.println(matrixOperationsFraction.calculateGauss(matrix1000.fractionMyMatrixGaussP, matrix1000.fractionMyMatrixGaussPG, matrix1000.fractionMyMatrixGaussFG, "fraction1000Gauss"));
-        matrix1000 = null;
-
-        matrix2000 = new ReadMatrixData("2000").collectData();
-        System.out.println(matrixOperationsFloat.calculateGauss(matrix2000.floatMyMatrixGaussP, matrix2000.floatMyMatrixGaussPG, matrix2000.floatMyMatrixGaussFG, "float2000Gauss"));
-        System.out.println(matrixOperationsDouble.calculateGauss(matrix2000.doubleMyMatrixGaussP, matrix2000.doubleMyMatrixGaussPG, matrix2000.doubleMyMatrixGaussFG, "double2000Gauss"));
-        System.out.println(matrixOperationsFraction.calculateGauss(matrix2000.fractionMyMatrixGaussP, matrix2000.fractionMyMatrixGaussPG, matrix2000.fractionMyMatrixGaussFG, "fraction2000Gauss"));
-        matrix2000 = null;
-
     }
 }
