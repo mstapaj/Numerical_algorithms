@@ -186,67 +186,117 @@ public class TestMyMatrix {
         assertEquals("Multiply matrix fraction", res, resultM.getNumber());
     }
 
+    @Test
+    public void testMyMatrixGaussG() {
+        List<MyDouble> listToMat = new ArrayList<>();
+        MyDouble l1 = new MyDouble(1.2);
+        MyDouble l2 = new MyDouble(2.6);
+        MyDouble l3 = new MyDouble(-0.1);
+        MyDouble l4 = new MyDouble(1.5);
+        MyDouble l5 = new MyDouble(4.5);
+        MyDouble l6 = new MyDouble(9.8);
+        MyDouble l7 = new MyDouble(-0.4);
+        MyDouble l8 = new MyDouble(5.7);
+        MyDouble l9 = new MyDouble(0.1);
+        MyDouble l10 = new MyDouble(-0.1);
+        MyDouble l11 = new MyDouble(-0.3);
+        MyDouble l12 = new MyDouble(-3.5);
+        MyDouble l13 = new MyDouble(4.5);
+        MyDouble l14 = new MyDouble(-5.2);
+        MyDouble l15 = new MyDouble(4.2);
+        MyDouble l16 = new MyDouble(-3.4);
+        MyDouble p1 = new MyDouble(13.15);
+        MyDouble p2 = new MyDouble(49.84);
+        MyDouble p3 = new MyDouble(-14.08);
+        MyDouble p4 = new MyDouble(-46.51);
+        Collections.addAll(listToMat, l1, l2, l3, l4, p1, l5, l6, l7, l8, p2, l9, l10, l11, l12, p3, l13, l14, l15, l16, p4);
+        MyMatrix<MyDouble> sut = new MyMatrix<>(4, 5, listToMat);
+        List<MyDouble> temp = sut.gaussMatrixG();
+        List<Double> temp2 = new ArrayList<>();
+        for (int i = 0; i < temp.size(); i++) {
+            temp2.add(temp.get(i).getNumber());
+        }
+        List<Double> res = new ArrayList<>();
+        Collections.addAll(res, -1.3, 3.2, -2.4, 4.1);
+        assertEquals("Gauss G 1 value", res.get(0), temp2.get(0), 0.000000000001);
+        assertEquals("Gauss G 2 value", res.get(1), temp2.get(1), 0.000000000001);
+        assertEquals("Gauss G 3 value", res.get(2), temp2.get(2), 0.000000000001);
+        assertEquals("Gauss G 4 value", res.get(3), temp2.get(3), 0.000000000001);
+    }
 
-    // Ty są jakies stare testy
+    @Test
+    public void testMyMatrixGaussPG() {
+        List<MyDouble> listToMat = new ArrayList<>();
+        MyDouble l1 = new MyDouble(1.2);
+        MyDouble l2 = new MyDouble(2.6);
+        MyDouble l3 = new MyDouble(-0.1);
+        MyDouble l4 = new MyDouble(1.5);
+        MyDouble l5 = new MyDouble(4.5);
+        MyDouble l6 = new MyDouble(9.8);
+        MyDouble l7 = new MyDouble(-0.4);
+        MyDouble l8 = new MyDouble(5.7);
+        MyDouble l9 = new MyDouble(0.1);
+        MyDouble l10 = new MyDouble(-0.1);
+        MyDouble l11 = new MyDouble(-0.3);
+        MyDouble l12 = new MyDouble(-3.5);
+        MyDouble l13 = new MyDouble(4.5);
+        MyDouble l14 = new MyDouble(-5.2);
+        MyDouble l15 = new MyDouble(4.2);
+        MyDouble l16 = new MyDouble(-3.4);
+        MyDouble p1 = new MyDouble(13.15);
+        MyDouble p2 = new MyDouble(49.84);
+        MyDouble p3 = new MyDouble(-14.08);
+        MyDouble p4 = new MyDouble(-46.51);
+        Collections.addAll(listToMat, l1, l2, l3, l4, p1, l5, l6, l7, l8, p2, l9, l10, l11, l12, p3, l13, l14, l15, l16, p4);
+        MyMatrix<MyDouble> sut = new MyMatrix<>(4, 5, listToMat);
+        List<MyDouble> temp = sut.gaussMatrixPG();
+        List<Double> temp2 = new ArrayList<>();
+        for (int i = 0; i < temp.size(); i++) {
+            temp2.add(temp.get(i).getNumber());
+        }
+        List<Double> res = new ArrayList<>();
+        Collections.addAll(res, -1.3, 3.2, -2.4, 4.1);
+        assertEquals("Gauss PG 1 value", res.get(0), temp2.get(0), 0.000000000001);
+        assertEquals("Gauss PG 2 value", res.get(1), temp2.get(1), 0.000000000001);
+        assertEquals("Gauss PG 3 value", res.get(2), temp2.get(2), 0.000000000001);
+        assertEquals("Gauss PG 4 value", res.get(3), temp2.get(3), 0.000000000001);
+    }
 
-
-//    @Test
-//    public void testAddMatrixDouble() {
-//        List<MyNumber<Double>> listToMat = new ArrayList<>();
-//        MyNumber<Double> l1 = new MyDouble(2.0);
-//        MyNumber<Double> l2 = new MyDouble(5.0);
-//        MyNumber<Double> l3 = new MyDouble(1.0);
-//        MyNumber<Double> l4 = new MyDouble(-2.0);
-//        Collections.addAll(listToMat, l1, l2, l3, l4);
-//        MyMatrix<Double> sut = new MyMatrix<>(2, 2, listToMat);
-//        List<MyNumber<Double>> listToMat2 = new ArrayList<>();
-//        MyNumber<Double> l5 = new MyDouble(3.0);
-//        MyNumber<Double> l6 = new MyDouble(-1.0);
-//        MyNumber<Double> l7 = new MyDouble(7.0);
-//        MyNumber<Double> l8 = new MyDouble(4.0);
-//        Collections.addAll(listToMat2, l5, l6, l7, l8);
-//        MyMatrix<Double> sut2 = new MyMatrix<>(2, 2, listToMat2);
-//        List<List<Double>> res = new ArrayList<>();
-//        List<Double> row1 = new ArrayList<>();
-//        List<Double> row2 = new ArrayList<>();
-//        Collections.addAll(row1, 5.0, 4.0);
-//        Collections.addAll(row2, 8.0, 2.0);
-//        Collections.addAll(res, row1, row2);
-//        sut.addingMatrix(sut2);
-//        assertEquals("Add matrix float", res, sut.getMatrix());
-//    }
-//
-//    @Test
-//    public void testAddMatrixFraction() {
-//        List<MyFraction> listToMat = new ArrayList<>();
-//        MyFraction l1 = new MyFraction(BigInteger.ONE, BigInteger.valueOf(4));
-//        MyFraction l2 = new MyFraction(BigInteger.valueOf(3), BigInteger.valueOf(4));
-//        MyFraction l3 = new MyFraction(BigInteger.valueOf(2), BigInteger.valueOf(3));
-//        MyFraction l4 = new MyFraction(BigInteger.valueOf(1), BigInteger.valueOf(6));
-//        Collections.addAll(listToMat, l1, l2, l3, l4);
-//        MyMatrix<MyFraction> sut = new MyMatrix<>(2, 2, listToMat);
-//        List<MyFraction> listToMat2 = new ArrayList<>();
-//        MyFraction l5 = new MyFraction(BigInteger.valueOf(3), BigInteger.valueOf(4));
-//        MyFraction l6 = new MyFraction(BigInteger.valueOf(1), BigInteger.valueOf(3));
-//        MyFraction l7 = new MyFraction(BigInteger.valueOf(4), BigInteger.valueOf(6));
-//        MyFraction l8 = new MyFraction(BigInteger.valueOf(3), BigInteger.valueOf(4));
-//        Collections.addAll(listToMat2, l5, l6, l7, l8);
-//        MyMatrix<MyFraction> sut2 = new MyMatrix<>(2, 2, listToMat2);
-//        List<List<BigDecimal>> res = new ArrayList<>();
-//        List<BigDecimal> row1 = new ArrayList<>();
-//        List<BigDecimal> row2 = new ArrayList<>();
-//        Collections.addAll(row1, new MyFraction(BigInteger.ONE, BigInteger.ONE).getNumber(), new MyFraction(BigInteger.valueOf(13), BigInteger.valueOf(12)).getFraction());
-//        Collections.addAll(row2, new MyFraction(BigInteger.valueOf(4), BigInteger.valueOf(3)).getNumber(), new MyFraction(BigInteger.valueOf(11), BigInteger.valueOf(12)).getFraction());
-//        Collections.addAll(res, row1, row2);
-//        sut.addingMatrix(sut2);
-//        List<List<BigDecimal>> result = new ArrayList<>();
-//        for (int i = 0; i < sut.getMatrix().size(); i++) {
-//            List<BigDecimal> temp = new ArrayList<>();
-//            for (int j = 0; j < sut.getMatrix().get(i).size(); j++) {
-//                temp.add(sut.getMatrix().get(i).get(j).getFraction());
-//            }
-//            result.add(temp);
-//        }
-//        assertEquals("Add matrix float", res, result);
-//    }
+    @Test
+    public void testMyMatrixGaussFG() {
+        List<MyDouble> listToMat = new ArrayList<>();
+        MyDouble l1 = new MyDouble(1.2);
+        MyDouble l2 = new MyDouble(2.6);
+        MyDouble l3 = new MyDouble(-0.1);
+        MyDouble l4 = new MyDouble(1.5);
+        MyDouble l5 = new MyDouble(4.5);
+        MyDouble l6 = new MyDouble(9.8);
+        MyDouble l7 = new MyDouble(-0.4);
+        MyDouble l8 = new MyDouble(5.7);
+        MyDouble l9 = new MyDouble(0.1);
+        MyDouble l10 = new MyDouble(-0.1);
+        MyDouble l11 = new MyDouble(-0.3);
+        MyDouble l12 = new MyDouble(-3.5);
+        MyDouble l13 = new MyDouble(4.5);
+        MyDouble l14 = new MyDouble(-5.2);
+        MyDouble l15 = new MyDouble(4.2);
+        MyDouble l16 = new MyDouble(-3.4);
+        MyDouble p1 = new MyDouble(13.15);
+        MyDouble p2 = new MyDouble(49.84);
+        MyDouble p3 = new MyDouble(-14.08);
+        MyDouble p4 = new MyDouble(-46.51);
+        Collections.addAll(listToMat, l1, l2, l3, l4, p1, l5, l6, l7, l8, p2, l9, l10, l11, l12, p3, l13, l14, l15, l16, p4);
+        MyMatrix<MyDouble> sut = new MyMatrix<>(4, 5, listToMat);
+        List<MyDouble> temp = sut.gaussMatrixFG();
+        List<Double> temp2 = new ArrayList<>();
+        for (int i = 0; i < temp.size(); i++) {
+            temp2.add(temp.get(i).getNumber());
+        }
+        List<Double> res = new ArrayList<>();
+        Collections.addAll(res, -1.3, 3.2, -2.4, 4.1);
+        assertEquals("Gauss FG 1 value", res.get(0), temp2.get(0), 0.000000000001);
+        assertEquals("Gauss FG 2 value", res.get(1), temp2.get(1), 0.000000000001);
+        assertEquals("Gauss FG 3 value", res.get(2), temp2.get(2), 0.000000000001);
+        assertEquals("Gauss FG 4 value", res.get(3), temp2.get(3), 0.000000000001);
+    }
 }

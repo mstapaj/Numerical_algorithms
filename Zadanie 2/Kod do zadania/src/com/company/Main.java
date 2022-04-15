@@ -142,37 +142,6 @@ public class Main {
 //        System.out.println(liczba5.getDenumerator());
 //        System.out.println(liczba5.getDecimalValue());
 
-//        List<MyDouble> listToMat = new ArrayList<>();
-//        MyDouble l1 = new MyDouble(1.2);
-//        MyDouble l2 = new MyDouble(2.6);
-//        MyDouble l3 = new MyDouble(-0.1);
-//        MyDouble l4 = new MyDouble(1.5);
-//        MyDouble l5 = new MyDouble(4.5);
-//        MyDouble l6 = new MyDouble(9.8);
-//        MyDouble l7 = new MyDouble(-0.4);
-//        MyDouble l8 = new MyDouble(5.7);
-//        MyDouble l9 = new MyDouble(0.1);
-//        MyDouble l10 = new MyDouble(-0.1);
-//        MyDouble l11 = new MyDouble(-0.3);
-//        MyDouble l12 = new MyDouble(-3.5);
-//        MyDouble l13 = new MyDouble(4.5);
-//        MyDouble l14 = new MyDouble(-5.2);
-//        MyDouble l15 = new MyDouble(4.2);
-//        MyDouble l16 = new MyDouble(-3.4);
-//        MyDouble p1 = new MyDouble(13.15);
-//        MyDouble p2 = new MyDouble(49.84);
-//        MyDouble p3 = new MyDouble(-14.08);
-//        MyDouble p4 = new MyDouble(-46.51);
-//        Collections.addAll(listToMat, l1, l2, l3, l4, p1, l5, l6, l7, l8, p2, l9, l10, l11, l12, p3, l13, l14, l15, l16, p4);
-//        MyMatrix<MyDouble> sut = new MyMatrix<>(4, 5, listToMat);
-////        print_matrix(sut.getMyNumber());
-////        sut=sut.gaussMatrixG();
-////        System.out.println();
-////        System.out.println(sut.gaussMatrixG());
-//        List<MyDouble> temp= sut.gaussMatrixG();
-//        System.out.println(temp);
-//        for (int i = 0; i < temp.size(); i++) {
-//            System.out.println(temp.get(i).getNumber());
-//        }
+
     }
 }
