@@ -1,5 +1,6 @@
-package com.company;
+package com.company.tests;
 
+import com.company.MyMatrix;
 import com.company.types.MyDouble;
 import com.company.types.MyFloat;
 import com.company.types.MyFraction;
