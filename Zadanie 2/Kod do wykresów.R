@@ -185,75 +185,322 @@ libraryResValues500<-read.delim("/home/mtx22/Pulpit/Algorytmy numeryczne/Algoryt
 # Operacje
 
 info<-c(10,20,30,40,50,100,300,500)
-floatRes1<-c(0,0,0,0,0,0,4,12)
-doubleRes1<-c(0,0,0,0,0,0,4,12)
-fractionRes1<-c(1,1,1,3,6,24,NA,NA)
-libraryRes1<-c(11,0,0,0,0,0,18,2)
+info2<-c(10,30,50)
+info3<-c(100,300,500)
+floatRes1first<-c(0,0,0)
+doubleRes1first<-c(0,0,0)
+fractionRes1first<-c(1,1,6)
+libraryRes1first<-c(11,0,0)
+floatRes1second<-c(0,4,12)
+doubleRes1second<-c(0,4,12)
+fractionRes1second<-c(24,NA,NA)
+libraryRes1second<-c(0,2,18)
 
-floatRes2<-c(0,1,7,7,26,221,13018,91414)
-doubleRes2<-c(0,1,7,5,24,190,12771,88866)
-fractionRes2<-c(4,6,8,14,35,285,NA,NA)
-libraryRes2<-c(0,0,0,0,0,2,15,2)
+floatRes2first<-c(0,7,26)
+doubleRes2first<-c(0,7,24)
+fractionRes2first<-c(4,8,35)
+libraryRes2first<-c(0,0,0)
+floatRes2second<-c(221,13018,91414)
+doubleRes2second<-c(190,12771,88866)
+fractionRes2second<-c(285,NA,NA)
+libraryRes2second<-c(2,2,15)
 
-floatRes3<-c(1,6,12,11,27,315,16202,112986)
-doubleRes3<-c(1,6,14,8,27,253,19226,115314)
-fractionRes3<-c(23,186,785,2875,8518,245850,NA,NA)
-libraryRes3<-c(0,0,0,0,0,2,15,2)
+floatRes3first<-c(1,12,27)
+doubleRes3first<-c(1,14,27)
+fractionRes3first<-c(23,785,8518)
+libraryRes3first<-c(0,0,0)
+floatRes3second<-c(315,16202,112986)
+doubleRes3second<-c(253,19226,115314)
+fractionRes3second<-c(245850,NA,NA)
+libraryRes3second<-c(2,2,15)
 
-par(mfrow=c(1,3))
+par(mfrow=c(1,2))
 
-plot(info,floatRes1,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "A * X",col="RED", pch = 19,ylim = c(0,25))
-lines(info,doubleRes1,type="b",col="BLUE")
-lines(info,fractionRes1,type="b",col="GREEN")
-lines(info,libraryRes1,type="b")
+plot(info2,floatRes1first,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "A * X",col="RED", pch = 19,ylim = c(0,11))
+lines(info2,doubleRes1first,type="b",col="BLUE")
+lines(info2,fractionRes1first,type="b",col="GREEN")
+lines(info2,libraryRes1first,type="b")
 
-plot(info,floatRes2,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "(A + B + C) * X",col="RED", pch = 19,ylim = c(0,99999))
-lines(info,doubleRes2,type="b",col="BLUE")
-lines(info,fractionRes2,type="b",col="GREEN")
-lines(info,libraryRes2,type="b")
+plot(info3,floatRes1second,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "A * X",col="RED", pch = 19,ylim = c(0,25))
+lines(info3,doubleRes1second,type="b",col="BLUE")
+lines(info3,fractionRes1second,type="b",col="GREEN")
+lines(info3,libraryRes1second,type="b")
 
-plot(info,floatRes3,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "A * (B * C)",col="RED", pch = 19,ylim = c(0,250000))
-lines(info,doubleRes3,type="b",col="BLUE")
-lines(info,fractionRes3,type="b",col="GREEN")
-lines(info,libraryRes3,type="b")
+plot(info2,floatRes2first,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "(A + B + C) * X",col="RED", pch = 19,ylim = c(0,36))
+lines(info2,doubleRes2first,type="b",col="BLUE")
+lines(info2,fractionRes2first,type="b",col="GREEN")
+lines(info2,libraryRes2first,type="b")
+
+plot(info3,floatRes2second,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "(A + B + C) * X",col="RED", pch = 19,ylim = c(0,92000))
+lines(info3,doubleRes2second,type="b",col="BLUE")
+lines(info3,fractionRes2second,type="b",col="GREEN")
+lines(info3,libraryRes2second,type="b")
+
+plot(info2,floatRes3first,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "A * (B * C)",col="RED", pch = 19,ylim = c(0,800))
+lines(info2,doubleRes3first,type="b",col="BLUE")
+lines(info2,fractionRes3first,type="b",col="GREEN")
+lines(info2,libraryRes3first,type="b")
+
+plot(info3,floatRes3second,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "A * (B * C)",col="RED", pch = 19,ylim = c(0,250000))
+lines(info3,doubleRes3second,type="b",col="BLUE")
+lines(info3,fractionRes3second,type="b",col="GREEN")
+lines(info3,libraryRes3second,type="b")
+
 
 legend("topleft", legend=c("Float", "Double", "Ułamki", "Biblioteka"),
-       col=c("red", "blue","green","black"), lty = 1, cex=1)
+       col=c("red", "blue","green","black"), lty = 1,pch='o', cex=1)
 
 # Gauss
 
-info<-c(10,20,30,40,50,100,300,500)
-floatResG<-c(0,1,3,7,15,13,367,2050)
-doubleResG<-c(0,1,3,1,3,20,368,1890)
-fractionResG<-c(13,563,6768,NA,NA,NA,NA,NA)
-libraryResG<-c(5,0,0,0,1,1,22,34)
+floatResGfirst<-c(0,3,15)
+doubleResGfirst<-c(0,3,3)
+fractionResGfirst<-c(13,6768,NA)
+libraryResGfirst<-c(5,0,1)
+floatResGsecond<-c(13,367,2050)
+doubleResGsecond<-c(20,368,1890)
+libraryResGsecond<-c(1,22,34)
 
-floatResPG<-c(0,1,3,6,12,45,1505,6319)
-doubleResPG<-c(0,1,3,2,12,41,1604,6032)
-fractionResPG<-c(12,579,7561,NA,NA,NA,NA,NA)
-libraryResG<-c(5,0,0,0,1,1,22,34)
+floatResPGfirst<-c(0,3,12)
+doubleResPGfirst<-c(0,3,12)
+fractionResPGfirst<-c(12,7561,NA)
+libraryResPGfirst<-c(5,0,1)
+floatResPGsecond<-c(45,1505,6319)
+doubleResPGsecond<-c(41,1604,6032)
+libraryResPGsecond<-c(1,22,34)
 
-floatResFG<-c(0,1,3,6,4,49,1824,7289)
-doubleResFG<-c(0,1,4,3,4,51,1915,7637)
-fractionResFG<-c(12,571,7517,NA,NA,NA,NA,NA)
-libraryResFG<-c(0,0,0,0,0,2,15,2)
+floatResFGfirst<-c(0,3,4)
+doubleResFGfirst<-c(0,4,4)
+fractionResFGfirst<-c(12,7517,NA)
+libraryResFGfirst<-c(0,0,0)
+floatResFGsecond<-c(49,1824,7289)
+doubleResFGsecond<-c(51,1915,7637)
+libraryResFGsecond<-c(2,2,15)
 
-plot(info,floatResG,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss bez wyboru",col="RED", pch = 19,ylim = c(0,2100))
-lines(info,doubleResG,type="b",col="BLUE")
-lines(info,fractionResG,type="b",col="GREEN")
-lines(info,libraryResG,type="b")
+plot(info2,floatResGfirst,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss bez wyboru",col="RED", pch = 19,ylim = c(0,20))
+lines(info2,doubleResGfirst,type="b",col="BLUE")
+lines(info2,fractionResGfirst,type="b",col="GREEN")
+lines(info2,libraryResGfirst,type="b")
 
-plot(info,floatResPG,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss z wyborem częściowym",col="RED", pch = 19,ylim = c(0,6400))
-lines(info,doubleResPG,type="b",col="BLUE")
-lines(info,fractionResPG,type="b",col="GREEN")
-lines(info,libraryResG,type="b")
+plot(info3,floatResGsecond,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss bez wyboru",col="RED", pch = 19,ylim = c(0,2100))
+lines(info3,doubleResGsecond,type="b",col="BLUE")
+lines(info3,libraryResGsecond,type="b")
 
-plot(info,floatResFG,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss z pełnym częściowym",col="RED", pch = 19,ylim = c(0,7700))
-lines(info,doubleResFG,type="b",col="BLUE")
-lines(info,fractionResFG,type="b",col="GREEN")
-lines(info,libraryResG,type="b")
+plot(info2,floatResPGfirst,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss wybór częściowy",col="RED", pch = 19,ylim = c(0,14))
+lines(info2,doubleResPGfirst,type="b",col="BLUE")
+lines(info2,fractionResPGfirst,type="b",col="GREEN")
+lines(info2,libraryResPGfirst,type="b")
+
+plot(info3,floatResPGsecond,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss wybór częściowy",col="RED", pch = 19,ylim = c(0,6500))
+lines(info3,doubleResPGsecond,type="b",col="BLUE")
+lines(info3,libraryResPGsecond,type="b")
+
+plot(info2,floatResFGfirst,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss wybór pełny",col="RED", pch = 19,ylim = c(0,15))
+lines(info2,doubleResFGfirst,type="b",col="BLUE")
+lines(info2,fractionResFGfirst,type="b",col="GREEN")
+lines(info2,libraryResFGfirst,type="b")
+
+plot(info3,floatResFGsecond,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss wybór pełny",col="RED", pch = 19,ylim = c(0,7700))
+lines(info3,doubleResFGsecond,type="b",col="BLUE")
+lines(info3,libraryResFGsecond,type="b")
+
 
 calculateNormForVector<-function(vector){
   return(sum(vector))
 }
+
+calculateNormForMatrix<-function(matrix){
+  lengthOfColumn<-sqrt(length(matrix))
+  res<-c()
+  for (i in 1:lengthOfColumn){
+    a<-lengthOfColumn*(i-1)+1
+    b<-lengthOfColumn*i
+    res<-append(res,sum(matrix[a:b]))
+  }
+  return(max(res))
+}
+
+# A * X
+abs(calculateNormForVector(libraryRes1Values10)-calculateNormForVector(floatRes1Values10))
+abs(calculateNormForVector(libraryRes1Values10)-calculateNormForVector(doubleRes1Values10))
+abs(calculateNormForVector(libraryRes1Values10)-calculateNormForVector(fractionRes1Values10))
+
+abs(calculateNormForVector(libraryRes1Values20)-calculateNormForVector(floatRes1Values20))
+abs(calculateNormForVector(libraryRes1Values20)-calculateNormForVector(doubleRes1Values20))
+abs(calculateNormForVector(libraryRes1Values20)-calculateNormForVector(fractionRes1Values20))
+
+abs(calculateNormForVector(libraryRes1Values30)-calculateNormForVector(floatRes1Values30))
+abs(calculateNormForVector(libraryRes1Values30)-calculateNormForVector(doubleRes1Values30))
+abs(calculateNormForVector(libraryRes1Values30)-calculateNormForVector(fractionRes1Values30))
+
+abs(calculateNormForVector(libraryRes1Values40)-calculateNormForVector(floatRes1Values40))
+abs(calculateNormForVector(libraryRes1Values40)-calculateNormForVector(doubleRes1Values40))
+abs(calculateNormForVector(libraryRes1Values40)-calculateNormForVector(fractionRes1Values40))
+
+abs(calculateNormForVector(libraryRes1Values50)-calculateNormForVector(floatRes1Values50))
+abs(calculateNormForVector(libraryRes1Values50)-calculateNormForVector(doubleRes1Values50))
+abs(calculateNormForVector(libraryRes1Values50)-calculateNormForVector(fractionRes1Values50))
+
+abs(calculateNormForVector(libraryRes1Values100)-calculateNormForVector(floatRes1Values100))
+abs(calculateNormForVector(libraryRes1Values100)-calculateNormForVector(doubleRes1Values100))
+abs(calculateNormForVector(libraryRes1Values100)-calculateNormForVector(fractionRes1Values100))
+
+abs(calculateNormForVector(libraryRes1Values300)-calculateNormForVector(floatRes1Values300))
+abs(calculateNormForVector(libraryRes1Values300)-calculateNormForVector(doubleRes1Values300))
+
+abs(calculateNormForVector(libraryRes1Values500)-calculateNormForVector(floatRes1Values500))
+abs(calculateNormForVector(libraryRes1Values500)-calculateNormForVector(doubleRes1Values500))
+
+# (A + B + C) * X
+abs(calculateNormForVector(libraryRes2Values10)-calculateNormForVector(floatRes2Values10))
+abs(calculateNormForVector(libraryRes2Values10)-calculateNormForVector(doubleRes2Values10))
+abs(calculateNormForVector(libraryRes2Values10)-calculateNormForVector(fractionRes2Values10))
+
+abs(calculateNormForVector(libraryRes2Values20)-calculateNormForVector(floatRes2Values20))
+abs(calculateNormForVector(libraryRes2Values20)-calculateNormForVector(doubleRes2Values20))
+abs(calculateNormForVector(libraryRes2Values20)-calculateNormForVector(fractionRes2Values20))
+
+abs(calculateNormForVector(libraryRes2Values30)-calculateNormForVector(floatRes2Values30))
+abs(calculateNormForVector(libraryRes2Values30)-calculateNormForVector(doubleRes2Values30))
+abs(calculateNormForVector(libraryRes2Values30)-calculateNormForVector(fractionRes2Values30))
+
+abs(calculateNormForVector(libraryRes2Values40)-calculateNormForVector(floatRes2Values40))
+abs(calculateNormForVector(libraryRes2Values40)-calculateNormForVector(doubleRes2Values40))
+abs(calculateNormForVector(libraryRes2Values40)-calculateNormForVector(fractionRes2Values40))
+
+abs(calculateNormForVector(libraryRes2Values50)-calculateNormForVector(floatRes2Values50))
+abs(calculateNormForVector(libraryRes2Values50)-calculateNormForVector(doubleRes2Values50))
+abs(calculateNormForVector(libraryRes2Values50)-calculateNormForVector(fractionRes2Values50))
+
+abs(calculateNormForVector(libraryRes2Values100)-calculateNormForVector(floatRes2Values100))
+abs(calculateNormForVector(libraryRes2Values100)-calculateNormForVector(doubleRes2Values100))
+abs(calculateNormForVector(libraryRes2Values100)-calculateNormForVector(fractionRes2Values100))
+
+abs(calculateNormForVector(libraryRes2Values300)-calculateNormForVector(floatRes2Values300))
+abs(calculateNormForVector(libraryRes2Values300)-calculateNormForVector(doubleRes2Values300))
+
+abs(calculateNormForVector(libraryRes2Values500)-calculateNormForVector(floatRes2Values500))
+abs(calculateNormForVector(libraryRes2Values500)-calculateNormForVector(doubleRes2Values500))
+
+# A * (B * C)
+abs(calculateNormForMatrix(libraryRes3Values10)-calculateNormForMatrix(floatRes3Values10))
+abs(calculateNormForMatrix(libraryRes3Values10)-calculateNormForMatrix(doubleRes3Values10))
+abs(calculateNormForMatrix(libraryRes3Values10)-calculateNormForMatrix(fractionRes3Values10))
+
+abs(calculateNormForMatrix(libraryRes3Values20)-calculateNormForMatrix(floatRes3Values20))
+abs(calculateNormForMatrix(libraryRes3Values20)-calculateNormForMatrix(doubleRes3Values20))
+abs(calculateNormForMatrix(libraryRes3Values20)-calculateNormForMatrix(fractionRes3Values20))
+
+abs(calculateNormForMatrix(libraryRes3Values30)-calculateNormForMatrix(floatRes3Values30))
+abs(calculateNormForMatrix(libraryRes3Values30)-calculateNormForMatrix(doubleRes3Values30))
+abs(calculateNormForMatrix(libraryRes3Values30)-calculateNormForMatrix(fractionRes3Values30))
+
+abs(calculateNormForMatrix(libraryRes3Values40)-calculateNormForMatrix(floatRes3Values40))
+abs(calculateNormForMatrix(libraryRes3Values40)-calculateNormForMatrix(doubleRes3Values40))
+abs(calculateNormForMatrix(libraryRes3Values40)-calculateNormForMatrix(fractionRes3Values40))
+
+abs(calculateNormForMatrix(libraryRes3Values50)-calculateNormForMatrix(floatRes3Values50))
+abs(calculateNormForMatrix(libraryRes3Values50)-calculateNormForMatrix(doubleRes3Values50))
+abs(calculateNormForMatrix(libraryRes3Values50)-calculateNormForMatrix(fractionRes3Values50))
+
+abs(calculateNormForMatrix(libraryRes3Values100)-calculateNormForMatrix(floatRes3Values100))
+abs(calculateNormForMatrix(libraryRes3Values100)-calculateNormForMatrix(doubleRes3Values100))
+abs(calculateNormForMatrix(libraryRes3Values100)-calculateNormForMatrix(fractionRes3Values100))
+
+abs(calculateNormForMatrix(libraryRes3Values300)-calculateNormForMatrix(floatRes3Values300))
+abs(calculateNormForMatrix(libraryRes3Values300)-calculateNormForMatrix(doubleRes3Values300))
+
+abs(calculateNormForMatrix(libraryRes3Values500)-calculateNormForMatrix(floatRes3Values500))
+abs(calculateNormForMatrix(libraryRes3Values500)-calculateNormForMatrix(doubleRes3Values500))
+
+# Gauss G
+abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(floatResGValues10))
+abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(doubleResGValues10))
+abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(fractionResGValues10))
+
+abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(floatResGValues20))
+abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(doubleResGValues20))
+abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(fractionResGValues20))
+
+abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(floatResGValues30))
+abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(doubleResGValues30))
+abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(fractionResGValues30))
+
+abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(floatResGValues40))
+abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(doubleResGValues40))
+abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(fractionResGValues40))
+
+abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(floatResGValues50))
+abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(doubleResGValues50))
+abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(fractionResGValues50))
+
+abs(calculateNormForVector(libraryResValues100)-calculateNormForVector(floatResGValues100))
+abs(calculateNormForVector(libraryResValues100)-calculateNormForVector(doubleResGValues100))
+
+abs(calculateNormForVector(libraryResValues300)-calculateNormForVector(floatResGValues300))
+abs(calculateNormForVector(libraryResValues300)-calculateNormForVector(doubleResGValues300))
+
+abs(calculateNormForVector(libraryResValues500)-calculateNormForVector(floatResGValues500))
+abs(calculateNormForVector(libraryResValues500)-calculateNormForVector(doubleResGValues500))
+
+# Gauss PG
+abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(floatResPGValues10))
+abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(doubleResPGValues10))
+abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(fractionResPGValues10))
+
+abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(floatResPGValues20))
+abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(doubleResPGValues20))
+abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(fractionResPGValues20))
+
+abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(floatResPGValues30))
+abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(doubleResPGValues30))
+abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(fractionResPGValues30))
+
+abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(floatResPGValues40))
+abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(doubleResPGValues40))
+abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(fractionResPGValues40))
+
+abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(floatResPGValues50))
+abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(doubleResPGValues50))
+abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(fractionResPGValues50))
+
+abs(calculateNormForVector(libraryResValues100)-calculateNormForVector(floatResPGValues100))
+abs(calculateNormForVector(libraryResValues100)-calculateNormForVector(doubleResPGValues100))
+
+abs(calculateNormForVector(libraryResValues300)-calculateNormForVector(floatResPGValues300))
+abs(calculateNormForVector(libraryResValues300)-calculateNormForVector(doubleResPGValues300))
+
+abs(calculateNormForVector(libraryResValues500)-calculateNormForVector(floatResPGValues500))
+abs(calculateNormForVector(libraryResValues500)-calculateNormForVector(doubleResPGValues500))
+
+# Gauss FG
+abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(floatResFGValues10))
+abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(doubleResFGValues10))
+abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(fractionResFGValues10))
+
+abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(floatResFGValues20))
+abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(doubleResFGValues20))
+abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(fractionResFGValues20))
+
+abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(floatResFGValues30))
+abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(doubleResFGValues30))
+abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(fractionResFGValues30))
+
+abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(floatResFGValues40))
+abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(doubleResFGValues40))
+abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(fractionResFGValues40))
+
+abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(floatResFGValues50))
+abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(doubleResFGValues50))
+abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(fractionResFGValues50))
+
+abs(calculateNormForVector(libraryResValues100)-calculateNormForVector(floatResFGValues100))
+abs(calculateNormForVector(libraryResValues100)-calculateNormForVector(doubleResFGValues100))
+
+abs(calculateNormForVector(libraryResValues300)-calculateNormForVector(floatResFGValues300))
+abs(calculateNormForVector(libraryResValues300)-calculateNormForVector(doubleResFGValues300))
+
+abs(calculateNormForVector(libraryResValues500)-calculateNormForVector(floatResFGValues500))
+abs(calculateNormForVector(libraryResValues500)-calculateNormForVector(doubleResFGValues500))
+
+
 
