@@ -105,7 +105,6 @@ public class MyMatrix<T extends MyNumber<T>> {
                 }
                 this.matrix.get(i).set(k, this.matrix.get(0).get(0).initialize_zero());
             }
-//            this.matrix = this.shortenMatrix().getMatrix();
         }
         for (int i = columns - 1; i >= 0; i--) {
             result.set(i, this.matrix.get(i).get(columns));
@@ -140,7 +139,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             for (int i = k + 1; i < columns; i++) {
                 T temp = this.matrix.get(i).get(k).initialize();
                 temp.div(this.matrix.get(k).get(k));
-                for (int j = k + 1; j < rows; j++) {   // jak nie będzie działać to zmień na get(k)
+                for (int j = k + 1; j < rows; j++) {
                     T temp2 = this.matrix.get(k).get(j).initialize();
                     temp2.mul(temp);
                     this.matrix.get(i).get(j).sub(temp2);
@@ -202,7 +201,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             for (int i = k + 1; i < columns; i++) {
                 T temp = this.matrix.get(i).get(k).initialize();
                 temp.div(this.matrix.get(k).get(k));
-                for (int j = k + 1; j < rows; j++) {   // jak nie będzie działać to zmień na get(k)
+                for (int j = k + 1; j < rows; j++) {
                     T temp2 = this.matrix.get(k).get(j).initialize();
                     temp2.mul(temp);
                     this.matrix.get(i).get(j).sub(temp2);
