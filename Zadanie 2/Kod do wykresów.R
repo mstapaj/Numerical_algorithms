@@ -260,7 +260,7 @@ lines(info3,libraryResFGsecond,type="b")
 
 
 calculateNormForVector<-function(vector){
-  return(sum(vector))
+  return(sum(abs(vector)))
 }
 
 calculateNormForMatrix<-function(matrix){
@@ -269,7 +269,7 @@ calculateNormForMatrix<-function(matrix){
   for (i in 1:lengthOfColumn){
     a<-lengthOfColumn*(i-1)+1
     b<-lengthOfColumn*i
-    res<-append(res,sum(matrix[a:b]))
+    res<-append(res,sum(abs(matrix[a:b])))
   }
   return(max(res))
 }
@@ -279,17 +279,9 @@ abs(calculateNormForVector(libraryRes1Values10)-calculateNormForVector(floatRes1
 abs(calculateNormForVector(libraryRes1Values10)-calculateNormForVector(doubleRes1Values10))
 abs(calculateNormForVector(libraryRes1Values10)-calculateNormForVector(fractionRes1Values10))
 
-abs(calculateNormForVector(libraryRes1Values20)-calculateNormForVector(floatRes1Values20))
-abs(calculateNormForVector(libraryRes1Values20)-calculateNormForVector(doubleRes1Values20))
-abs(calculateNormForVector(libraryRes1Values20)-calculateNormForVector(fractionRes1Values20))
-
 abs(calculateNormForVector(libraryRes1Values30)-calculateNormForVector(floatRes1Values30))
 abs(calculateNormForVector(libraryRes1Values30)-calculateNormForVector(doubleRes1Values30))
 abs(calculateNormForVector(libraryRes1Values30)-calculateNormForVector(fractionRes1Values30))
-
-abs(calculateNormForVector(libraryRes1Values40)-calculateNormForVector(floatRes1Values40))
-abs(calculateNormForVector(libraryRes1Values40)-calculateNormForVector(doubleRes1Values40))
-abs(calculateNormForVector(libraryRes1Values40)-calculateNormForVector(fractionRes1Values40))
 
 abs(calculateNormForVector(libraryRes1Values50)-calculateNormForVector(floatRes1Values50))
 abs(calculateNormForVector(libraryRes1Values50)-calculateNormForVector(doubleRes1Values50))
@@ -310,17 +302,9 @@ abs(calculateNormForVector(libraryRes2Values10)-calculateNormForVector(floatRes2
 abs(calculateNormForVector(libraryRes2Values10)-calculateNormForVector(doubleRes2Values10))
 abs(calculateNormForVector(libraryRes2Values10)-calculateNormForVector(fractionRes2Values10))
 
-abs(calculateNormForVector(libraryRes2Values20)-calculateNormForVector(floatRes2Values20))
-abs(calculateNormForVector(libraryRes2Values20)-calculateNormForVector(doubleRes2Values20))
-abs(calculateNormForVector(libraryRes2Values20)-calculateNormForVector(fractionRes2Values20))
-
 abs(calculateNormForVector(libraryRes2Values30)-calculateNormForVector(floatRes2Values30))
 abs(calculateNormForVector(libraryRes2Values30)-calculateNormForVector(doubleRes2Values30))
 abs(calculateNormForVector(libraryRes2Values30)-calculateNormForVector(fractionRes2Values30))
-
-abs(calculateNormForVector(libraryRes2Values40)-calculateNormForVector(floatRes2Values40))
-abs(calculateNormForVector(libraryRes2Values40)-calculateNormForVector(doubleRes2Values40))
-abs(calculateNormForVector(libraryRes2Values40)-calculateNormForVector(fractionRes2Values40))
 
 abs(calculateNormForVector(libraryRes2Values50)-calculateNormForVector(floatRes2Values50))
 abs(calculateNormForVector(libraryRes2Values50)-calculateNormForVector(doubleRes2Values50))
@@ -341,17 +325,9 @@ abs(calculateNormForMatrix(libraryRes3Values10)-calculateNormForMatrix(floatRes3
 abs(calculateNormForMatrix(libraryRes3Values10)-calculateNormForMatrix(doubleRes3Values10))
 abs(calculateNormForMatrix(libraryRes3Values10)-calculateNormForMatrix(fractionRes3Values10))
 
-abs(calculateNormForMatrix(libraryRes3Values20)-calculateNormForMatrix(floatRes3Values20))
-abs(calculateNormForMatrix(libraryRes3Values20)-calculateNormForMatrix(doubleRes3Values20))
-abs(calculateNormForMatrix(libraryRes3Values20)-calculateNormForMatrix(fractionRes3Values20))
-
 abs(calculateNormForMatrix(libraryRes3Values30)-calculateNormForMatrix(floatRes3Values30))
 abs(calculateNormForMatrix(libraryRes3Values30)-calculateNormForMatrix(doubleRes3Values30))
 abs(calculateNormForMatrix(libraryRes3Values30)-calculateNormForMatrix(fractionRes3Values30))
-
-abs(calculateNormForMatrix(libraryRes3Values40)-calculateNormForMatrix(floatRes3Values40))
-abs(calculateNormForMatrix(libraryRes3Values40)-calculateNormForMatrix(doubleRes3Values40))
-abs(calculateNormForMatrix(libraryRes3Values40)-calculateNormForMatrix(fractionRes3Values40))
 
 abs(calculateNormForMatrix(libraryRes3Values50)-calculateNormForMatrix(floatRes3Values50))
 abs(calculateNormForMatrix(libraryRes3Values50)-calculateNormForMatrix(doubleRes3Values50))
@@ -372,17 +348,9 @@ abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(floatResGV
 abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(doubleResGValues10))
 abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(fractionResGValues10))
 
-abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(floatResGValues20))
-abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(doubleResGValues20))
-abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(fractionResGValues20))
-
 abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(floatResGValues30))
 abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(doubleResGValues30))
 abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(fractionResGValues30))
-
-abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(floatResGValues40))
-abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(doubleResGValues40))
-abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(fractionResGValues40))
 
 abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(floatResGValues50))
 abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(doubleResGValues50))
@@ -402,17 +370,9 @@ abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(floatResPG
 abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(doubleResPGValues10))
 abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(fractionResPGValues10))
 
-abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(floatResPGValues20))
-abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(doubleResPGValues20))
-abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(fractionResPGValues20))
-
 abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(floatResPGValues30))
 abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(doubleResPGValues30))
 abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(fractionResPGValues30))
-
-abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(floatResPGValues40))
-abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(doubleResPGValues40))
-abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(fractionResPGValues40))
 
 abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(floatResPGValues50))
 abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(doubleResPGValues50))
@@ -432,17 +392,9 @@ abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(floatResFG
 abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(doubleResFGValues10))
 abs(calculateNormForVector(libraryResValues10)-calculateNormForVector(fractionResFGValues10))
 
-abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(floatResFGValues20))
-abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(doubleResFGValues20))
-abs(calculateNormForVector(libraryResValues20)-calculateNormForVector(fractionResFGValues20))
-
 abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(floatResFGValues30))
 abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(doubleResFGValues30))
 abs(calculateNormForVector(libraryResValues30)-calculateNormForVector(fractionResFGValues30))
-
-abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(floatResFGValues40))
-abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(doubleResFGValues40))
-abs(calculateNormForVector(libraryResValues40)-calculateNormForVector(fractionResFGValues40))
 
 abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(floatResFGValues50))
 abs(calculateNormForVector(libraryResValues50)-calculateNormForVector(doubleResFGValues50))
