@@ -96,10 +96,6 @@ public class MyFraction implements MyNumber<MyFraction> {
 
     @Override
     public Integer compare(MyFraction frac) {
-//        BigInteger lcm = LCM(this.denumerator, frac.denumerator);
-//        BigInteger first_mul = lcm.divide(this.denumerator);
-//        BigInteger sec_mul = lcm.divide(frac.denumerator);
-//        BigInteger n1=new BigInteger(this.numerator.multiply(first_mul).signum());
         BigInteger n1 = new BigInteger(this.numerator.toString());
         BigInteger d1 = new BigInteger(this.denumerator.toString());
         BigInteger n2 = new BigInteger(frac.numerator.toString());

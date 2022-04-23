@@ -8,25 +8,6 @@ import java.io.IOException;
 
 public class Main {
 
-
-//    public static <T> void print_matrix(List<List<MyNumber<T>>> matrix) {
-//        for (int i = 0; i < matrix.size(); i++) {
-//            for (int j = 0; j < matrix.get(i).size(); j++) {
-//                System.out.print(matrix.get(i).get(j).getValue() + " ");
-//            }
-//            System.out.println();
-//        }
-//    }
-
-//    public static void print_fraction_matrix_big_dec(List<List<Fraction>> matrix) {
-//        for (int i = 0; i < matrix.size(); i++) {
-//            for (int j = 0; j < matrix.size(); j++) {
-//                System.out.print(new BigDecimal(matrix.get(i).get(j).divide(matrix.get(i).get(j).getDenumerator())) + " ");
-//            }
-//            System.out.println();
-//        }
-//    }
-
     public static void main(String[] args) throws IOException {
 
 

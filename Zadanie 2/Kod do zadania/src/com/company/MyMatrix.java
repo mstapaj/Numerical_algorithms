@@ -6,7 +6,6 @@ import java.util.List;
 
 public class MyMatrix<T extends MyNumber<T>> {
     public List<List<T>> matrix;
-//    private MyNumber<T>[][] tests;
 
     public MyMatrix() {
         this.matrix = new ArrayList<>();

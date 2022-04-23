@@ -409,5 +409,30 @@ abs(calculateNormForVector(libraryResValues300)-calculateNormForVector(doubleRes
 abs(calculateNormForVector(libraryResValues500)-calculateNormForVector(floatResFGValues500))
 abs(calculateNormForVector(libraryResValues500)-calculateNormForVector(doubleResFGValues500))
 
+# Różnice w czasach między metodami Gaussa
 
+par(mfrow=c(1,2))
+
+plot(info2,floatResGfirst,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Czas działania algorytmu",col="RED", pch = 19,ylim = c(0,20))
+lines(info2,floatResPGfirst,type="b",col="BLUE")
+lines(info2,floatResFGfirst,type="b",col="GREEN")
+
+plot(info2,doubleResGfirst,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Czas działania algorytmu",col="RED", pch = 19,ylim = c(0,20))
+lines(info2,doubleResPGfirst,type="b",col="BLUE")
+lines(info2,doubleResFGfirst,type="b",col="GREEN")
+
+plot(info2,fractionResGfirst,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Czas działania algorytmu",col="RED", pch = 19,ylim = c(0,8000))
+lines(info2,fractionResPGfirst,type="b",col="BLUE")
+lines(info2,fractionResFGfirst,type="b",col="GREEN")
+
+plot(info3,floatResGsecond,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Czas działania algorytmu float",col="RED", pch = 19,ylim = c(0,7300))
+lines(info3,floatResPGsecond,type="b",col="BLUE")
+lines(info3,floatResFGsecond,type="b",col="GREEN")
+
+plot(info3,doubleResGsecond,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Czas działania algorytmu double",col="RED", pch = 19,ylim = c(0,8000))
+lines(info3,doubleResPGsecond,type="b",col="BLUE")
+lines(info3,doubleResFGsecond,type="b",col="GREEN")
+
+legend("topleft", legend=c("Gauss bez wyboru", "Gauss wybór częściowy", "Gauss wybór pełny"),
+       col=c("red", "blue","green"), lty = 1,pch='o', cex=1)
 
