@@ -11,7 +11,7 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class ReadMatrixData {
-    private String fileName;
+    private final String fileName;
     public MyMatrix<MyFloat> floatMyMatrixA;
     public MyMatrix<MyFloat> floatMyMatrixB;
     public MyMatrix<MyFloat> floatMyMatrixC;
@@ -64,7 +64,6 @@ public class ReadMatrixData {
                             T temp = (T) new MyFloat(Float.parseFloat(read));
                             row.add(temp);
                         } else if (Objects.equals(type, "fraction")) {
-//                            row.add((T) new Fraction(new BigInteger(read.split(";")[0]), new BigInteger(read.split(";")[1])));
                             T temp = (T) new MyFraction(new BigInteger(read.split(";")[0]), new BigInteger(read.split(";")[1]));
                             row.add(temp);
                         } else {

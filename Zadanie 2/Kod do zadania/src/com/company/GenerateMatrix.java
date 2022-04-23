@@ -28,7 +28,6 @@ public class GenerateMatrix {
                         num = BigInteger.valueOf(ran.nextInt(max - min) + min);
                         while (true) {
                             denum = BigInteger.valueOf(ran.nextInt(max - min) + min);
-                            ;
                             if (denum.equals(BigInteger.ZERO)) {
                             } else break;
                         }
