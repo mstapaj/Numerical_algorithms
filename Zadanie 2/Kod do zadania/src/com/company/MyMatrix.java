@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -118,10 +119,10 @@ public class MyMatrix<T extends MyNumber<T>> {
                     T temp2 = this.matrix.get(k).get(j).initialize();
                     temp2.mul(temp);
                     this.matrix.get(i).get(j).sub(temp2);
-                    this.matrix.get(i).set(j, this.matrix.get(i).get(j).shorten());
                 }
                 this.matrix.get(i).set(k, this.matrix.get(0).get(0).initialize_zero());
             }
+            this.matrix = this.shortenMatrix().getMatrix();
         }
         for (int i = rows - 1; i >= 0; i--) {
             result.set(i, this.matrix.get(i).get(rows));
@@ -239,9 +240,7 @@ public class MyMatrix<T extends MyNumber<T>> {
         }
         for (int i = switchCols.length - 1; i >= 0; i--) {
             if (i != switchCols[i]) {
-                T temp = result.get(i);
-                result.set(i, result.get(switchCols[i]));
-                result.set(switchCols[i], temp);
+                Collections.swap(result,i,switchCols[i]);
             }
         }
         return result;
