@@ -48,42 +48,32 @@ public class GenerateMatrix {
         }
     }
 
+    public static void generateABCX(int size, int min, int max) {
+        generate(size, size, "A" + size, min, max);
+        generate(size, size, "B" + size, min, max);
+        generate(size, size, "C" + size, min, max);
+        generate(1, size, "X" + size, min, max);
+    }
+
 
     public static void main(String[] args) {
-        generate(10, 10, "A10", -65536, 65535);
-        generate(10, 10, "B10", -65536, 65535);
-        generate(10, 10, "C10", -65536, 65535);
-        generate(1, 10, "X10", -65536, 65535);
-        generate(11, 10, "Gauss10", -65536, 65535);
-
-        generate(30, 30, "A30", -65536, 65535);
-        generate(30, 30, "B30", -65536, 65535);
-        generate(30, 30, "C30", -65536, 65535);
-        generate(1, 30, "X30", -65536, 65535);
-        generate(31, 30, "Gauss30", -65536, 65535);
-
-        generate(50, 50, "A50", -65536, 65535);
-        generate(50, 50, "B50", -65536, 65535);
-        generate(50, 50, "C50", -65536, 65535);
-        generate(1, 50, "X50", -65536, 65535);
-        generate(51, 50, "Gauss50", -65536, 65535);
-
-        generate(100, 100, "A100", -65536, 65535);
-        generate(100, 100, "B100", -65536, 65535);
-        generate(100, 100, "C100", -65536, 65535);
-        generate(1, 100, "X100", -65536, 65535);
-        generate(101, 100, "Gauss100", -65536, 65535);
-
-        generate(300, 300, "A300", -65536, 65535);
-        generate(300, 300, "B300", -65536, 65535);
-        generate(300, 300, "C300", -65536, 65535);
-        generate(1, 300, "X300", -65536, 65535);
-        generate(301, 300, "Gauss300", -65536, 65535);
-
-        generate(500, 500, "A500", -65536, 65535);
-        generate(500, 500, "B500", -65536, 65535);
-        generate(500, 500, "C500", -65536, 65535);
-        generate(1, 500, "X500", -65536, 65535);
-        generate(501, 500, "Gauss500", -65536, 65535);
+        generateABCX(10, -65536, 65535);
+        generateABCX(15, -65536, 65535);
+        generateABCX(20, -65536, 65535);
+        generateABCX(25, -65536, 65535);
+        generateABCX(30, -65536, 65535);
+        generateABCX(35, -65536, 65535);
+        generateABCX(40, -65536, 65535);
+        generateABCX(45, -65536, 65535);
+        generateABCX(50, -65536, 65535);
+        generateABCX(100, -65536, 65535);
+        generateABCX(150, -65536, 65535);
+        generateABCX(200, -65536, 65535);
+        generateABCX(250, -65536, 65535);
+        generateABCX(300, -65536, 65535);
+        generateABCX(350, -65536, 65535);
+        generateABCX(400, -65536, 65535);
+        generateABCX(450, -65536, 65535);
+        generateABCX(500, -65536, 65535);
     }
 }
