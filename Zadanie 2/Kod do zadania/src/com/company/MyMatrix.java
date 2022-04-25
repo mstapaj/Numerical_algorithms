@@ -1,7 +1,7 @@
 package com.company;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -71,6 +71,29 @@ public class MyMatrix<T extends MyNumber<T>> {
             }
         }
         return new MyMatrix<>(rows, columns, matrixElements);
+    }
+
+    public MyMatrix<T> makeMatrixToGauss(MyMatrix<T> matrixX) {
+        List<T> matrixElements = new ArrayList<>();
+        for (int i = 0; i < this.matrix.size(); i++) {
+            for (int j = 0; j < this.matrix.get(0).size(); j++) {
+                matrixElements.add(this.matrix.get(i).get(j));
+            }
+            matrixElements.add(matrixX.getMatrix().get(i).get(0));
+        }
+        return new MyMatrix<>(this.matrix.size(), this.matrix.get(0).size() + 1, matrixElements);
+    }
+
+    public BigDecimal calculateNorm() {
+        if (this.matrix.get(0).size() > 1) {
+            return new BigDecimal(0);
+        } else {
+            T sum = this.matrix.get(0).get(0).initialize_zero();
+            for (int i = 0; i < this.matrix.size(); i++) {
+                sum.add(this.matrix.get(i).get(0).absolute());
+            }
+            return new BigDecimal(String.valueOf(sum.returnValue()));
+        }
     }
 
     public MyMatrix<T> addingMatrix(MyMatrix<T> another_matrix) {
@@ -240,7 +263,7 @@ public class MyMatrix<T extends MyNumber<T>> {
         }
         for (int i = switchCols.length - 1; i >= 0; i--) {
             if (i != switchCols[i]) {
-                Collections.swap(result,i,switchCols[i]);
+                Collections.swap(result, i, switchCols[i]);
             }
         }
         return result;

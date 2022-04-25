@@ -95,35 +95,25 @@ public class ReadMatrixData {
         this.floatMyMatrixB = readMatrixFromFile("floatMatrixB" + fileName + ".txt", "float");
         this.floatMyMatrixC = readMatrixFromFile("floatMatrixC" + fileName + ".txt", "float");
         this.floatMyMatrixX = readMatrixFromFile("floatMatrixX" + fileName + ".txt", "float");
-        this.floatMyMatrixGaussP = readMatrixFromFile("floatMatrixGauss" + fileName + ".txt", "float");
-        this.floatMyMatrixGaussPG = readMatrixFromFile("floatMatrixGauss" + fileName + ".txt", "float");
-        this.floatMyMatrixGaussFG = readMatrixFromFile("floatMatrixGauss" + fileName + ".txt", "float");
         this.doubleMyMatrixA = readMatrixFromFile("doubleMatrixA" + fileName + ".txt", "double");
         this.doubleMyMatrixB = readMatrixFromFile("doubleMatrixB" + fileName + ".txt", "double");
         this.doubleMyMatrixC = readMatrixFromFile("doubleMatrixC" + fileName + ".txt", "double");
         this.doubleMyMatrixX = readMatrixFromFile("doubleMatrixX" + fileName + ".txt", "double");
-        this.doubleMyMatrixGaussP = readMatrixFromFile("doubleMatrixGauss" + fileName + ".txt", "double");
-        this.doubleMyMatrixGaussPG = readMatrixFromFile("doubleMatrixGauss" + fileName + ".txt", "double");
-        this.doubleMyMatrixGaussFG = readMatrixFromFile("doubleMatrixGauss" + fileName + ".txt", "double");
         this.fractionMyMatrixA = readMatrixFromFile("fractionMatrixA" + fileName + ".txt", "fraction");
         this.fractionMyMatrixB = readMatrixFromFile("fractionMatrixB" + fileName + ".txt", "fraction");
         this.fractionMyMatrixC = readMatrixFromFile("fractionMatrixC" + fileName + ".txt", "fraction");
         this.fractionMyMatrixX = readMatrixFromFile("fractionMatrixX" + fileName + ".txt", "fraction");
-        this.fractionMyMatrixGaussP = readMatrixFromFile("fractionMatrixGauss" + fileName + ".txt", "fraction");
-        this.fractionMyMatrixGaussPG = readMatrixFromFile("fractionMatrixGauss" + fileName + ".txt", "fraction");
-        this.fractionMyMatrixGaussFG = readMatrixFromFile("fractionMatrixGauss" + fileName + ".txt", "fraction");
         this.libraryMatrixA = makeLibraryMatrix(readMatrixFromFile("doubleMatrixA" + fileName + ".txt", "double").getNumber());
         this.libraryMatrixB = makeLibraryMatrix(readMatrixFromFile("doubleMatrixB" + fileName + ".txt", "double").getNumber());
         this.libraryMatrixC = makeLibraryMatrix(readMatrixFromFile("doubleMatrixC" + fileName + ".txt", "double").getNumber());
         this.libraryMatrixX = makeLibraryMatrix(readMatrixFromFile("doubleMatrixX" + fileName + ".txt", "double").getNumber());
-        this.libraryMatrixGauss = makeLibraryMatrix(readMatrixFromFile("doubleMatrixGauss" + fileName + ".txt", "double").getNumber());
         this.fractionMyMatrixA = this.fractionMyMatrixA.shortenMatrix();
         this.fractionMyMatrixB = this.fractionMyMatrixB.shortenMatrix();
         this.fractionMyMatrixC = this.fractionMyMatrixC.shortenMatrix();
         this.fractionMyMatrixX = this.fractionMyMatrixX.shortenMatrix();
-        this.fractionMyMatrixGaussP = this.fractionMyMatrixGaussP.shortenMatrix();
-        this.fractionMyMatrixGaussPG = this.fractionMyMatrixGaussPG.shortenMatrix();
-        this.fractionMyMatrixGaussFG = this.fractionMyMatrixGaussFG.shortenMatrix();
+//        this.fractionMyMatrixGaussP = this.fractionMyMatrixGaussP.shortenMatrix();
+//        this.fractionMyMatrixGaussPG = this.fractionMyMatrixGaussPG.shortenMatrix();
+//        this.fractionMyMatrixGaussFG = this.fractionMyMatrixGaussFG.shortenMatrix();
         return this;
     }
 }

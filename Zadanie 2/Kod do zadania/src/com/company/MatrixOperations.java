@@ -4,8 +4,11 @@ import com.company.types.MyFraction;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MatrixOperations<T extends MyNumber<T>> {
@@ -24,6 +27,30 @@ public class MatrixOperations<T extends MyNumber<T>> {
                         fileWriter.write(resMatrix.getMatrix().get(i).get(j).getNumber() + "\n");
                     }
                 }
+            }
+            fileWriter.close();
+        } catch (IOException err) {
+            err.printStackTrace();
+        }
+    }
+
+    public static void saveDiffToFile(List<BigDecimal> listOfDiff, String fileName) {
+        try {
+            FileWriter fileWriter = new FileWriter("resultsNormDiff/" + fileName + ".txt");
+            for (int i = 0; i < listOfDiff.size(); i++) {
+                fileWriter.write((listOfDiff.get(i) + "\n"));
+            }
+            fileWriter.close();
+        } catch (IOException err) {
+            err.printStackTrace();
+        }
+    }
+
+    public static void saveTimesToFile(List<Long> listOfDiff, String fileName) {
+        try {
+            FileWriter fileWriter = new FileWriter("resultsTimes/" + fileName + ".txt");
+            for (int i = 0; i < listOfDiff.size(); i++) {
+                fileWriter.write((listOfDiff.get(i) + "\n"));
             }
             fileWriter.close();
         } catch (IOException err) {
@@ -59,36 +86,61 @@ public class MatrixOperations<T extends MyNumber<T>> {
         return timeResults;
     }
 
-    public String calculateGauss(MyMatrix<T> matrix1, MyMatrix<T> matrix2, MyMatrix<T> matrix3, String fileName) {
-        String timeResults = fileName + "\n";
-        MyMatrix<T> matRes1 = new MyMatrix<>(matrix1.getMatrix());
-        List<T> resGauss1;
-        start = Instant.now();
-        resGauss1 = matRes1.gaussMatrixG();
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "Gauss P: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(new MyMatrix<>(matrix1.getMatrix().size(), 1, resGauss1), "gaussPRes" + fileName);
+    public String calculateGauss(MyMatrix<T> matrixA, MyMatrix<T> matrixX, String fileName) {
 
-        MyMatrix<T> matRes2 = new MyMatrix<>(matrix2.getMatrix());
-        List<T> resGauss2;
-        start = Instant.now();
-        resGauss2 = matRes2.gaussMatrixPG();
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "Gauss PG: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(new MyMatrix<>(matrix2.getMatrix().size(), 1, resGauss2), "gaussPGRes" + fileName);
+        BigDecimal normX = matrixX.calculateNorm();
+        List<BigDecimal> listOfDiff = new ArrayList<>();
+        List<Long> listOfTimesG = new ArrayList<>();
+        List<Long> listOfTimesPG = new ArrayList<>();
+        List<Long> listOfTimesFG = new ArrayList<>();
+        List<Long> listOfTimes = new ArrayList<>();
 
-        MyMatrix<T> matRes3 = new MyMatrix<>(matrix3.getMatrix());
-        List<T> resGauss3;
-        start = Instant.now();
-        resGauss3 = matRes3.gaussMatrixFG();
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "Gauss FG: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(new MyMatrix<>(matrix3.getMatrix().size(), 1, resGauss3), "gaussFGRes" + fileName);
+        List<T> resGauss1 = null;
+        List<T> resGauss2 = null;
+        List<T> resGauss3 = null;
+        for (int i = 0; i < 10; i++) {
+            MyMatrix<T> matRes1 = new MyMatrix<>(matrixA.getMatrix());
+            MyMatrix<T> temp1 = matRes1.multiplyMatrix(matrixX);
+            matRes1 = matRes1.makeMatrixToGauss(temp1);
+            start = Instant.now();
+            resGauss1 = matRes1.gaussMatrixG();
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimesG.add(timeElapsed.toMillis());
+            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1), "gaussPRes" + fileName);
 
-        return timeResults;
+            MyMatrix<T> matRes2 = new MyMatrix<>(matrixA.getMatrix());
+            MyMatrix<T> temp2 = matRes2.multiplyMatrix(matrixX);
+            matRes2 = matRes2.makeMatrixToGauss(temp2);
+            start = Instant.now();
+            resGauss2 = matRes2.gaussMatrixPG();
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimesPG.add(timeElapsed.toMillis());
+            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2), "gaussPGRes" + fileName);
+
+            MyMatrix<T> matRes3 = new MyMatrix<>(matrixA.getMatrix());
+            MyMatrix<T> temp3 = matRes3.multiplyMatrix(matrixX);
+            matRes3 = matRes3.makeMatrixToGauss(temp3);
+            start = Instant.now();
+            resGauss3 = matRes3.gaussMatrixFG();
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimesFG.add(timeElapsed.toMillis());
+            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3), "gaussFGRes" + fileName);
+        }
+
+        listOfDiff.add(normX.subtract(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm()).abs());
+        listOfDiff.add(normX.subtract(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2).calculateNorm()).abs());
+        listOfDiff.add(normX.subtract(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3).calculateNorm()).abs());
+        saveDiffToFile(listOfDiff, fileName);
+
+        listOfTimes.add(Collections.min(listOfTimesG));
+        listOfTimes.add(Collections.min(listOfTimesPG));
+        listOfTimes.add(Collections.min(listOfTimesFG));
+        saveTimesToFile(listOfTimes, fileName);
+
+        return "Policzono " + fileName;
     }
 
 }
