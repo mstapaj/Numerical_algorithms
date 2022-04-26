@@ -4,8 +4,12 @@ import org.ejml.simple.SimpleMatrix;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MatrixLibrary {
     Instant start;
@@ -24,6 +28,22 @@ public class MatrixLibrary {
             fileWriter.close();
         } catch (IOException err) {
             err.printStackTrace();
+        }
+    }
+
+    public static BigDecimal calculateNorm(SimpleMatrix matrix) {
+//        System.out.println(matrix.numCols());
+        if (matrix.numCols() > 1) {
+            return new BigDecimal(0);
+        } else {
+//            T sum = this.matrix.get(0).get(0).initialize_zero();
+            BigDecimal sum = new BigDecimal(0);
+            for (int i = 0; i < matrix.numRows(); i++) {
+//                sum.add(this.matrix.get(i).get(0).absolute());
+                sum = sum.add(BigDecimal.valueOf(matrix.get(i, 0)).abs());
+            }
+//            return new BigDecimal(String.valueOf(sum.returnValue()));
+            return sum;
         }
     }
 
@@ -57,17 +77,35 @@ public class MatrixLibrary {
         return timeResults;
     }
 
-    public String calculateGauss(SimpleMatrix matrix, String fileName) throws IOException {
+    public List<String> calculateGauss(SimpleMatrix matrixA, SimpleMatrix matrixX, String fileName) throws IOException {
         String timeResults = fileName + "\n";
 
-        SimpleMatrix matRes1 = new SimpleMatrix(matrix);
-        start = Instant.now();
-        matRes1 = matRes1.cols(0, matRes1.numCols() - 1).solve(matRes1.cols(matRes1.numCols() - 1, matRes1.numCols()));
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "Gauss library: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(matRes1, "matResGauss" + fileName);
+        BigDecimal normX = calculateNorm(matrixX);
+        List<BigDecimal> listOfDiff = new ArrayList<>();
+        List<Long> listOfTimes = new ArrayList<>();
 
-        return timeResults;
+        SimpleMatrix matRes1 = null;
+        for (int i = 0; i < 10; i++) {
+            matRes1 = new SimpleMatrix(matrixA);
+            SimpleMatrix temp1 = matRes1.mult(matrixX);
+            start = Instant.now();
+            matRes1 = matRes1.solve(temp1);
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimes.add(timeElapsed.toMillis());
+            saveResToFile(matRes1, "matResGauss" + fileName);
+        }
+
+
+//        System.out.println(normX);
+//        System.out.println(calculateNorm(matRes1));
+
+        listOfDiff.add(normX.subtract(calculateNorm(matRes1)));
+
+        List<String> result = new ArrayList<>();
+        result.add(String.valueOf(listOfDiff));
+        result.add("[" + String.valueOf(Collections.min(listOfTimes)) + "]");
+
+        return result;
     }
 }

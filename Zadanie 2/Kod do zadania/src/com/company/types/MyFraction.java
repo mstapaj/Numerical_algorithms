@@ -86,7 +86,7 @@ public class MyFraction implements MyNumber<MyFraction> {
 
     @Override
     public MyFraction absolute() {
-        return new MyFraction(this.numerator.abs(), this.denumerator);
+        return new MyFraction(this.numerator, this.denumerator);
     }
 
     @Override

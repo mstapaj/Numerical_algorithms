@@ -13,7 +13,15 @@ public class MyMatrix<T extends MyNumber<T>> {
     }
 
     public MyMatrix(List<List<T>> new_matrix) {
-        this.matrix = new_matrix;
+        List<List<T>> new_list = new ArrayList<>();
+        for (int i = 0; i < new_matrix.size(); i++) {
+            List<T> temp_list = new ArrayList<>();
+            for (int j = 0; j < new_matrix.get(0).size(); j++) {
+                temp_list.add(new_matrix.get(i).get(j).initialize());
+            }
+            new_list.add(temp_list);
+        }
+        this.matrix = new_list;
     }
 
     public MyMatrix(int rows, int cols, List<T> list_of_elem) {

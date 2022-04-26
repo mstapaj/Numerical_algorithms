@@ -86,7 +86,7 @@ public class MatrixOperations<T extends MyNumber<T>> {
         return timeResults;
     }
 
-    public String calculateGauss(MyMatrix<T> matrixA, MyMatrix<T> matrixX, String fileName) {
+    public List<String> calculateGauss(MyMatrix<T> matrixA, MyMatrix<T> matrixX, String fileName) {
 
         BigDecimal normX = matrixX.calculateNorm();
         List<BigDecimal> listOfDiff = new ArrayList<>();
@@ -98,7 +98,7 @@ public class MatrixOperations<T extends MyNumber<T>> {
         List<T> resGauss1 = null;
         List<T> resGauss2 = null;
         List<T> resGauss3 = null;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 6; i++) {
             MyMatrix<T> matRes1 = new MyMatrix<>(matrixA.getMatrix());
             MyMatrix<T> temp1 = matRes1.multiplyMatrix(matrixX);
             matRes1 = matRes1.makeMatrixToGauss(temp1);
@@ -128,19 +128,27 @@ public class MatrixOperations<T extends MyNumber<T>> {
             timeElapsed = Duration.between(start, end);
             listOfTimesFG.add(timeElapsed.toMillis());
             saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3), "gaussFGRes" + fileName);
+//            System.out.println(matrixA.getNumber());
         }
 
-        listOfDiff.add(normX.subtract(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm()).abs());
-        listOfDiff.add(normX.subtract(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2).calculateNorm()).abs());
-        listOfDiff.add(normX.subtract(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3).calculateNorm()).abs());
-        saveDiffToFile(listOfDiff, fileName);
+//        System.out.println(normX);
+//        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm());
+//        System.out.println();
+
+
+        listOfDiff.add(normX.subtract(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm()));
+        listOfDiff.add(normX.subtract(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2).calculateNorm()));
+        listOfDiff.add(normX.subtract(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3).calculateNorm()));
 
         listOfTimes.add(Collections.min(listOfTimesG));
         listOfTimes.add(Collections.min(listOfTimesPG));
         listOfTimes.add(Collections.min(listOfTimesFG));
-        saveTimesToFile(listOfTimes, fileName);
 
-        return "Policzono " + fileName;
+        List<String> result = new ArrayList<>();
+        result.add(String.valueOf(listOfDiff));
+        result.add(String.valueOf(listOfTimes));
+
+        return result;
     }
 
 }
