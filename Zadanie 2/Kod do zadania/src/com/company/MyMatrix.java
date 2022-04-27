@@ -1,6 +1,5 @@
 package com.company;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -92,15 +91,15 @@ public class MyMatrix<T extends MyNumber<T>> {
         return new MyMatrix<>(this.matrix.size(), this.matrix.get(0).size() + 1, matrixElements);
     }
 
-    public BigDecimal calculateNorm() {
+    public T calculateNorm() {
         if (this.matrix.get(0).size() > 1) {
-            return new BigDecimal(0);
+            return this.matrix.get(0).get(0);
         } else {
             T sum = this.matrix.get(0).get(0).initialize_zero();
             for (int i = 0; i < this.matrix.size(); i++) {
                 sum.add(this.matrix.get(i).get(0).absolute());
             }
-            return new BigDecimal(String.valueOf(sum.returnValue()));
+            return sum;
         }
     }
 

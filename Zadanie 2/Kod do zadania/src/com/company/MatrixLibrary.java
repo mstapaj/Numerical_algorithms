@@ -93,7 +93,7 @@ public class MatrixLibrary {
             end = Instant.now();
             timeElapsed = Duration.between(start, end);
             listOfTimes.add(timeElapsed.toMillis());
-            saveResToFile(matRes1, "matResGauss" + fileName);
+//            saveResToFile(matRes1, "matResGauss" + fileName);
         }
 
 

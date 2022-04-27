@@ -25,9 +25,9 @@ public class GenerateMatrix {
                             } else break;
                         }
                     } else {
-                        num = BigInteger.valueOf(ran.nextInt(max - min) + min);
+                        num = BigInteger.valueOf(ran.nextInt((max - min) + 1) + min);
                         while (true) {
-                            denum = BigInteger.valueOf(ran.nextInt(max - min) + min);
+                            denum = BigInteger.valueOf(ran.nextInt((max - min) + 1) + min);
                             if (denum.equals(BigInteger.ZERO)) {
                             } else break;
                         }

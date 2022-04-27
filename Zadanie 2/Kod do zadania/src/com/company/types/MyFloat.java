@@ -57,7 +57,7 @@ public class MyFloat implements MyNumber<MyFloat> {
 
     @Override
     public BigDecimal returnValue() {
-        return BigDecimal.valueOf(this.value);
+        return new BigDecimal(this.value);
     }
 
     public Float getNumber() {

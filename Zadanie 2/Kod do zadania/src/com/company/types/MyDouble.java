@@ -46,7 +46,7 @@ public class MyDouble implements MyNumber<MyDouble> {
 
     @Override
     public MyDouble initialize_zero() {
-        return new MyDouble(0D);
+        return new MyDouble(0.0);
     }
 
     @Override
