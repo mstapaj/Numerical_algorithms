@@ -93,18 +93,18 @@ public class MatrixLibrary {
             end = Instant.now();
             timeElapsed = Duration.between(start, end);
             listOfTimes.add(timeElapsed.toMillis());
-//            saveResToFile(matRes1, "matResGauss" + fileName);
+            saveResToFile(matRes1, "matResGauss" + fileName);
         }
 
 
 //        System.out.println(normX);
 //        System.out.println(calculateNorm(matRes1));
 
-        listOfDiff.add(normX.subtract(calculateNorm(matRes1)));
+        listOfDiff.add(normX.subtract(calculateNorm(matRes1)).abs());
 
         List<String> result = new ArrayList<>();
         result.add(String.valueOf(listOfDiff));
-        result.add("[" + String.valueOf(Collections.min(listOfTimes)) + "]");
+        result.add("[" + Collections.min(listOfTimes) + "]");
 
         return result;
     }

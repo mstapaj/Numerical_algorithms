@@ -436,3 +436,9 @@ lines(info3,doubleResFGsecond,type="b",col="GREEN")
 legend("topleft", legend=c("Gauss bez wyboru", "Gauss wybór częściowy", "Gauss wybór pełny"),
        col=c("red", "blue","green"), lty = 1,pch='o', cex=1)
 
+
+abs(calculateNormForVector(fractionResGValues10)-calculateNormForVector(floatResGValues10))
+abs(calculateNormForVector(fractionResGValues20)-calculateNormForVector(floatResGValues20))
+abs(calculateNormForVector(libraryResValues100)-calculateNormForVector(floatResGValues100))
+abs(calculateNormForVector(libraryResValues300)-calculateNormForVector(floatResGValues300))
+

@@ -56,9 +56,9 @@ floatResGfirstErr<-c(1.455191523E-10,2.27009877564E-9,4.684552550316E-8,1.629814
 doubleResGfirstErr<-c(8.73114914E-11,9.0221874414E-10,6.9849193096E-9,8.4983184934E-9,1.37370079756E-8,5.5879354476E-8,1.281732693314E-7,5.41331246496E-7,1.25728547573E-7)
 fractionResGfirstErr<-c(0E-37,0E-37,0E-37,0E-37,0E-37,0E-37,0E-37,0E-37,0E-37)
 libraryResfirstErr<-c(9.6E-20,2.5515E-18,2.548482E-18,2.963E-18,6.1817E-18,6.04083E-18,6.265533E-17,2.0989E-18,2.60426E-18)
-floatResGsecondErr<-c(33,114,278,644,1211,1864,2818,3800,5506)
-doubleResGsecondErr<-c(33,115,302,677,1260,1898,2889,3858,5810)
-libraryRessecondErr<-c(0,0,1,3,6,10,15,21,30)
+floatResGsecondErr<-c(4.293397068975E-7,.000006267800927162,0.000680563971400261,0.000012875534594058,0.000477977305650712,0.000639319419860840,0.00283592194318771,0.000111784785985945,0.00804700702428818)
+doubleResGsecondErr<-c(2.331E-15,4.5647E-14,2.8606E-14,3.5311E-14,4.801907E-12,2.15657E-13,1.473476E-12,9.1338E-14,1.4042E-13)
+libraryRessecondErr<-c(1.2241374E-17,9.5981584E-17,6.518815E-17,2.665095E-17,1.10458972E-15,7.7633383E-16,1.3686439E-16,1.8518289E-16,5.7932797870E-14)
 
 floatResPGfirstErr<-c(0,0,0,0,0,1,1,2,3)
 doubleResPGfirstErr<-c(0,0,0,0,1,1,2,2,3)
@@ -77,7 +77,7 @@ lines(info2,doubleResGfirstErr,type="b",col="BLUE")
 lines(info2,fractionResGfirstErr,type="b",col="GREEN")
 lines(info2,libraryResfirstErr,type="b")
 
-plot(info3,floatResGsecondErr,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss bez wyboru",col="RED", pch = 19,ylim = c(0,5900))
+plot(info3,floatResGsecondErr,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss bez wyboru",col="RED", pch = 19,ylim=c(1e-20,0.01))
 lines(info3,doubleResGsecondErr,type="b",col="BLUE")
 lines(info3,libraryRessecondErr,type="b")
 
@@ -98,3 +98,4 @@ lines(info2,libraryResfirstErr,type="b")
 plot(info3,floatResFGsecondErr,xlab="Rozmiar macierzy", ylab="Czas w milisekundach",type="b",main = "Gauss wybór pełny",col="RED", pch = 19,ylim = c(0,7700))
 lines(info3,doubleResFGsecondErr,type="b",col="BLUE")
 lines(info3,libraryRessecondErr,type="b")
+
