@@ -140,12 +140,12 @@ public class MatrixOperations<T extends MyNumber<T>> {
 //        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm());
 //        System.out.println();
 
-        System.out.println(normX1.getNumber());
-        System.out.println(normX2.getNumber());
-        System.out.println(normX3.getNumber());
-        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm().getNumber());
-        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2).calculateNorm().getNumber());
-        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3).calculateNorm().getNumber());
+//        System.out.println(normX1.getNumber());
+//        System.out.println(normX2.getNumber());
+//        System.out.println(normX3.getNumber());
+//        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm().getNumber());
+//        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2).calculateNorm().getNumber());
+//        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3).calculateNorm().getNumber());
 
         normX1.sub(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm());
         normX2.sub(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2).calculateNorm());
@@ -155,9 +155,9 @@ public class MatrixOperations<T extends MyNumber<T>> {
         normX2 = normX2.absolute();
         normX3 = normX3.absolute();
 
-        System.out.println(normX1.getNumber());
-        System.out.println(normX2.getNumber());
-        System.out.println(normX3.getNumber());
+//        System.out.println(normX1.getNumber());
+//        System.out.println(normX2.getNumber());
+//        System.out.println(normX3.getNumber());
 
         Collections.addAll(listOfDiff, normX1.absolute().getNumber(), normX2.absolute().getNumber(), normX3.absolute().getNumber());
 
