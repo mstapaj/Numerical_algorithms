@@ -203,7 +203,7 @@ lines(info3,libraryRes3second,type="b")
 
 
 legend("topleft", legend=c("Float", "Double", "Ułamki", "Biblioteka"),
-       col=c("red", "blue","green","black"), lty = 1,pch='o', cex=1)
+       col=c("red", "blue","green","black"), lty = 1,pch='o', cex=1,ncol=4)
 
 # Gauss
 

@@ -47,34 +47,42 @@ public class MatrixLibrary {
         }
     }
 
-    public String calculate(SimpleMatrix matrixA, SimpleMatrix matrixB, SimpleMatrix matrixC, SimpleMatrix matrixX, String fileName) throws IOException {
-        String timeResults = fileName + "\n";
+    public void calculate(SimpleMatrix matrixA, SimpleMatrix matrixB, SimpleMatrix matrixC, SimpleMatrix matrixX, String fileName) throws IOException {
 
-        SimpleMatrix matRes1 = new SimpleMatrix(matrixA);
-        start = Instant.now();
-        matRes1 = matRes1.mult(matrixX);
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "A * X: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(matRes1, "matRes1" + fileName);
+        List<Long> listOfTimes1 = new ArrayList<>();
+        List<Long> listOfTimes2 = new ArrayList<>();
+        List<Long> listOfTimes3 = new ArrayList<>();
 
-        SimpleMatrix matRes2 = new SimpleMatrix(matrixA);
-        start = Instant.now();
-        matRes2 = matRes2.plus(matrixB).plus(matrixC).mult(matrixX);
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "(A + B + C) * X: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(matRes2, "matRes2" + fileName);
+        for (int i = 0; i < 5; i++) {
+            SimpleMatrix matRes1 = new SimpleMatrix(matrixA);
+            start = Instant.now();
+            matRes1 = matRes1.mult(matrixX);
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimes1.add(timeElapsed.toMillis());
+            saveResToFile(matRes1, "matRes1" + fileName);
 
-        SimpleMatrix matRes3 = new SimpleMatrix(matrixB);
-        start = Instant.now();
-        matRes3 = matRes3.mult(matrixC).mult(matrixA);
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "A * (B * C): " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(matRes3, "matRes3" + fileName);
+            SimpleMatrix matRes2 = new SimpleMatrix(matrixA);
+            start = Instant.now();
+            matRes2 = matRes2.plus(matrixB).plus(matrixC).mult(matrixX);
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimes2.add(timeElapsed.toMillis());
+            saveResToFile(matRes2, "matRes2" + fileName);
 
-        return timeResults;
+            SimpleMatrix matRes3 = new SimpleMatrix(matrixB);
+            start = Instant.now();
+            matRes3 = matRes3.mult(matrixC).mult(matrixA);
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimes3.add(timeElapsed.toMillis());
+            saveResToFile(matRes3, "matRes3" + fileName);
+        }
+
+        System.out.println(fileName);
+        System.out.println("A * X: " + Collections.min(listOfTimes1));
+        System.out.println("(A + B + C) * X: " + Collections.min(listOfTimes2));
+        System.out.println("A * (B * C): " + Collections.min(listOfTimes3));
     }
 
     public List<String> calculateGauss(SimpleMatrix matrixA, SimpleMatrix matrixX, String fileName) throws IOException {

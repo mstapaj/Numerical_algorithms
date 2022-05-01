@@ -58,32 +58,43 @@ public class MatrixOperations<T extends MyNumber<T>> {
         }
     }
 
-    public String calculate(MyMatrix<T> matrixA, MyMatrix<T> matrixB, MyMatrix<T> matrixC, MyMatrix<T> matrixX, String fileName) {
-        String timeResults = fileName + "\n";
-        MyMatrix<T> matRes1 = new MyMatrix<>(matrixA.getMatrix());
-        start = Instant.now();
-        matRes1 = matRes1.multiplyMatrix(matrixX);
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "A * X: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(matRes1, "matRes1" + fileName);
+    public void calculate(MyMatrix<T> matrixA, MyMatrix<T> matrixB, MyMatrix<T> matrixC, MyMatrix<T> matrixX, String fileName) {
 
-        MyMatrix<T> matRes2 = new MyMatrix<>(matrixA.getMatrix());
-        start = Instant.now();
-        matRes2 = matRes2.addingMatrix(matrixB).addingMatrix(matrixC).multiplyMatrix(matrixX);
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "(A + B + C) * X: " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(matRes2, "matRes2" + fileName);
+        List<Long> listOfTimes1 = new ArrayList<>();
+        List<Long> listOfTimes2 = new ArrayList<>();
+        List<Long> listOfTimes3 = new ArrayList<>();
 
-        MyMatrix<T> matRes3 = new MyMatrix<>(matrixB.getMatrix());
-        start = Instant.now();
-        matRes3 = matRes3.multiplyMatrix(matrixC).multiplyMatrix(matrixA);
-        end = Instant.now();
-        timeElapsed = Duration.between(start, end);
-        timeResults = timeResults + "A * (B * C): " + timeElapsed.toMillis() + " millisekund\n";
-        saveResToFile(matRes3, "matRes3" + fileName);
-        return timeResults;
+        for (int i = 0; i < 1; i++) {
+            MyMatrix<T> matRes1 = new MyMatrix<>(matrixA.getMatrix());
+            start = Instant.now();
+            matRes1 = matRes1.multiplyMatrix(matrixX);
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimes1.add(timeElapsed.toMillis());
+            saveResToFile(matRes1, "matRes1" + fileName);
+
+            MyMatrix<T> matRes2 = new MyMatrix<>(matrixA.getMatrix());
+            start = Instant.now();
+            matRes2 = matRes2.addingMatrix(matrixB).addingMatrix(matrixC).multiplyMatrix(matrixX);
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimes2.add(timeElapsed.toMillis());
+            saveResToFile(matRes2, "matRes2" + fileName);
+
+            MyMatrix<T> matRes3 = new MyMatrix<>(matrixB.getMatrix());
+            start = Instant.now();
+            matRes3 = matRes3.multiplyMatrix(matrixC).multiplyMatrix(matrixA);
+            end = Instant.now();
+            timeElapsed = Duration.between(start, end);
+            listOfTimes3.add(timeElapsed.toMillis());
+            saveResToFile(matRes3, "matRes3" + fileName);
+        }
+
+        System.out.println(fileName);
+        System.out.println("A * X: " + Collections.min(listOfTimes1));
+        System.out.println("(A + B + C) * X: " + Collections.min(listOfTimes2));
+        System.out.println("A * (B * C): " + Collections.min(listOfTimes3));
+
     }
 
     public List<String> calculateGauss(MyMatrix<T> matrixA, MyMatrix<T> matrixX, String fileName) {
@@ -100,7 +111,7 @@ public class MatrixOperations<T extends MyNumber<T>> {
         List<T> resGauss1 = null;
         List<T> resGauss2 = null;
         List<T> resGauss3 = null;
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             MyMatrix<T> matRes1 = new MyMatrix<>(matrixA.getMatrix());
             MyMatrix<T> temp1 = matRes1.multiplyMatrix(matrixX);
             matRes1 = matRes1.makeMatrixToGauss(temp1);
