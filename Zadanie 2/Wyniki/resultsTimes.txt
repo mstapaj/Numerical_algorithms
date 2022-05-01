@@ -1,0 +1,81 @@
+matrix10
+Float[0, 0, 0]
+Double[0, 0, 0]
+Fraction[13, 13, 17]
+Library[0]
+matrix15
+Float[0, 0, 0]
+Double[0, 0, 0]
+Fraction[112, 112, 115]
+Library[0]
+matrix20
+Float[0, 0, 0]
+Double[0, 0, 0]
+Fraction[615, 615, 628]
+Library[0]
+matrix25
+Float[0, 0, 0]
+Double[0, 0, 0]
+Fraction[2593, 2703, 2973]
+Library[0]
+matrix30
+Float[0, 0, 0]
+Double[0, 1, 1]
+Fraction[7895, 7989, 8097]
+Library[0]
+matrix35
+Float[1, 1, 1]
+Double[1, 1, 1]
+Fraction[20248, 20428, 20590]
+Library[0]
+matrix40
+Float[1, 1, 2]
+Double[2, 2, 2]
+Fraction[48383, 48572, 49022]
+Library[0]
+matrix45
+Float[2, 2, 2]
+Double[2, 2, 3]
+Fraction[104390, 108032, 113263]
+Library[0]
+matrix50
+Float[3, 3, 4]
+Double[3, 3, 4]
+Fraction[204547, 208126, 216361]
+Library[0]
+matrix100
+Float[33, 33, 34]
+Double[33, 34, 35]
+Library[0]
+matrix150
+Float[114, 118, 119]
+Double[115, 120, 128]
+Library[0]
+matrix200
+Float[278, 284, 325]
+Double[302, 292, 340]
+Library[1]
+matrix250
+Float[644, 640, 725]
+Double[677, 674, 777]
+Library[3]
+matrix300
+Float[1211, 1194, 1398]
+Double[1260, 1238, 1452]
+Library[6]
+matrix350
+Float[1864, 1884, 2101]
+Double[1898, 1898, 2179]
+Library[10]
+matrix400
+Float[2818, 2842, 3179]
+Double[2889, 2903, 3274]
+Library[15]
+matrix450
+Float[3800, 3818, 4172]
+Double[3858, 3865, 4281]
+Library[21]
+matrix500
+Float[5506, 5516, 6179]
+Double[5810, 5777, 6711]
+Library[30]

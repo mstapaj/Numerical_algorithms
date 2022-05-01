@@ -3,6 +3,7 @@ package com.company.types;
 import com.company.MyNumber;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 
 public class MyFloat implements MyNumber<MyFloat> {
     public Float value;

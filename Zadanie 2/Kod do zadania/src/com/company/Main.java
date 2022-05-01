@@ -92,52 +92,52 @@ public class Main {
         resToSave.addResults(matrixLibrary.calculateGauss(matrix25.libraryMatrixA, matrix25.libraryMatrixX, "library25Gauss"), "Library");
         System.out.println("Policzono Gauss matrix25");
         matrix25 = null;
-//
-//        ReadMatrixData matrix30 = new ReadMatrixData("30").collectData();
-//        resToSave.addMatrixSize("matrix30");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix30.floatMyMatrixA, matrix30.floatMyMatrixX, "float30Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix30.doubleMyMatrixA, matrix30.doubleMyMatrixX, "double30Gauss"), "Double");
-//        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix30.fractionMyMatrixA, matrix30.fractionMyMatrixX, "fraction30Gauss"), "Fraction");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix30.libraryMatrixA, matrix30.libraryMatrixX, "library30Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix30");
-//        matrix30 = null;
-//
-//        ReadMatrixData matrix35 = new ReadMatrixData("35").collectData();
-//        resToSave.addMatrixSize("matrix35");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix35.floatMyMatrixA, matrix35.floatMyMatrixX, "float35Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix35.doubleMyMatrixA, matrix35.doubleMyMatrixX, "double35Gauss"), "Double");
-//        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix35.fractionMyMatrixA, matrix35.fractionMyMatrixX, "fraction35Gauss"), "Fraction");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix35.libraryMatrixA, matrix35.libraryMatrixX, "library35Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix35");
-//        matrix35 = null;
-//
-//        ReadMatrixData matrix40 = new ReadMatrixData("40").collectData();
-//        resToSave.addMatrixSize("matrix40");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix40.floatMyMatrixA, matrix40.floatMyMatrixX, "float40Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix40.doubleMyMatrixA, matrix40.doubleMyMatrixX, "double40Gauss"), "Double");
-//        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix40.fractionMyMatrixA, matrix40.fractionMyMatrixX, "fraction40Gauss"), "Fraction");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix40.libraryMatrixA, matrix40.libraryMatrixX, "library40Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix40");
-//        matrix40 = null;
-//
-//        ReadMatrixData matrix45 = new ReadMatrixData("45").collectData();
-//        resToSave.addMatrixSize("matrix45");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix45.floatMyMatrixA, matrix45.floatMyMatrixX, "float45Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix45.doubleMyMatrixA, matrix45.doubleMyMatrixX, "double45Gauss"), "Double");
-//        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix45.fractionMyMatrixA, matrix45.fractionMyMatrixX, "fraction45Gauss"), "Fraction");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix45.libraryMatrixA, matrix45.libraryMatrixX, "library45Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix45");
-//        matrix45 = null;
-//
-//        ReadMatrixData matrix50 = new ReadMatrixData("50").collectData();
-//        resToSave.addMatrixSize("matrix50");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix50.floatMyMatrixA, matrix50.floatMyMatrixX, "float50Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix50.doubleMyMatrixA, matrix50.doubleMyMatrixX, "double50Gauss"), "Double");
-//        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix50.fractionMyMatrixA, matrix50.fractionMyMatrixX, "fraction50Gauss"), "Fraction");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix50.libraryMatrixA, matrix50.libraryMatrixX, "library50Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix50");
-//        matrix50 = null;
-//
+
+        ReadMatrixData matrix30 = new ReadMatrixData("500",30).collectData();
+        resToSave.addMatrixSize("matrix30");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix30.floatMyMatrixA, matrix30.floatMyMatrixX, "float30Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix30.doubleMyMatrixA, matrix30.doubleMyMatrixX, "double30Gauss"), "Double");
+        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix30.fractionMyMatrixA, matrix30.fractionMyMatrixX, "fraction30Gauss"), "Fraction");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix30.libraryMatrixA, matrix30.libraryMatrixX, "library30Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix30");
+        matrix30 = null;
+
+        ReadMatrixData matrix35 = new ReadMatrixData("500",35).collectData();
+        resToSave.addMatrixSize("matrix35");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix35.floatMyMatrixA, matrix35.floatMyMatrixX, "float35Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix35.doubleMyMatrixA, matrix35.doubleMyMatrixX, "double35Gauss"), "Double");
+        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix35.fractionMyMatrixA, matrix35.fractionMyMatrixX, "fraction35Gauss"), "Fraction");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix35.libraryMatrixA, matrix35.libraryMatrixX, "library35Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix35");
+        matrix35 = null;
+
+        ReadMatrixData matrix40 = new ReadMatrixData("500",40).collectData();
+        resToSave.addMatrixSize("matrix40");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix40.floatMyMatrixA, matrix40.floatMyMatrixX, "float40Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix40.doubleMyMatrixA, matrix40.doubleMyMatrixX, "double40Gauss"), "Double");
+        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix40.fractionMyMatrixA, matrix40.fractionMyMatrixX, "fraction40Gauss"), "Fraction");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix40.libraryMatrixA, matrix40.libraryMatrixX, "library40Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix40");
+        matrix40 = null;
+
+        ReadMatrixData matrix45 = new ReadMatrixData("500",45).collectData();
+        resToSave.addMatrixSize("matrix45");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix45.floatMyMatrixA, matrix45.floatMyMatrixX, "float45Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix45.doubleMyMatrixA, matrix45.doubleMyMatrixX, "double45Gauss"), "Double");
+        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix45.fractionMyMatrixA, matrix45.fractionMyMatrixX, "fraction45Gauss"), "Fraction");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix45.libraryMatrixA, matrix45.libraryMatrixX, "library45Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix45");
+        matrix45 = null;
+
+        ReadMatrixData matrix50 = new ReadMatrixData("500",50).collectData();
+        resToSave.addMatrixSize("matrix50");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix50.floatMyMatrixA, matrix50.floatMyMatrixX, "float50Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix50.doubleMyMatrixA, matrix50.doubleMyMatrixX, "double50Gauss"), "Double");
+        resToSave.addResults(matrixOperationsFraction.calculateGauss(matrix50.fractionMyMatrixA, matrix50.fractionMyMatrixX, "fraction50Gauss"), "Fraction");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix50.libraryMatrixA, matrix50.libraryMatrixX, "library50Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix50");
+        matrix50 = null;
+
         ReadMatrixData matrix100 = new ReadMatrixData("500", 100).collectData();
         resToSave.addMatrixSize("matrix100");
         resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix100.floatMyMatrixA, matrix100.floatMyMatrixX, "float100Gauss"), "Float");
@@ -145,70 +145,70 @@ public class Main {
         resToSave.addResults(matrixLibrary.calculateGauss(matrix100.libraryMatrixA, matrix100.libraryMatrixX, "library100Gauss"), "Library");
         System.out.println("Policzono Gauss matrix100");
         matrix100 = null;
-//
-//        ReadMatrixData matrix150 = new ReadMatrixData("150").collectData();
-//        resToSave.addMatrixSize("matrix150");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix150.floatMyMatrixA, matrix150.floatMyMatrixX, "float150Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix150.doubleMyMatrixA, matrix150.doubleMyMatrixX, "double150Gauss"), "Double");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix150.libraryMatrixA, matrix150.libraryMatrixX, "library150Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix150");
-//        matrix150 = null;
-//
-//        ReadMatrixData matrix200 = new ReadMatrixData("200").collectData();
-//        resToSave.addMatrixSize("matrix200");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix200.floatMyMatrixA, matrix200.floatMyMatrixX, "float200Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix200.doubleMyMatrixA, matrix200.doubleMyMatrixX, "double200Gauss"), "Double");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix200.libraryMatrixA, matrix200.libraryMatrixX, "library200Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix200");
-//        matrix200 = null;
-//
-//        ReadMatrixData matrix250 = new ReadMatrixData("250").collectData();
-//        resToSave.addMatrixSize("matrix250");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix250.floatMyMatrixA, matrix250.floatMyMatrixX, "float250Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix250.doubleMyMatrixA, matrix250.doubleMyMatrixX, "double250Gauss"), "Double");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix250.libraryMatrixA, matrix250.libraryMatrixX, "library250Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix250");
-//        matrix250 = null;
-//
-        ReadMatrixData matrix300 = new ReadMatrixData("500", 100).collectData();
+
+        ReadMatrixData matrix150 = new ReadMatrixData("500",150).collectData();
+        resToSave.addMatrixSize("matrix150");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix150.floatMyMatrixA, matrix150.floatMyMatrixX, "float150Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix150.doubleMyMatrixA, matrix150.doubleMyMatrixX, "double150Gauss"), "Double");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix150.libraryMatrixA, matrix150.libraryMatrixX, "library150Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix150");
+        matrix150 = null;
+
+        ReadMatrixData matrix200 = new ReadMatrixData("500",200).collectData();
+        resToSave.addMatrixSize("matrix200");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix200.floatMyMatrixA, matrix200.floatMyMatrixX, "float200Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix200.doubleMyMatrixA, matrix200.doubleMyMatrixX, "double200Gauss"), "Double");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix200.libraryMatrixA, matrix200.libraryMatrixX, "library200Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix200");
+        matrix200 = null;
+
+        ReadMatrixData matrix250 = new ReadMatrixData("500",250).collectData();
+        resToSave.addMatrixSize("matrix250");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix250.floatMyMatrixA, matrix250.floatMyMatrixX, "float250Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix250.doubleMyMatrixA, matrix250.doubleMyMatrixX, "double250Gauss"), "Double");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix250.libraryMatrixA, matrix250.libraryMatrixX, "library250Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix250");
+        matrix250 = null;
+
+        ReadMatrixData matrix300 = new ReadMatrixData("500", 300).collectData();
         resToSave.addMatrixSize("matrix300");
         resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix300.floatMyMatrixA, matrix300.floatMyMatrixX, "float300Gauss"), "Float");
         resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix300.doubleMyMatrixA, matrix300.doubleMyMatrixX, "double300Gauss"), "Double");
         resToSave.addResults(matrixLibrary.calculateGauss(matrix300.libraryMatrixA, matrix300.libraryMatrixX, "library300Gauss"), "Library");
         System.out.println("Policzono Gauss matrix300");
         matrix300 = null;
-//
-//        ReadMatrixData matrix350 = new ReadMatrixData("350").collectData();
-//        resToSave.addMatrixSize("matrix350");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix350.floatMyMatrixA, matrix350.floatMyMatrixX, "float350Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix350.doubleMyMatrixA, matrix350.doubleMyMatrixX, "double350Gauss"), "Double");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix350.libraryMatrixA, matrix350.libraryMatrixX, "library350Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix350");
-//        matrix350 = null;
-//
-//        ReadMatrixData matrix400 = new ReadMatrixData("400").collectData();
-//        resToSave.addMatrixSize("matrix400");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix400.floatMyMatrixA, matrix400.floatMyMatrixX, "float400Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix400.doubleMyMatrixA, matrix400.doubleMyMatrixX, "double400Gauss"), "Double");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix400.libraryMatrixA, matrix400.libraryMatrixX, "library400Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix400");
-//        matrix400 = null;
-//
-//        ReadMatrixData matrix450 = new ReadMatrixData("450").collectData();
-//        resToSave.addMatrixSize("matrix450");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix450.floatMyMatrixA, matrix450.floatMyMatrixX, "float450Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix450.doubleMyMatrixA, matrix450.doubleMyMatrixX, "double450Gauss"), "Double");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix450.libraryMatrixA, matrix450.libraryMatrixX, "library450Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix450");
-//        matrix450 = null;
-//
-//        ReadMatrixData matrix500 = new ReadMatrixData("500").collectData();
-//        resToSave.addMatrixSize("matrix500");
-//        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix500.floatMyMatrixA, matrix500.floatMyMatrixX, "float500Gauss"), "Float");
-//        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix500.doubleMyMatrixA, matrix500.doubleMyMatrixX, "double500Gauss"), "Double");
-//        resToSave.addResults(matrixLibrary.calculateGauss(matrix500.libraryMatrixA, matrix500.libraryMatrixX, "library500Gauss"), "Library");
-//        System.out.println("Policzono Gauss matrix500");
-//        matrix500 = null;
+
+        ReadMatrixData matrix350 = new ReadMatrixData("500",350).collectData();
+        resToSave.addMatrixSize("matrix350");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix350.floatMyMatrixA, matrix350.floatMyMatrixX, "float350Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix350.doubleMyMatrixA, matrix350.doubleMyMatrixX, "double350Gauss"), "Double");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix350.libraryMatrixA, matrix350.libraryMatrixX, "library350Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix350");
+        matrix350 = null;
+
+        ReadMatrixData matrix400 = new ReadMatrixData("500",400).collectData();
+        resToSave.addMatrixSize("matrix400");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix400.floatMyMatrixA, matrix400.floatMyMatrixX, "float400Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix400.doubleMyMatrixA, matrix400.doubleMyMatrixX, "double400Gauss"), "Double");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix400.libraryMatrixA, matrix400.libraryMatrixX, "library400Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix400");
+        matrix400 = null;
+
+        ReadMatrixData matrix450 = new ReadMatrixData("500",450).collectData();
+        resToSave.addMatrixSize("matrix450");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix450.floatMyMatrixA, matrix450.floatMyMatrixX, "float450Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix450.doubleMyMatrixA, matrix450.doubleMyMatrixX, "double450Gauss"), "Double");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix450.libraryMatrixA, matrix450.libraryMatrixX, "library450Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix450");
+        matrix450 = null;
+
+        ReadMatrixData matrix500 = new ReadMatrixData("500",500).collectData();
+        resToSave.addMatrixSize("matrix500");
+        resToSave.addResults(matrixOperationsFloat.calculateGauss(matrix500.floatMyMatrixA, matrix500.floatMyMatrixX, "float500Gauss"), "Float");
+        resToSave.addResults(matrixOperationsDouble.calculateGauss(matrix500.doubleMyMatrixA, matrix500.doubleMyMatrixX, "double500Gauss"), "Double");
+        resToSave.addResults(matrixLibrary.calculateGauss(matrix500.libraryMatrixA, matrix500.libraryMatrixX, "library500Gauss"), "Library");
+        System.out.println("Policzono Gauss matrix500");
+        matrix500 = null;
 
 
         resToSave.saveToFileResults();

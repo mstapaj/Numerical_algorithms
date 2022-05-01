@@ -92,15 +92,11 @@ public class MyMatrix<T extends MyNumber<T>> {
     }
 
     public T calculateNorm() {
-        if (this.matrix.get(0).size() > 1) {
-            return this.matrix.get(0).get(0);
-        } else {
-            T sum = this.matrix.get(0).get(0).initialize_zero();
-            for (int i = 0; i < this.matrix.size(); i++) {
-                sum.add(this.matrix.get(i).get(0).absolute());
-            }
-            return sum;
+        T sum = this.matrix.get(0).get(0).initialize_zero();
+        for (int i = 0; i < this.matrix.size(); i++) {
+            sum.add(this.matrix.get(i).get(0).absolute());
         }
+        return sum;
     }
 
     public MyMatrix<T> addingMatrix(MyMatrix<T> another_matrix) {

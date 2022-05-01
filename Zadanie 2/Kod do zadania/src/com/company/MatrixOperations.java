@@ -110,7 +110,7 @@ public class MatrixOperations<T extends MyNumber<T>> {
             timeElapsed = Duration.between(start, end);
             listOfTimesG.add(timeElapsed.toMillis());
 //            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1), "gaussPRes" + fileName);
-            saveResToFile(matrixX, "gaussPResX" + fileName);
+//            saveResToFile(matrixX, "gaussPResX" + fileName);
 
             MyMatrix<T> matRes2 = new MyMatrix<>(matrixA.getMatrix());
             MyMatrix<T> temp2 = matRes2.multiplyMatrix(matrixX);
@@ -121,7 +121,7 @@ public class MatrixOperations<T extends MyNumber<T>> {
             timeElapsed = Duration.between(start, end);
             listOfTimesPG.add(timeElapsed.toMillis());
 //            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2), "gaussPGRes" + fileName);
-            saveResToFile(matrixX, "gaussPGResX" + fileName);
+//            saveResToFile(matrixX, "gaussPGResX" + fileName);
 
             MyMatrix<T> matRes3 = new MyMatrix<>(matrixA.getMatrix());
             MyMatrix<T> temp3 = matRes3.multiplyMatrix(matrixX);
@@ -132,46 +132,17 @@ public class MatrixOperations<T extends MyNumber<T>> {
             timeElapsed = Duration.between(start, end);
             listOfTimesFG.add(timeElapsed.toMillis());
 //            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3), "gaussFGRes" + fileName);
-            saveResToFile(matrixX, "gaussFGResX" + fileName);
-//            System.out.println(matrixA.getNumber());
+//            saveResToFile(matrixX, "gaussFGResX" + fileName);
         }
 
-//        System.out.println(normX);
-//        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm());
-//        System.out.println();
-
-//        System.out.println(normX1.getNumber());
-//        System.out.println(normX2.getNumber());
-//        System.out.println(normX3.getNumber());
-//        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm().getNumber());
-//        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2).calculateNorm().getNumber());
-//        System.out.println(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3).calculateNorm().getNumber());
-
-//        System.out.println(normX1.getNumber());
-//        System.out.println(normX2.getNumber());
-//        System.out.println(normX3.getNumber());
 
         normX1.sub(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm());
         normX2.sub(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2).calculateNorm());
         normX3.sub(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3).calculateNorm());
 
-        normX1 = normX1.absolute();
-        normX2 = normX2.absolute();
-        normX3 = normX3.absolute();
-
-//        System.out.println(normX1.getNumber());
-//        System.out.println(normX2.getNumber());
-//        System.out.println(normX3.getNumber());
 
         Collections.addAll(listOfDiff, normX1.absolute().getNumber(), normX2.absolute().getNumber(), normX3.absolute().getNumber());
 
-//        listOfDiff.add(normX1);
-//        listOfDiff.add(normX2);
-//        listOfDiff.add(normX3.sub(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3).calculateNorm()));
-
-//        System.out.println(listOfDiff.get(0));
-//        System.out.println(listOfDiff.get(1));
-//        System.out.println(listOfDiff.get(2));
 
         listOfTimes.add(Collections.min(listOfTimesG));
         listOfTimes.add(Collections.min(listOfTimesPG));
