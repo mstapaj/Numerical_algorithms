@@ -64,7 +64,7 @@ public class MatrixOperations<T extends MyNumber<T>> {
         List<Long> listOfTimes2 = new ArrayList<>();
         List<Long> listOfTimes3 = new ArrayList<>();
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             MyMatrix<T> matRes1 = new MyMatrix<>(matrixA.getMatrix());
             start = Instant.now();
             matRes1 = matRes1.multiplyMatrix(matrixX);

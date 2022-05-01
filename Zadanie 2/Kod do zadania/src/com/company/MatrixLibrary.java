@@ -53,7 +53,7 @@ public class MatrixLibrary {
         List<Long> listOfTimes2 = new ArrayList<>();
         List<Long> listOfTimes3 = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             SimpleMatrix matRes1 = new SimpleMatrix(matrixA);
             start = Instant.now();
             matRes1 = matRes1.mult(matrixX);
