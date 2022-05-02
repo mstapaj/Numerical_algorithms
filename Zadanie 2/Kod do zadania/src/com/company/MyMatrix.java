@@ -132,24 +132,21 @@ public class MyMatrix<T extends MyNumber<T>> {
         return new MyMatrix<>(rows, columns, matrixElements);
     }
 
-    public List<T> gaussMatrixG() {
-        List<T> result = new ArrayList<>();
-        int rows = this.matrix.size();
-        int columns = this.matrix.get(0).size();
-        for (int k = 0; k < rows; k++) {
-            result.add(this.matrix.get(0).get(0).initialize());
-            for (int i = k + 1; i < rows; i++) {
-                T temp = this.matrix.get(i).get(k).initialize();
-                temp.div(this.matrix.get(k).get(k));
-                for (int j = k + 1; j < columns; j++) {
-                    T temp2 = this.matrix.get(k).get(j).initialize();
-                    temp2.mul(temp);
-                    this.matrix.get(i).get(j).sub(temp2);
-                }
-                this.matrix.get(i).set(k, this.matrix.get(0).get(0).initialize_zero());
+    private void firstStepGauss(int columns, int rows, int k) {
+        for (int i = k + 1; i < rows; i++) {
+            T temp = this.matrix.get(i).get(k).initialize();
+            temp.div(this.matrix.get(k).get(k));
+            for (int j = k + 1; j < columns; j++) {
+                T temp2 = this.matrix.get(k).get(j).initialize();
+                temp2.mul(temp);
+                this.matrix.get(i).get(j).sub(temp2);
             }
-            this.matrix = this.shortenMatrix().getMatrix();
+            this.matrix.get(i).set(k, this.matrix.get(0).get(0).initialize_zero());
         }
+        this.matrix = this.shortenMatrix().getMatrix();
+    }
+
+    private void secondStepGauss(int columns, int rows, List<T> result) {
         for (int i = rows - 1; i >= 0; i--) {
             result.set(i, this.matrix.get(i).get(rows));
             for (int j = i + 1; j < rows; j++) {
@@ -161,6 +158,17 @@ public class MyMatrix<T extends MyNumber<T>> {
             temp2.div(this.matrix.get(i).get(i));
             result.set(i, temp2);
         }
+    }
+
+    public List<T> gaussMatrixG() {
+        List<T> result = new ArrayList<>();
+        int rows = this.matrix.size();
+        int columns = this.matrix.get(0).size();
+        for (int k = 0; k < rows; k++) {
+            result.add(this.matrix.get(0).get(0).initialize());
+            firstStepGauss(columns, rows, k);
+        }
+        secondStepGauss(columns, rows, result);
         return result;
     }
 
@@ -181,29 +189,9 @@ public class MyMatrix<T extends MyNumber<T>> {
             if (i_max != k) {
                 Collections.swap(this.matrix, k, i_max);
             }
-            for (int i = k + 1; i < rows; i++) {
-                T temp = this.matrix.get(i).get(k).initialize();
-                temp.div(this.matrix.get(k).get(k));
-                for (int j = k + 1; j < columns; j++) {
-                    T temp2 = this.matrix.get(k).get(j).initialize();
-                    temp2.mul(temp);
-                    this.matrix.get(i).get(j).sub(temp2);
-                }
-                this.matrix.get(i).set(k, this.matrix.get(0).get(0).initialize_zero());
-            }
-            this.matrix = this.shortenMatrix().getMatrix();
+            firstStepGauss(columns, rows, k);
         }
-        for (int i = rows - 1; i >= 0; i--) {
-            result.set(i, this.matrix.get(i).get(rows));
-            for (int j = i + 1; j < rows; j++) {
-                T temp = this.matrix.get(i).get(j).initialize();
-                temp.mul(result.get(j));
-                result.get(i).sub(temp);
-            }
-            T temp2 = result.get(i);
-            temp2.div(this.matrix.get(i).get(i));
-            result.set(i, temp2);
-        }
+        secondStepGauss(columns, rows, result);
         return result;
     }
 
@@ -241,29 +229,9 @@ public class MyMatrix<T extends MyNumber<T>> {
                 }
             }
             switchCols[k] = i_max2;
-            for (int i = k + 1; i < rows; i++) {
-                T temp = this.matrix.get(i).get(k).initialize();
-                temp.div(this.matrix.get(k).get(k));
-                for (int j = k + 1; j < columns; j++) {
-                    T temp2 = this.matrix.get(k).get(j).initialize();
-                    temp2.mul(temp);
-                    this.matrix.get(i).get(j).sub(temp2);
-                }
-                this.matrix.get(i).set(k, this.matrix.get(0).get(0).initialize_zero());
-            }
-            this.matrix = this.shortenMatrix().getMatrix();
+            firstStepGauss(columns, rows, k);
         }
-        for (int i = rows - 1; i >= 0; i--) {
-            result.set(i, this.matrix.get(i).get(rows));
-            for (int j = i + 1; j < rows; j++) {
-                T temp = this.matrix.get(i).get(j).initialize();
-                temp.mul(result.get(j));
-                result.get(i).sub(temp);
-            }
-            T temp2 = result.get(i);
-            temp2.div(this.matrix.get(i).get(i));
-            result.set(i, temp2);
-        }
+        secondStepGauss(columns, rows, result);
         for (int i = switchCols.length - 1; i >= 0; i--) {
             if (i != switchCols[i]) {
                 Collections.swap(result, i, switchCols[i]);
