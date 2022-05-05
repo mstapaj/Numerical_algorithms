@@ -177,22 +177,26 @@ public class MyMatrix<T extends MyNumber<T>> {
         int rows = this.matrix.size();
         int columns = this.matrix.get(0).size();
         for (int k = 0; k < rows; k++) {
-            result.add(this.matrix.get(0).get(0).initialize());
-            int i_max = k;
-            T v_max = this.matrix.get(i_max).get(k).initialize();
-            for (int i = k + 1; i < rows; i++) {
-                if (this.matrix.get(i).get(k).absolute().compare(v_max) == 1) {
-                    v_max = this.matrix.get(i).get(k).initialize();
-                    i_max = i;
-                }
-            }
-            if (i_max != k) {
-                Collections.swap(this.matrix, k, i_max);
-            }
+            swapRows(result, rows, k);
             firstStepGauss(columns, rows, k);
         }
         secondStepGauss(columns, rows, result);
         return result;
+    }
+
+    private void swapRows(List<T> result, int rows, int k) {
+        result.add(this.matrix.get(0).get(0).initialize());
+        int i_max = k;
+        T v_max = this.matrix.get(i_max).get(k).initialize();
+        for (int i = k + 1; i < rows; i++) {
+            if (this.matrix.get(i).get(k).absolute().compare(v_max.absolute()) == 1) {
+                v_max = this.matrix.get(i).get(k).initialize();
+                i_max = i;
+            }
+        }
+        if (i_max != k) {
+            Collections.swap(this.matrix, k, i_max);
+        }
     }
 
     public List<T> gaussMatrixFG() {
@@ -201,22 +205,11 @@ public class MyMatrix<T extends MyNumber<T>> {
         int rows = this.matrix.size();
         int columns = this.matrix.get(0).size();
         for (int k = 0; k < rows; k++) {
-            result.add(this.matrix.get(0).get(0).initialize());
-            int i_max = k;
-            T v_max = this.matrix.get(i_max).get(k).initialize();
-            for (int i = k + 1; i < rows; i++) {
-                if (this.matrix.get(i).get(k).absolute().compare(v_max) == 1) {
-                    v_max = this.matrix.get(i).get(k).initialize();
-                    i_max = i;
-                }
-            }
-            if (i_max != k) {
-                Collections.swap(this.matrix, k, i_max);
-            }
+            swapRows(result, rows, k);
             int i_max2 = k;
             T v_max2 = this.matrix.get(i_max2).get(k).initialize();
             for (int i = k + 1; i < rows; i++) {
-                if (this.matrix.get(k).get(i).absolute().compare(v_max2) == 1) {
+                if (this.matrix.get(k).get(i).absolute().compare(v_max2.absolute()) == 1) {
                     v_max2 = this.matrix.get(k).get(i).initialize();
                     i_max2 = i;
                 }

@@ -32,19 +32,11 @@ public class MatrixLibrary {
     }
 
     public static BigDecimal calculateNorm(SimpleMatrix matrix) {
-//        System.out.println(matrix.numCols());
-        if (matrix.numCols() > 1) {
-            return new BigDecimal(0);
-        } else {
-//            T sum = this.matrix.get(0).get(0).initialize_zero();
-            BigDecimal sum = new BigDecimal(0);
-            for (int i = 0; i < matrix.numRows(); i++) {
-//                sum.add(this.matrix.get(i).get(0).absolute());
-                sum = sum.add(BigDecimal.valueOf(matrix.get(i, 0)).abs());
-            }
-//            return new BigDecimal(String.valueOf(sum.returnValue()));
-            return sum;
+        BigDecimal sum = new BigDecimal(0);
+        for (int i = 0; i < matrix.numRows(); i++) {
+            sum = sum.add(BigDecimal.valueOf(matrix.get(i, 0)).abs());
         }
+        return sum;
     }
 
     public void calculate(SimpleMatrix matrixA, SimpleMatrix matrixB, SimpleMatrix matrixC, SimpleMatrix matrixX, String fileName) throws IOException {
@@ -86,8 +78,6 @@ public class MatrixLibrary {
     }
 
     public List<String> calculateGauss(SimpleMatrix matrixA, SimpleMatrix matrixX, String fileName) throws IOException {
-        String timeResults = fileName + "\n";
-
         BigDecimal normX = calculateNorm(matrixX);
         List<BigDecimal> listOfDiff = new ArrayList<>();
         List<Long> listOfTimes = new ArrayList<>();
@@ -103,10 +93,6 @@ public class MatrixLibrary {
             listOfTimes.add(timeElapsed.toMillis());
             saveResToFile(matRes1, "matResGauss" + fileName);
         }
-
-
-//        System.out.println(normX);
-//        System.out.println(calculateNorm(matRes1));
 
         listOfDiff.add(normX.subtract(calculateNorm(matRes1)).abs());
 
