@@ -120,8 +120,8 @@ public class MatrixOperations<T extends MyNumber<T>> {
             end = Instant.now();
             timeElapsed = Duration.between(start, end);
             listOfTimesG.add(timeElapsed.toMillis());
-//            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1), "gaussPRes" + fileName);
-//            saveResToFile(matrixX, "gaussPResX" + fileName);
+            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1), "gaussPRes" + fileName);
+            saveResToFile(matrixX, "gaussPResX" + fileName);
 
             MyMatrix<T> matRes2 = new MyMatrix<>(matrixA.getMatrix());
             MyMatrix<T> temp2 = matRes2.multiplyMatrix(matrixX);
@@ -131,8 +131,8 @@ public class MatrixOperations<T extends MyNumber<T>> {
             end = Instant.now();
             timeElapsed = Duration.between(start, end);
             listOfTimesPG.add(timeElapsed.toMillis());
-//            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2), "gaussPGRes" + fileName);
-//            saveResToFile(matrixX, "gaussPGResX" + fileName);
+            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2), "gaussPGRes" + fileName);
+            saveResToFile(matrixX, "gaussPGResX" + fileName);
 
             MyMatrix<T> matRes3 = new MyMatrix<>(matrixA.getMatrix());
             MyMatrix<T> temp3 = matRes3.multiplyMatrix(matrixX);
@@ -142,18 +142,15 @@ public class MatrixOperations<T extends MyNumber<T>> {
             end = Instant.now();
             timeElapsed = Duration.between(start, end);
             listOfTimesFG.add(timeElapsed.toMillis());
-//            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3), "gaussFGRes" + fileName);
-//            saveResToFile(matrixX, "gaussFGResX" + fileName);
+            saveResToFile(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3), "gaussFGRes" + fileName);
+            saveResToFile(matrixX, "gaussFGResX" + fileName);
         }
-
 
         normX1.sub(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss1).calculateNorm());
         normX2.sub(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss2).calculateNorm());
         normX3.sub(new MyMatrix<>(matrixA.getMatrix().size(), 1, resGauss3).calculateNorm());
 
-
         Collections.addAll(listOfDiff, normX1.absolute().getNumber(), normX2.absolute().getNumber(), normX3.absolute().getNumber());
-
 
         listOfTimes.add(Collections.min(listOfTimesG));
         listOfTimes.add(Collections.min(listOfTimesPG));

@@ -19,18 +19,14 @@ public class GenerateMatrix {
                     BigInteger denum;
                     if (max == 0 && min == 0) {
                         num = BigInteger.valueOf(ran.nextInt());
-                        while (true) {
+                        do {
                             denum = BigInteger.valueOf(ran.nextInt());
-                            if (denum.equals(BigInteger.ZERO)) {
-                            } else break;
-                        }
+                        } while (denum.equals(BigInteger.ZERO));
                     } else {
                         num = BigInteger.valueOf(ran.nextInt((max - min) + 1) + min);
-                        while (true) {
+                        do {
                             denum = BigInteger.valueOf(ran.nextInt((max - min) + 1) + min);
-                            if (denum.equals(BigInteger.ZERO)) {
-                            } else break;
-                        }
+                        } while (denum.equals(BigInteger.ZERO));
                     }
                     myWriterFloat.write((num.floatValue() / denum.floatValue()) / 65536 + ",");
                     myWriterDouble.write((num.doubleValue() / denum.doubleValue()) / 65536 + ",");
@@ -54,23 +50,6 @@ public class GenerateMatrix {
 
 
     public static void main(String[] args) {
-//        generateABCX(10, -65536, 65535);
-//        generateABCX(15, -65536, 65535);
-//        generateABCX(20, -65536, 65535);
-//        generateABCX(25, -65536, 65535);
-//        generateABCX(30, -65536, 65535);
-//        generateABCX(35, -65536, 65535);
-//        generateABCX(40, -65536, 65535);
-//        generateABCX(45, -65536, 65535);
-//        generateABCX(50, -65536, 65535);
-//        generateABCX(100, -65536, 65535);
-//        generateABCX(150, -65536, 65535);
-//        generateABCX(200, -65536, 65535);
-//        generateABCX(250, -65536, 65535);
-//        generateABCX(300, -65536, 65535);
-//        generateABCX(350, -65536, 65535);
-//        generateABCX(400, -65536, 65535);
-//        generateABCX(450, -65536, 65535);
         generateABCX(500, -65536, 65535);
     }
 }

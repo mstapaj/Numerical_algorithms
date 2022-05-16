@@ -141,7 +141,7 @@ public class MyMatrix<T extends MyNumber<T>> {
         this.matrix = this.shortenMatrix().getMatrix();
     }
 
-    private void secondStepGauss(int columns, int rows, List<T> result) {
+    private void secondStepGauss(int rows, List<T> result) {
         for (int i = rows - 1; i >= 0; i--) {
             result.set(i, this.matrix.get(i).get(rows));
             for (int j = i + 1; j < rows; j++) {
@@ -163,7 +163,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             result.add(this.matrix.get(0).get(0).initialize());
             firstStepGauss(columns, rows, k);
         }
-        secondStepGauss(columns, rows, result);
+        secondStepGauss(rows, result);
         return result;
     }
 
@@ -175,7 +175,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             swapRows(result, rows, k);
             firstStepGauss(columns, rows, k);
         }
-        secondStepGauss(columns, rows, result);
+        secondStepGauss(rows, result);
         return result;
     }
 
@@ -219,7 +219,7 @@ public class MyMatrix<T extends MyNumber<T>> {
             switchCols[k] = i_max2;
             firstStepGauss(columns, rows, k);
         }
-        secondStepGauss(columns, rows, result);
+        secondStepGauss(rows, result);
         for (int i = switchCols.length - 1; i >= 0; i--) {
             if (i != switchCols[i]) {
                 Collections.swap(result, i, switchCols[i]);
