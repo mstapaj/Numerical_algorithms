@@ -40,12 +40,7 @@ public class MyMatrix<T extends MyNumber<T>> {
     }
 
     public List<List<T>> getMatrix() {
-        List<List<T>> res = new ArrayList<>();
-        for (int i = 0; i < this.matrix.size(); i++) {
-            List<T> temp = new ArrayList<>(this.matrix.get(i));
-            res.add(temp);
-        }
-        return res;
+        return this.matrix;
     }
 
     public List<List<Number>> getNumber() {
