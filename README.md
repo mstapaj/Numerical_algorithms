@@ -15,7 +15,7 @@ Program calculating the set value of the function cos(x)\*arctg(x) in 4 ways:
 4. Summing up the elements of the power series from the end but calculating the next term of the series on the basis of
    the previous one.
 
-[PDF with project report (Polish language)](./Zadanie 1/Projekt_1___Algorytmy_numeryczne.pdf)
+[PDF with project report (Polish language)](<./Zadanie 1/Projekt_1___Algorytmy_numeryczne.pdf>)
 
 ## Zadanie 2
 
@@ -32,7 +32,7 @@ All operations are performed on three types:
 - TD: Double Precision Type (Double)
 - TC: custom type that stores a number as a fraction of an integer (numerator and denominator notated with BigInteger)
 
-[PDF with project report (Polish language)](./Zadanie 2/Projekt_2___Algorytmy_numeryczne.pdf)
+[PDF with project report (Polish language)](<./Zadanie 2/Projekt_2___Algorytmy_numeryczne.pdf>)
 
 ## Zadanie 3
 
